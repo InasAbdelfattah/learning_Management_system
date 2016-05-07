@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 07, 2016 at 10:04 PM
--- Server version: 5.5.46-0ubuntu0.14.04.2
+-- Generation Time: May 08, 2016 at 02:30 AM
+-- Server version: 5.5.49-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -127,6 +127,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email` varchar(100) NOT NULL,
   `password` char(32) NOT NULL,
   `image` varchar(300) NOT NULL,
+  `signature` varchar(255) DEFAULT NULL,
   `is_active` tinyint(2) NOT NULL,
   `is_admin` tinyint(2) NOT NULL,
   `is_loged` tinyint(2) NOT NULL,
