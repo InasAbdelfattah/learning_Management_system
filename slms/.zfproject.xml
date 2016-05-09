@@ -11,10 +11,24 @@
           <actionMethod actionName="index"/>
         </controllerFile>
         <controllerFile controllerName="Error"/>
+        <controllerFile controllerName="UserController">
+          <actionMethod actionName="index"/>
+        </controllerFile>
       </controllersDirectory>
-      <formsDirectory enabled="false"/>
+      <formsDirectory>
+        <formFile formName="User"/>
+      </formsDirectory>
       <layoutsDirectory enabled="false"/>
-      <modelsDirectory/>
+      <modelsDirectory>
+        <modelFile modelName="Users"/>
+        <modelFile modelName="Courses"/>
+        <modelFile modelName="Comments"/>
+        <modelFile modelName="Materials"/>
+        <modelFile modelName="MaterialTypes"/>
+        <modelFile modelName="Requests"/>
+        <modelFile modelName="Downloads"/>
+        <modelFile modelName="Views"/>
+      </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <servicesDirectory enabled="false"/>
       <viewsDirectory>
@@ -24,6 +38,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Error">
             <viewScriptFile forActionName="error"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="UserController">
+            <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
