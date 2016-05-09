@@ -28,7 +28,7 @@ class Application_Model_MyModel extends Zend_Db_Table_Abstract {
         return $this->get_columns()->save();
     }
 
-    function deleteID() {
+    function delete_id() {
         $primary_key = $this->primary_key;
         return $this->delete($this->primary_key . '=' . $this->$primary_key);
     }
