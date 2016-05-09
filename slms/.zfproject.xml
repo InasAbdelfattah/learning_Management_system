@@ -21,6 +21,11 @@
       <layoutsDirectory enabled="false"/>
       <modelsDirectory>
         <modelFile modelName="Users"/>
+        <modelFile modelName="Courses"/>
+        <modelFile modelName="Comments"/>
+        <modelFile modelName="Materials"/>
+        <modelFile modelName="MaterialTypes"/>
+        <modelFile modelName="Requests"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <servicesDirectory enabled="false"/>
