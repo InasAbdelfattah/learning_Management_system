@@ -26,6 +26,8 @@
         <modelFile modelName="Materials"/>
         <modelFile modelName="MaterialTypes"/>
         <modelFile modelName="Requests"/>
+        <modelFile modelName="Downloads"/>
+        <modelFile modelName="Views"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <servicesDirectory enabled="false"/>

@@ -5,6 +5,7 @@ class Application_Model_Users extends Application_Model_MyModel {
     protected $_name = 'users';
     protected $primary_key = "id";
     protected $fields = array("username", "email", "password", "image", "signature", "is_active", "is_admin", "is_loged", "joined_at", "updated_at");
+    
     public $id;
     public $username;
     public $email;
