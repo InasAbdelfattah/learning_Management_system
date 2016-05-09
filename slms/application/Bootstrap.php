@@ -31,7 +31,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     	$view->headLink()->appendStylesheet('css/animate.css');  
     	$view->headLink()->appendStylesheet('css/queryLoader.css');
     	$view->headLink()->appendStylesheet('css/jquery.tosrus.all.css');
-    	$view->headLink()->appendStylesheet('css/themes/default-them.css');
+    	$view->headLink()->appendStylesheet('css/themes/default-theme.css');
     	$view->headLink()->appendStylesheet('style.css');
     	
 
