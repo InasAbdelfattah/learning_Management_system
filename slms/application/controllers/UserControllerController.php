@@ -62,7 +62,5 @@ class UserControllerController extends Zend_Controller_Action {
         $form->getElement('submit')->setName('ok');
         $this->view->form = $form;
     }
-    
-    
 
 }
