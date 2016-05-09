@@ -14,6 +14,25 @@ class UserControllerController extends Zend_Controller_Action {
         // action body
     }
 
+    public function addAction() {
+
+
+        $form = new Application_Form_User();
+        //$values = $this->getRequest()->getParams();
+        if ($this->getRequest()->isPost()) {
+            if ($form->isValid($this->getRequest()->getParams())) {
+                $data = $form->getValues();
+
+                if ($this->model->addUser($data))
+                    $this->redirect('users/index');
+            }
+        }
+        //$form->removeElement('submit');
+        $this->view->form = $form;
+        //$this->view->pass = "5";
+//        $this->redirect('users/add');
+    }
+
     public function loginAction() {
 
         $authorization = Zend_Auth::getInstance();
@@ -27,7 +46,7 @@ class UserControllerController extends Zend_Controller_Action {
         $form->getElement('email')->removeValidator('Zend_Validate_Db_NoRecordExists');
 //                username,image,signature,is_active,is_admin,is_loged,joined_at,updated_at
 
-        $form->removeElement( 'username', 'image', 'signature', 'is_active', 'is_admin', 'is_loged', 'joined_at', 'updated_at');
+        $form->removeElement('username', 'image', 'signature', 'is_active', 'is_admin', 'is_loged', 'joined_at', 'updated_at');
 //$values = $this->getRequest()->getParams();
         if ($this->getRequest()->isPost()) {
             if ($form->isValid($this->getRequest()->getParams())) {
