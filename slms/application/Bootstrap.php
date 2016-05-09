@@ -37,9 +37,10 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
 
 		// Set the initial JS to load:
-		$view->headScript()->appendFile('js/jquery-1.12.3.js');
+                $view->headScript()->appendFile('http://code.jquery.com/jquery-1.9.1.js');
+                $view->headScript()->appendFile('js/jquery-1.12.3.js');
 		$view->headScript()->appendFile('js/jquery.min.js');
-		$view->headScript()->appendFile('js/bootstrap.min.js');
+		$view->headScript()->appendFile('http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js');
 		$view->headScript()->appendFile('js/queryloader2.min.js');
 		$view->headScript()->appendFile('js/wow.min.js');
 		$view->headScript()->appendFile('js/slick.min.js');

@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 07, 2016 at 10:04 PM
--- Server version: 5.5.46-0ubuntu0.14.04.2
+-- Generation Time: May 09, 2016 at 01:26 PM
+-- Server version: 5.5.49-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -46,6 +46,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
 CREATE TABLE IF NOT EXISTS `courses` (
   `id` int(255) unsigned NOT NULL AUTO_INCREMENT,
   `course_name` varchar(100) NOT NULL,
+  `imgae` varchar(255) NOT NULL,
   `category_id` int(255) unsigned NOT NULL DEFAULT '0',
   `is_active` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`),
@@ -77,7 +78,8 @@ CREATE TABLE IF NOT EXISTS `downloads` (
 CREATE TABLE IF NOT EXISTS `materials` (
   `id` int(255) unsigned NOT NULL AUTO_INCREMENT,
   `material_name` varchar(100) NOT NULL,
-  `descr` varchar(500) NOT NULL,
+  `descib` varchar(500) NOT NULL,
+  `image` varchar(255) NOT NULL,
   `material_type_id` int(255) unsigned NOT NULL,
   `course_id` int(255) unsigned NOT NULL,
   PRIMARY KEY (`id`),
@@ -127,6 +129,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email` varchar(100) NOT NULL,
   `password` char(32) NOT NULL,
   `image` varchar(300) NOT NULL,
+  `signature` varchar(255) DEFAULT NULL,
   `is_active` tinyint(2) NOT NULL,
   `is_admin` tinyint(2) NOT NULL,
   `is_loged` tinyint(2) NOT NULL,
@@ -181,9 +184,9 @@ ALTER TABLE `materials`
 -- Constraints for table `requests`
 --
 ALTER TABLE `requests`
-  ADD CONSTRAINT `requests_ibfk_3` FOREIGN KEY (`material_id`) REFERENCES `materials` (`id`),
   ADD CONSTRAINT `requests_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `requests_ibfk_2` FOREIGN KEY (`course_id`) REFERENCES `courses` (`id`);
+  ADD CONSTRAINT `requests_ibfk_2` FOREIGN KEY (`course_id`) REFERENCES `courses` (`id`),
+  ADD CONSTRAINT `requests_ibfk_3` FOREIGN KEY (`material_id`) REFERENCES `materials` (`id`);
 
 --
 -- Constraints for table `views`
