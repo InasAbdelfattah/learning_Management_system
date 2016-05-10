@@ -10,7 +10,10 @@ class UserControllerController extends Zend_Controller_Action {
     }
 
     public function indexAction() {
-// action body
+//         $this->model = new Application_Model_Courses;
+          $categories= $this->model->listUsers();
+            var_dump($categories);
+        // action body
     }
 
     public function addAction() {

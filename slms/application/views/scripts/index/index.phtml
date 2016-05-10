@@ -1,5 +1,5 @@
 <!--=========== BEGIN SLIDER SECTION ================-->
-    <section id="slider">
+<section id="slider">
       <div class="row">
         <div class="col-lg-12 col-md-12">
           <div class="slider_area">
@@ -9,7 +9,7 @@
                 <li>
                   <img src="<?php echo $this->baseUrl()?>/img/2.jpg" alt="img">
                    <div class="slider_caption">
-                    <h2>Largest & Beautiful University</h2>
+                    <h2>Largest & Beautiful Technology Institute </h2>
                     <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
                     <a class="slider_btn" href="#">Know More</a>
                   </div>
@@ -52,7 +52,7 @@
         <div class="row">
           <div class="col-lg-12 col-md-12"> 
             <div class="title_area">
-              <h2 class="title_two">Our Courses</h2>
+              <h2 class="title_two">Our Categories </h2>
               <span></span> 
             </div>
           </div>
@@ -63,120 +63,27 @@
           <div class="col-lg-12 col-md-12 col-sm-12">
             <div class="ourCourse_content">
               <ul class="course_nav">
+                 <?php foreach($this->categories  as $category ){ ?>
                 <li>
                   <div class="single_course">
                     <div class="singCourse_imgarea">
-                      <img src="<?php echo $this->baseUrl()?>/img/course-1.jpg" />
+                      <img src="<?php  echo $this->baseUrl($category['image']);?>" />
                       <div class="mask">                         
-                        <a href="#" class="course_more">View Course</a>
+                          <a href="<?php echo  $category['id']; ?>" class="course_more">View Category Of <?php echo $category['course_name'];?></a>
                       </div>
                     </div>
                     <div class="singCourse_content">
-                    <h3 class="singCourse_title"><a href="#">Introduction To Matrix</a></h3>
-                    <p class="singCourse_price"><span>$20</span> Per One Month</p>
-                    <p>when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
+                    <h3 class="singCourse_title"><a href="#"><?php echo $category['course_name'];?></a></h3>
+<!--                    <p>when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>-->
                     </div>
-                    <div class="singCourse_author">
+<!--                    <div class="singCourse_author">
                       <img src="<?php echo $this->baseUrl()?>/img/author.jpg" alt="img">
                       <p>Richard Remus, Teacher</p>
-                    </div>
+                    </div>-->
                   </div>
                 </li>
-                <li>
-                  <div class="single_course">
-                    <div class="singCourse_imgarea">
-                      <img src="<?php echo $this->baseUrl()?>/img/course-2.jpg" />
-                      <div class="mask">                         
-                        <a href="#" class="course_more">View Course</a>
-                      </div>
-                    </div>
-                    <div class="singCourse_content">
-                    <h3 class="singCourse_title"><a href="#">Introduction To Matrix</a></h3>
-                    <p class="singCourse_price"><span>$20</span> Per One Month</p>
-                    <p>when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
-                    </div>
-                    <div class="singCourse_author">
-                      <img src="<?php echo $this->baseUrl()?>/img/author.jpg" alt="img">
-                      <p>Richard Remus, Teacher</p>
-                    </div>
-                  </div>
-                </li> 
-                <li>
-                  <div class="single_course">
-                    <div class="singCourse_imgarea">
-                      <img src="<?php echo $this->baseUrl()?>/img/course-1.jpg" />
-                      <div class="mask">                         
-                        <a href="#" class="course_more">View Course</a>
-                      </div>
-                    </div>
-                    <div class="singCourse_content">
-                    <h3 class="singCourse_title"><a href="#">Introduction To Matrix</a></h3>
-                    <p class="singCourse_price"><span>$20</span> Per One Month</p>
-                    <p>when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
-                    </div>
-                    <div class="singCourse_author">
-                      <img src="<?php echo $this->baseUrl()?>/img/author.jpg" alt="img">
-                      <p>Richard Remus, Teacher</p>
-                    </div>
-                  </div>
-                </li>  
-                <li>
-                  <div class="single_course">
-                    <div class="singCourse_imgarea">
-                      <img src="<?php echo $this->baseUrl()?>/img/course-2.jpg" />
-                      <div class="mask">                         
-                        <a href="#" class="course_more">View Course</a>
-                      </div>
-                    </div>
-                    <div class="singCourse_content">
-                    <h3 class="singCourse_title"><a href="#">Introduction To Matrix</a></h3>
-                    <p class="singCourse_price"><span>$20</span> Per One Month</p>
-                    <p>when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
-                    </div>
-                    <div class="singCourse_author">
-                      <img src="<?php echo $this->baseUrl()?>/img/author.jpg" alt="img">
-                      <p>Richard Remus, Teacher</p>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="single_course">
-                    <div class="singCourse_imgarea">
-                      <img src="<?php echo $this->baseUrl()?>/img/course-1.jpg" />
-                      <div class="mask">                         
-                        <a href="#" class="course_more">View Course</a>
-                      </div>
-                    </div>
-                    <div class="singCourse_content">
-                    <h3 class="singCourse_title"><a href="#">Introduction To Matrix</a></h3>
-                    <p class="singCourse_price"><span>$20</span> Per One Month</p>
-                    <p>when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
-                    </div>
-                    <div class="singCourse_author">
-                      <img src="<?php echo $this->baseUrl()?>/img/author.jpg" alt="img">
-                      <p>Richard Remus, Teacher</p>
-                    </div>
-                  </div>
-                </li> 
-                <li>
-                  <div class="single_course">
-                    <div class="singCourse_imgarea">
-                      <img src="<?php echo $this->baseUrl()?>/img/course-2.jpg" />
-                      <div class="mask">                         
-                        <a href="#" class="course_more">View Course</a>
-                      </div>
-                    </div>
-                    <div class="singCourse_content">
-                    <h3 class="singCourse_title"><a href="#">Introduction To Matrix</a></h3>
-                    <p class="singCourse_price"><span>$20</span> Per One Month</p>
-                    <p>when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
-                    </div>
-                    <div class="singCourse_author">
-                      <img src="<?php echo $this->baseUrl()?>/img/author.jpg" alt="img">
-                      <p>Richard Remus, Teacher</p>
-                    </div>
-                  </div>
-                </li>                
+                 <?php }?>
+                        
               </ul>
             </div>
           </div>
@@ -193,7 +100,7 @@
         <div class="row">
           <div class="col-lg-12 col-md-12"> 
             <div class="title_area">
-              <h2 class="title_two">Our Tutors</h2>
+              <h2 class="title_two">Our Stuff</h2>
               <span></span> 
             </div>
           </div>

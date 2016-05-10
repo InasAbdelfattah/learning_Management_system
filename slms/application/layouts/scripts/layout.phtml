@@ -38,12 +38,12 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul id="top-menu" class="nav navbar-nav navbar-right main-nav">
-                <li class="active"><a href="index.html">Home</a></li>
-                <li><a href="course-archive.html">Categories</a></li>
-                <li><a href="scholarship.html">Scholarship</a></li>
-                <li><a href="events-archive.html">Events</a></li>
-                <li><a href="gallery.html">Gallery</a></li>                
-                <li><a href="blog-archive.html">Blog</a></li>
+                <li class="active"><a href="<?php echo $this->baseUrl().'/index' ?>">Home</a></li>
+                <li><a href="<?php echo $this->baseUrl().'/' ?>">Categories</a></li>
+                <li><a href="<?php echo $this->baseUrl().'/' ?>">Courses</a></li>
+                <li><a href="<?php echo $this->baseUrl().'/' ?>">Events</a></li>
+                <li><a href="<?php echo $this->baseUrl().'/user-controller/login' ?>">Login</a></li>                
+                <li><a href="<?php echo $this->baseUrl().'/user-controller/register' ?>">Register</a></li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Page<span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
@@ -52,7 +52,7 @@
                     <li><a href="#">Link Three</a></li>               
                   </ul>
                 </li>               
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="<?php echo $this->baseUrl().'/admin' ?>">Admin Panal</a></li>
               </ul>           
             </div><!--/.nav-collapse -->
           </div>     
@@ -85,7 +85,7 @@
             </div>
             <div class="col-ld-3  col-md-3 col-sm-3">
               <div class="single_footer_widget">
-                <h3>Community</h3>
+                <h3>Categories</h3>
                 <ul class="footer_widget_nav">
                   <li><a href="#">Our Tutors</a></li>
                   <li><a href="#">Our Students</a></li>
@@ -97,7 +97,7 @@
             </div>
             <div class="col-ld-3  col-md-3 col-sm-3">
               <div class="single_footer_widget">
-                <h3>Others</h3>
+                <h3>Stuff</h3>
                 <ul class="footer_widget_nav">
                   <li><a href="#">Link 1</a></li>
                   <li><a href="#">Link 2</a></li>
