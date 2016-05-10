@@ -25,7 +25,24 @@ class AdminController extends Zend_Controller_Action
         $this->view->materialsTypes = $materialsTypes;
         
     }
-
+    public function addmaterialAction() {
+        $form = new Application_Form_Material();
+        if ($this->getRequest()->isPost()) {
+            if ($form->isValid($this->getRequest()->getParams())) {
+                $data = $form->getValues();
+                $this->model->material_name = $data['material_name'];
+                $this->model->image = $data['image'];
+                $this->model->descib = $data['descib'];
+                $this->model->path = $data['path'];
+                $this->model->material_type_id = $data['material_type_id'];
+                $this->model->course_id = $data['course_id'];
+                $this->model->is_active = $data['is_active'];
+                if ($this->model->addMaterial())
+                    $this->redirect('admin/materials');
+            }
+        }
+         $this->view->form = $form;
+    }
 
 }
 
