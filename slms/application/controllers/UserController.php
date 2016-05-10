@@ -1,6 +1,6 @@
 <?php
 
-class UserControllerController extends Zend_Controller_Action {
+class UserController extends Zend_Controller_Action {
 
     private $model = null;
 
@@ -82,6 +82,9 @@ class UserControllerController extends Zend_Controller_Action {
             if ($form->isValid($this->getRequest()->getParams())) {
                 $data = $form->getValues();
                 $this->model->saveData($data);
+                if ($this->model->saveData($data)){
+                    return back();
+                }
             }
         }
     }

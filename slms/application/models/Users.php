@@ -27,17 +27,18 @@ class Application_Model_Users extends Application_Model_MyModel {
 
     
     function saveData($data) {
-//        $row = $this->createRow();
+        $row = $this->createRow();
 //        $row->username = $data['username'];
 //        $row->email = $data['email'];
 //        $row->signature = $data['signature'];
 //        $row->image = "/images/" . $data['image'];
-//        $tme =new Zend_Date();
-//        $data['tme']=$tme->now();
+        $tme =new Zend_Date();
+        $data['updated_at']=$tme->now();
 //        $row->updated_at=$tme->now();
-////        return $row->save();
-//        return $this->update($row,"id=2");
-         var_dump($data);		
+//        return $row->save();
+        $data['image'] = "/img/user/" . $data['image'];
+        return $this->update($data,"id=2");
+//         var_dump($row);		
     }
 
     function getUser() {
