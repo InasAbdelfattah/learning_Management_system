@@ -1,6 +1,7 @@
 <?php
 
 class Application_Model_Materials extends Application_Model_MyModel {
+//class Application_Model_Materials extends Zend_Db_Table_Abstract {
 
     protected $_name = 'materials';
     protected $primary_key = "id";
@@ -10,8 +11,11 @@ class Application_Model_Materials extends Application_Model_MyModel {
         return $this->list_data();
     }
 
-    function getMaterial() {
+    function getMaterial($id) {
         return $this->get_id();
+//        return $this->select()
+//        ->from('materials')
+//        ->where('id='.$id);
     }
 
     function addMaterial() {

@@ -27,12 +27,16 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		$view->headLink()->prependStylesheet('http://fonts.googleapis.com/css?family=Merriweather');
 		$view->headLink()->prependStylesheet('http://fonts.googleapis.com/css?family=Varela');
 		// Circle counter cdn css file 
-    	$view->headLink()->appendStylesheet('https://cdn.rawgit.com/pguso/jquery-plugin-circliful/master/css/jquery.circliful.css');  
-    	$view->headLink()->appendStylesheet('css/animate.css');  
-    	$view->headLink()->appendStylesheet('css/queryLoader.css');
-    	$view->headLink()->appendStylesheet('css/jquery.tosrus.all.css');
-    	$view->headLink()->appendStylesheet('css/themes/default-theme.css');
-    	$view->headLink()->appendStylesheet('style.css');
+                $view->headLink()->appendStylesheet('https://cdn.rawgit.com/pguso/jquery-plugin-circliful/master/css/jquery.circliful.css');  
+                $view->headLink()->appendStylesheet('css/animate.css');  
+                $view->headLink()->appendStylesheet('css/style.css');
+                $view->headLink()->appendStylesheet('css/jquery.tosrus.all.css');
+                $view->headLink()->appendStylesheet('css/themes/default-theme.css');
+                $view->headLink()->appendStylesheet('style.css');
+                //admin panal css links
+                $view->headLink()->appendStylesheet('css/sb-admin.css');
+                $view->headLink()->appendStylesheet('css/plugins/morris.css');
+                $view->headLink()->appendStylesheet('font-awesome/css/font-awesome.min.css');
     	
 
 
@@ -50,7 +54,14 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		$view->headScript()->appendFile('js/jquery.tosrus.min.all.js');
 		$view->headScript()->appendFile('js/custom.js');
 		$view->headScript()->appendFile('https://cdn.rawgit.com/pguso/jquery-plugin-circliful/master/js/jquery.circliful.min.js');
-		
+		// admin panal js files
+
+                $view->headScript()->appendFile('js/jquery.js');
+                $view->headScript()->appendFile('js/plugins/morris/raphael.min.js');
+                $view->headScript()->appendFile('js/plugins/morris/morris.min.js');
+                $view->headScript()->appendFile('js/plugins/morris/morris-data.js');
+    
+    
 
 }
 }
