@@ -5,7 +5,7 @@ class Application_Model_Materials extends Application_Model_MyModel {
 
     protected $_name = 'materials';
     protected $primary_key = "id";
-    protected $fields = array('','');
+    protected $fields = array('material_name','image','descib','path','created_at','material_type_id','course_id','is_active');
     public $id;
     public $material_name;
     public $image;
@@ -14,6 +14,7 @@ class Application_Model_Materials extends Application_Model_MyModel {
     public $created_at;
     public $material_type_id;
     public $course_id;
+    public $is_active;
     function listMaterials() {
 //        return $this->list_data();
         $select = $this->select('*')
@@ -42,5 +43,6 @@ class Application_Model_Materials extends Application_Model_MyModel {
     function updateMaterial() {
         return $this->edit();
     }
+    
 
 }
