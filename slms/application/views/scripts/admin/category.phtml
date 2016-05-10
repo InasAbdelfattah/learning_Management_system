@@ -1,0 +1,36 @@
+<div class="col-lg-10">
+    <a href="<?php echo $this->baseUrl() . '/admin' ?>" type="submit" class="btn btn-md btn-success pull-right" />Add New Material</a>
+    <h2>Categories Table</h2>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    
+                    <th>Category name</th>
+                    <th>Avaliable</th>
+                    <th>Action</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <?php foreach ($this->category as $cat) { ?>
+                        <td><?php echo $cat['course_name'] ?></td>
+                        <?php if($cat['is_active']) 
+                            echo ' <td> <input type="checkbox" checked /> </td>';
+                       else 
+                            echo '<td><input type="checkbox"/></td>';
+                       ?> 
+                        <td><a href=""><span class="glyphicon glyphicon-remove"></a></span></td>
+                        <td><href=""><span class="glyphicon glyphicon-pencil"></a></span</td>
+
+                   
+                </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</div>
+

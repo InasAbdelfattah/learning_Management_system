@@ -20,7 +20,9 @@ class Application_Model_Courses extends Application_Model_MyModel {
         return $this->list_data();
         
     }
-    function getCategory() {
+    function getCategory($id) {
+        
+        $this->id = $id;
         return $this->getCategory();
     }
 

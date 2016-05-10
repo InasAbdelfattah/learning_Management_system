@@ -7,6 +7,7 @@ class AdminController extends Zend_Controller_Action
     {
         /* Initialize action controller here */
          $this->model = new Application_Model_Materials();
+         $this->model = new Application_Model_Courses;
          $this->_helper->layout->setLayout('admin');
     }
 
@@ -25,7 +26,14 @@ class AdminController extends Zend_Controller_Action
         $this->view->materialsTypes = $materialsTypes;
         
     }
-
-
+    
+    public function categoryAction()
+    {
+         $this->view->category = $this->model->listCategories();
+    }
+   public function courseAction()
+    {
+       $this->view->category = $this->model->listCourses(); 
+    }
 }
 

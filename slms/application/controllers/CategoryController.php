@@ -30,7 +30,7 @@ class CategoryController extends Zend_Controller_Action
     public function detailsAction()
     {
         $id = $this->getRequest()->getParam('id');
-        $this->view->category = $this->model->getcategory();
+        $this->view->category = $this->model->getcategory($id);
     }
 
 }
