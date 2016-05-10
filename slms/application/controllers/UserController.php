@@ -74,7 +74,8 @@ class UserController extends Zend_Controller_Action {
         $form->removeElement('password');
         $form->removeElement('joined_at');
         $form->removeElement('updated_at');
-        $user = $this->model->getUserById(2);
+        $this->model->id=2;
+        $user = $this->model->getUser();
         $form->populate($user[0]);
         $this->view->form = $form;
         $this->view->user = $user[0];

@@ -2,6 +2,7 @@
 
 class Application_Model_Users extends Application_Model_MyModel {
 
+   
     protected $_name = 'users';
     protected $primary_key = "id";
     protected $fields = array("username", "email", "password", "image", "signature", "is_active", "is_admin", "is_loged", "joined_at", "updated_at");
@@ -21,9 +22,9 @@ class Application_Model_Users extends Application_Model_MyModel {
         return $this->list_data();
     }
 
-    function getUserById($id) {
-        return $this->find($id)->toArray();
-    }
+//    function getUserById($id) {
+//        return $this->find($id)->toArray();
+//    }
 
     
     function saveData($data) {
