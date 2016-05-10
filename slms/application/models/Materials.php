@@ -10,6 +10,8 @@ class Application_Model_Materials extends Application_Model_MyModel {
     public $material_name;
     public $image;
     public $descib;
+    public $path;
+    public $created_at;
     public $material_type_id;
     public $course_id;
     function listMaterials() {
