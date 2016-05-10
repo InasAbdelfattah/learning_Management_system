@@ -16,9 +16,13 @@ class AdminController extends Zend_Controller_Action
     }
     public function materialsAction()
     {
-        
+        //list All matrials with it's full data
         $materials = $this->model->listMaterials();
         $this->view->materials = $materials;
+        // list marial types
+        $matrialTypesDB = new Application_Model_MaterialTypes();
+        $materialsTypes = $matrialTypesDB->listMaterialTypes();
+        $this->view->materialsTypes = $materialsTypes;
         
     }
 

@@ -1,4 +1,5 @@
-<div class="col-lg-8">
+<div class="col-lg-10">
+    <a href="<?php echo $this->baseUrl() . '/admin' ?>" type="submit" class="btn btn-md btn-success pull-right" />Add New Material</a>
     <h2>Materials Table</h2>
     <div class="table-responsive">
         <table class="table table-bordered table-hover">
@@ -22,11 +23,38 @@
                         <td><?php echo $material['type'] ?></td>
 
                         <td>
-                            <input type="submit" class="btn btn-md btn-primary" name="delete" value="Delete"/>
+                            <input type="submit" class="btn btn-md btn-danger" name="delete" value="Delete"/>
                             <input type="submit" class="btn btn-md btn-primary" name="active" value="Active"/>
                         </td>
                     <?php } ?>
                 </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="col-lg-7">
+    <a href="<?php echo $this->baseUrl() . '/admin' ?>" type="submit" class="btn btn-md btn-success pull-right" />Add New Material Type</a>
+    <h2>Materials Types Table</h2>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Material Type</th>
+                    <th>Created At</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($this->materialsTypes as $materialsTypes) { ?>
+                    <tr>
+                        <td><?php echo $materialsTypes['material_name'] ?></td>
+                        <td><?php echo $materialsTypes['created_at'] ?></td>
+                       <td>
+                            <input type="submit" class="btn btn-md btn-danger" name="delete" value="Delete"/>
+                            <input type="submit" class="btn btn-md btn-primary" name="active" value="Active"/>
+                        </td>
+                    </tr>
+                <?php } ?>
             </tbody>
         </table>
     </div>
