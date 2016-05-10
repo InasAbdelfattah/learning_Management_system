@@ -7,6 +7,7 @@ class AdminController extends Zend_Controller_Action
     {
         /* Initialize action controller here */
          $this->model = new Application_Model_Materials();
+         $this->_helper->layout->setLayout('admin');
     }
 
     public function indexAction()
@@ -17,8 +18,6 @@ class AdminController extends Zend_Controller_Action
     {
         
         $materials = $this->model->listMaterials();
-//        $categoryModel = new Application_Model_Courses();
-        
         $this->view->materials = $materials;
         
     }

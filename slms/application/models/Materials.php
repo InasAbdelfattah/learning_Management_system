@@ -13,14 +13,20 @@ class Application_Model_Materials extends Application_Model_MyModel {
     public $material_type_id;
     public $course_id;
     function listMaterials() {
-        return $this->list_data();
+//        return $this->list_data();
+        $select = $this->select('*')
+                ->setIntegrityCheck(false)
+                ->join('courses','materials.course_id = courses.id'
+                ,array('course'=>'courses.course_name','courseId'=>'courses.id'))
+                ->join('material_types','materials.material_type_id=material_types.id'
+                ,array('type'=>'material_types.material_name','typeId'=>'material_types.id'));
+        return $this->fetchAll($select)->toArray();
+//        return $this->fetchRow($select);
     }
 
     function getMaterial() {
         return $this->get_id();
-//        return $this->select()
-//        ->from('materials')
-//        ->where('id='.$id);
+       
     }
 
     function addMaterial() {
