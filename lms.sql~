@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 09, 2016 at 01:26 PM
+-- Generation Time: May 09, 2016 at 09:14 PM
 -- Server version: 5.5.49-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.16
 
@@ -46,12 +46,24 @@ CREATE TABLE IF NOT EXISTS `comments` (
 CREATE TABLE IF NOT EXISTS `courses` (
   `id` int(255) unsigned NOT NULL AUTO_INCREMENT,
   `course_name` varchar(100) NOT NULL,
-  `imgae` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL,
   `category_id` int(255) unsigned NOT NULL DEFAULT '0',
-  `is_active` tinyint(4) NOT NULL,
+  `is_active` tinyint(4) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `category_id` (`category_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `courses`
+--
+
+INSERT INTO `courses` (`id`, `course_name`, `image`, `category_id`, `is_active`) VALUES
+(1, 'Open Source DP.', '/img/course-1.jpg', 0, 1),
+(2, 'E-Learning DP.', 'img/course-2.jpg', 0, 1),
+(3, 'Java DP.', 'img/course-3.jpg', 0, 0),
+(4, 'System Development DP.', 'img/course-single.jpg', 0, 0),
+(5, 'Java DP.', 'img/course-3.jpg', 0, 1),
+(6, 'System Development DP.', 'img/course-single.jpg', 0, 1);
 
 -- --------------------------------------------------------
 
