@@ -33,7 +33,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     	$view->headLink()->appendStylesheet('css/jquery.tosrus.all.css');
     	$view->headLink()->appendStylesheet('css/themes/default-theme.css');
     	$view->headLink()->appendStylesheet('style.css');
-    	
+    	$view->headLink()->appendStylesheet('myStyle.css');
 
 
 		// Set the initial JS to load:
