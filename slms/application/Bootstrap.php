@@ -38,6 +38,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                 $view->headLink()->appendStylesheet($view->baseUrl().'/css/jquery.tosrus.all.css');
                 $view->headLink()->appendStylesheet($view->baseUrl().'/css/themes/default-theme.css');
                 $view->headLink()->appendStylesheet($view->baseUrl().'/style.css');
+                $view->headLink()->appendStylesheet($view->baseUrl().'/css/myStyle.css');
                 //admin panal css links
                 $view->headLink()->appendStylesheet($view->baseUrl().'/css/sb-admin.css');
                 $view->headLink()->appendStylesheet($view->baseUrl().'/css/plugins/morris.css');
