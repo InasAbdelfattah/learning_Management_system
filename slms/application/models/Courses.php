@@ -21,7 +21,7 @@ class Application_Model_Courses extends Application_Model_MyModel {
         
     }
     function getCategory() {
-        return $this->get_id();
+        return $this->getCategory();
     }
 
 }
