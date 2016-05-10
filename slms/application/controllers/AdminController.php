@@ -18,11 +18,9 @@ class AdminController extends Zend_Controller_Action
         
         $materials = $this->model->listMaterials();
 //        $categoryModel = new Application_Model_Courses();
-//        $category = $this->model->getMaterial('7');
-//        var_dump($category);
         
         $this->view->materials = $materials;
-//        $this->view->category = $category;
+        
     }
 
 

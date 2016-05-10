@@ -24,10 +24,9 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		$view->headLink()->appendStylesheet('css/slick.css');
 		$view->headLink()->prependStylesheet('css/jquery.tosrus.all.css');
 		$view->headLink()->prependStylesheet('css/themes/default-theme.css');
-		$view->headLink()->prependStylesheet('http://fonts.googleapis.com/css?family=Merriweather');
-		$view->headLink()->prependStylesheet('http://fonts.googleapis.com/css?family=Varela');
+		
 		// Circle counter cdn css file 
-                $view->headLink()->appendStylesheet('https://cdn.rawgit.com/pguso/jquery-plugin-circliful/master/css/jquery.circliful.css');  
+                $view->headLink()->appendStylesheet('css/jquery.circliful.css');  
                 $view->headLink()->appendStylesheet('css/animate.css');  
                 $view->headLink()->appendStylesheet('css/style.css');
                 $view->headLink()->appendStylesheet('css/jquery.tosrus.all.css');
@@ -41,10 +40,10 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
 
 		// Set the initial JS to load:
-                $view->headScript()->appendFile('http://code.jquery.com/jquery-1.9.1.js');
+                $view->headScript()->appendFile('js/jquery-1.9.1.js');
                 $view->headScript()->appendFile('js/jquery-1.12.3.js');
 		$view->headScript()->appendFile('js/jquery.min.js');
-		$view->headScript()->appendFile('http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js');
+		$view->headScript()->appendFile('bootstrap.min.js');
 		$view->headScript()->appendFile('js/queryloader2.min.js');
 		$view->headScript()->appendFile('js/wow.min.js');
 		$view->headScript()->appendFile('js/slick.min.js');
@@ -53,7 +52,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		$view->headScript()->appendFile('js/jquery.superslides.min.js');
 		$view->headScript()->appendFile('js/jquery.tosrus.min.all.js');
 		$view->headScript()->appendFile('js/custom.js');
-		$view->headScript()->appendFile('https://cdn.rawgit.com/pguso/jquery-plugin-circliful/master/js/jquery.circliful.min.js');
+		$view->headScript()->appendFile('js/jquery.circliful.min.js');
 		// admin panal js files
 
                 $view->headScript()->appendFile('js/jquery.js');

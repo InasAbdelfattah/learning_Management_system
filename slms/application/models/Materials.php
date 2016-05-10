@@ -6,12 +6,17 @@ class Application_Model_Materials extends Application_Model_MyModel {
     protected $_name = 'materials';
     protected $primary_key = "id";
     protected $fields = array('','');
-
+    public $id;
+    public $material_name;
+    public $image;
+    public $descib;
+    public $material_type_id;
+    public $course_id;
     function listMaterials() {
         return $this->list_data();
     }
 
-    function getMaterial($id) {
+    function getMaterial() {
         return $this->get_id();
 //        return $this->select()
 //        ->from('materials')
