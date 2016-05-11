@@ -19,12 +19,20 @@ class Application_Model_Materials extends Application_Model_MyModel {
 //        return $this->list_data();
         $select = $this->select('*')
                 ->setIntegrityCheck(false)
-                ->join('courses','materials.course_id = courses.id'
-                ,array('course'=>'courses.course_name','courseId'=>'courses.id'))
-                ->join('material_types','materials.material_type_id=material_types.id'
-                ,array('type'=>'material_types.material_name','typeId'=>'material_types.id'));
+                 ->join('material_types','materials.material_type_id=material_types.id'
+                ,array('type'=>'material_types.material_name','typeId'=>'material_types.id'))
+                ->join('courses','materials.course_id = courses.id and courses.category_id != 0 '
+                ,array('Course'=>'courses.course_name','CourseId'=>'courses.id','CategoryId'=>'courses.category_id'))
+               ;
         return $this->fetchAll($select)->toArray();
 //        return $this->fetchRow($select);
+    }
+    function getCategory($id) {
+        $select = $this->select()
+                ->from('courses','*')
+                ->setIntegrityCheck(false)
+                ->where('course.id = '.$id) ;
+        return $this->fetchAll($select)->toArray();
     }
 
     function getMaterial() {

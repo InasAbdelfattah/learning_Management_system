@@ -23,7 +23,6 @@
         <thead>
             <tr>
                 <th>Material</th>
-                <th>Category</th>
                 <th>Course</th>
                 <th>Image</th>
                 <th>Description</th>
@@ -36,10 +35,13 @@
 
             <?php foreach ($this->materials as $material) { ?>
                 <tr>
-                    <td><a href="<?php echo $this->baseUrl().'/materials_upload_folder/'. $material['material_name'] ?>"><?php echo $material['material_name'] ?></a></td>
-                    <td><?php echo $material['course'] ?></td>
-                    <td><?php echo $material['course'] ?></td>
-                    <td><img src='<?php echo $this->baseUrl().'/img/materials_images_folder/' . $material['image'] ?>' width='30px' height="20px"></td>
+                    <td><a href="<?php echo $this->baseUrl() . '/materials_upload_folder/' . $material['material_name'] ?>"><?php echo $material['material_name'] ?></a></td>
+                    <td>
+                        <?php echo $material['Course'] ?>
+                        <input type="button" class="showcat btn btn-sm btn-primary" value=">>" data-toggle="modal" data-target="#myModal" data="<?php echo  $material['CategoryId']  ?>">
+                    </td>
+
+                    <td><img src='<?php echo $this->baseUrl() . '/img/materials_images_folder/' . $material['image'] ?>' width='30px' height="20px"></td>
                     <td><?php echo $material['descib'] ?></td>
                     <td><?php echo $material['created_at'] ?></td>
                     <td><?php echo $material['type'] ?></td>
@@ -82,4 +84,34 @@
     </table>
 </div>
 </div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                Checkbox is checked
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+ <script src="<?php echo $this->baseUrl().'/../public/js/jquery-1.12.3.js'?>"></script>
+<script>
+    $(function(){
+        console.log('js started');
+        $('.showcat').on('click',function(){
+            console.log( $(this).attr('data'));
+            
+        });
+        
+    });
+
+</script>
 
