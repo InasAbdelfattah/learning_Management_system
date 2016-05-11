@@ -12,30 +12,52 @@ class CategoryController extends Zend_Controller_Action
     private $model;
     public function init()
     {
-     $this->model = new Application_Model_Courses;   
+     $this->model = new Application_Model_Courses; 
+     
     }
 
   public function indexAction()
     {
-      $this->model->category_id = 0 ;  
-      $this->view->category = $this->model->listCategories();
-        
-  	
+      $auth = Zend_Auth::getInstance();
+      if ($auth->hasIdentity())
+        {
+            $this->model->category_id = 0 ;  
+            $this->view->category = $this->model->listCategories();
+        } 
+      else 
+      {
+          $this->redirect('error/error');
+      }
 
 
     }
     public function courseAction()
     {
-       $this->model->category_id = 1; 
-       $this->view->category = $this->model->listCourses(); 
+      $auth = Zend_Auth::getInstance();
+      if ($auth->hasIdentity())
+        {
+        $this->model->category_id = 1; 
+        $this->view->category = $this->model->listCourses(); 
+         } 
+      else 
+      {
+          $this->redirect('error/error');
+      }
     }
     
     public function detailsAction()
     {
+        $auth = Zend_Auth::getInstance();
+      if ($auth->hasIdentity())
+        {
         $category_id =  $this->getRequest()->getParam('id');
         $this->model->category_id = $category_id; 
         $this->view->category = $this->model->getcategory();
-        
+         } 
+      else 
+      {
+          $this->redirect('error/error');
+      }
     }
 
 }

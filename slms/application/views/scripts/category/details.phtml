@@ -12,26 +12,27 @@
           <!-- start course content -->
           
           <div class="col-lg-8 col-md-8 col-sm-8">
-            <?php foreach ($this->category as $cat){ ?>
-              <div class="courseArchive_content">              
-             <div class="singlecourse_ferimg_area">
-               <div class="singlecourse_ferimg">
-                 <img src="<?php echo'http://localhost'.$this->baseURL($cat['image'])?>">
-               </div>  
-                 
-                <div class="singlecourse_bottom">
-                    <h2><a href="material-type/index/course_id/<?php echo $cat['id'] ?>"><?php echo $cat['course_name']; ?></a></h2> 
+             <?php  if($this->category){
+            foreach ($this->category as $cat){ ?>
+            <div class="courseArchive_content">              
+                <div class="singlecourse_ferimg_area">
+                    <div class="singlecourse_ferimg">
+                        <img src="<?php echo'http://localhost'.$this->baseURL($cat['image'])?>">
+                    </div>  
+                    <div class="singlecourse_bottom">
+                         <h2><a href="material-type/index/course_id/<?php echo $cat['id'] ?>"><?php echo $cat['course_name']; ?></a></h2> 
+                    </div>
                 </div>
-             </div>
              
                         <!-- start related course -->
           
-              </div>
+            </div>
+              
               <!-- End related course -->
             
           
           <!-- End course content -->
-<?php } ?>
+             <?php } } else { echo '<div class="alert alert-success" role="alert">No Course .. can request admin</div>'; }  ?>
   
           <!-- start course archive sidebar -->
           
@@ -40,4 +41,4 @@
           </div>
       
     </section>
-    <!--=========== END COURSE BANNER SECTION ================-->
+   
