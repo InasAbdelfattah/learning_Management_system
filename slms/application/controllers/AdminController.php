@@ -7,7 +7,7 @@ class AdminController extends Zend_Controller_Action
     {
         /* Initialize action controller here */
          $this->model = new Application_Model_Materials();
-         $this->model = new Application_Model_Courses;
+         $this->cat_model = new Application_Model_Courses;
          $this->_helper->layout->setLayout('admin');
     }
 
@@ -15,6 +15,54 @@ class AdminController extends Zend_Controller_Action
     {
         // action body
     }
+   
+#Category
+    public function categoryAction()
+    {
+         $this->view->category = $this->cat_model->listCategories();
+    }
+    
+    
+    public function addcategoryAction()
+    {
+        $this->view->category = $this->cat_model->addCategory(); 
+    }
+    
+    
+    public function editcategoryAction()
+    {
+         $this->view->category = $this->cat_model->editCategory(); 
+    }
+    
+    
+    public function deletecategoryAction()
+    {
+         $this->view->category = $this->cat_model->deleteCourses(); 
+    }
+    
+ #Course ...  
+   public function courseAction()
+    {
+        $this->view->category = $this->cat_model->listCourses();
+    }
+    
+    public function addcourseAction()
+    {
+         $this->view->category = $this->cat_model->addCourse(); 
+    }
+
+    public function deletecourseAction()
+    {
+         $this->view->category = $this->cat_model->deleteCourse(); 
+    }
+    
+    public function editcourseAction()
+    {
+         $this->view->category = $this->cat_model->editCourse(); 
+    }
+    
+    
+#materials....    
     public function materialsAction()
     {
         //list All matrials with it's full data
@@ -26,17 +74,9 @@ class AdminController extends Zend_Controller_Action
         $this->view->materialsTypes = $materialsTypes;
         
     }
-<<<<<<< HEAD
-    #category
-    public function categoryAction()
-    {
-         $this->view->category = $this->model->listCategories();
-    }
-   public function courseAction()
-    {
-       $this->view->category = $this->model->listCourses(); 
-    }
-=======
+
+   
+
     public function addmaterialAction() {
         $form = new Application_Form_Material();
         if ($this->getRequest()->isPost()) {
@@ -56,6 +96,6 @@ class AdminController extends Zend_Controller_Action
          $this->view->form = $form;
     }
 
->>>>>>> a673baadfc84329e4dc69f5e4d168ae4e2d95ff
+
 }
 

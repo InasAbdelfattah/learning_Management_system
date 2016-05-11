@@ -11,19 +11,65 @@ class Application_Model_Courses extends Application_Model_MyModel {
     public $category_id;
     public $is_active;
 
-    function listCourses() {
-        return $this->list_data();
+    
+#Category Operation ...
+    
+    function listCategories() {
+         
+        return $this->fetchAll($this->select('*')->where("category_id=?","0"))->toArray();
+        
+    }
+    function getCategory() 
+    {
+       $cat_id = $this->category_id;
+//       die();
+       return $this->fetchAll($this->select('*')->where("category_id=?","$cat_id"))->toArray();
+    }
+
+    function addCategory()
+    {
+        return $this->add_data();
     }
     
-     function listCategories() {
-         
-        return $this->list_data();
-        
+    function deleteCategory()
+    {
+        return $this->delete_id();
+                
     }
-    function getCategory($id) {
+    
+    function editCategory()
+    {
+        return $this->edit();
+    }
+    
+    
+ #Course Operation ...   
+
+    function listCourses() {
+         return $this->fetchAll($this->select('*')->where("category_id=?","1"))->toArray();
+    }
+    
+    function getCourse() 
+    {
         
-        $this->id = $id;
-        return $this->getCategory();
+       return $this->get_id();
+    }
+
+    
+    function addCourse()
+    {
+        return $this->add_data();
+    }
+    
+    function deleteCourse()
+    {
+        return $this->delete_id();
+                
+    }
+    
+    function editCourse()
+    {
+        return $this->edit();
     }
 
 }

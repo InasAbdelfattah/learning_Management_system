@@ -17,20 +17,25 @@ class CategoryController extends Zend_Controller_Action
 
   public function indexAction()
     {
-        $this->view->category = $this->model->listCategories();
+      $this->model->category_id = 0 ;  
+      $this->view->category = $this->model->listCategories();
+        
   	
 
 
     }
     public function courseAction()
     {
+       $this->model->category_id = 1; 
        $this->view->category = $this->model->listCourses(); 
     }
     
     public function detailsAction()
     {
-        $id = $this->getRequest()->getParam('id');
-        $this->view->category = $this->model->getcategory($id);
+        $category_id =  $this->getRequest()->getParam('id');
+        $this->model->category_id = $category_id; 
+        $this->view->category = $this->model->getcategory();
+        
     }
 
 }
