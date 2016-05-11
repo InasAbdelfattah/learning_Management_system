@@ -25,19 +25,41 @@ class AdminController extends Zend_Controller_Action
     
     public function addcategoryAction()
     {
-        $this->view->category = $this->cat_model->addCategory(); 
+        $auth = Zend_Auth::getInstance();
+    	if ($auth->hasIdentity())
+	{
+		$u_session =$auth->getIdentity();
+		
+		$user_id = $u_session->id;
+			
+		$form = new Application_Form_Category();
+        //$values = $this->getRequest()->getParams();
+		if($this->getRequest()->isPost()){
+		if($form->isValid($this->getRequest()->getParams())){
+		$data = $form->getValues();
+		
+		if ($this->model->addPost($data , $user_id))
+		$this->redirect('posts/index');
+		
+		}
+//        $this->view->category = $this->cat_model->addCategory(); 
     }
+        }
     
-    
+    }
     public function editcategoryAction()
     {
          $this->view->category = $this->cat_model->editCategory(); 
     }
     
-    
+ //delete category or course...   
     public function deletecategoryAction()
     {
-         $this->view->category = $this->cat_model->deleteCourses(); 
+        $this->cat_model->id = $this->getRequest()->getParam('id');
+        $this->cat_model->deleteCategory();
+        $this->redirect('admin/category');
+    
+    
     }
     
  #Course ...  
@@ -51,11 +73,7 @@ class AdminController extends Zend_Controller_Action
          $this->view->category = $this->cat_model->addCourse(); 
     }
 
-    public function deletecourseAction()
-    {
-         $this->view->category = $this->cat_model->deleteCourse(); 
-    }
-    
+  
     public function editcourseAction()
     {
          $this->view->category = $this->cat_model->editCourse(); 
