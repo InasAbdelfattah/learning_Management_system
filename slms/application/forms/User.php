@@ -15,12 +15,16 @@ class Application_Form_User extends Zend_Form {
         $email = new Zend_Form_Element_Text('email');
         $password = new Zend_Form_Element_Password('password');
         $signature = new Zend_Form_Element_Text('signature');
+//        $captcha = new Zend_Form_Element_Captcha('captcha');
+//        $captcha->setCaptcha(new Captcha\Dumb())
+//                ->setLabel('Please verify you are human');
         $is_active = new Zend_Form_Element_Text('is_active');
         $is_admin = new Zend_Form_Element_Text('is_admin');
         $is_loged = new Zend_Form_Element_Text('is_loged');
         $joined_at = new Zend_Form_Element_Text('joined_at');
         $updated_at = new Zend_Form_Element_Text('updated_at');
         $submit = new Zend_Form_Element_Submit('submit');
+
 
         $username->setLabel('user name : ');
         $email->setLabel('Email : ');
@@ -57,6 +61,7 @@ class Application_Form_User extends Zend_Form {
                     (
                     $id, $username, $email, $password, $image, $signature, $is_active,
                     $is_active, $is_loged, $joined_at, $updated_at, $submit
+//                ,$captcha
         ));
 
 

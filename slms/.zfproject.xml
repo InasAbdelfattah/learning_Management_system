@@ -17,10 +17,13 @@
         </controllerFile>
         <controllerFile controllerName="Requests">
           <actionMethod actionName="index"/>
+          <actionMethod actionName="sendRequst"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory>
         <formFile formName="User"/>
+        <formFile formName="Requset"/>
+        <formFile formName="HandleSelect"/>
       </formsDirectory>
       <layoutsDirectory enabled="false"/>
       <modelsDirectory>
@@ -51,6 +54,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="UserController">
             <viewScriptFile forActionName="showProfile"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Requests">
+            <viewScriptFile forActionName="sendRequst"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
