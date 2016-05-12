@@ -13,6 +13,13 @@ class Application_Model_Courses extends Application_Model_MyModel {
 
 #Category Operation ...
 
+    
+    function listActiveCategories() {
+         
+        return $this->fetchAll($this->select('*')->where("category_id=?","0")->where("is_active",1))->toArray();
+        
+    }
+
     function listCategories() {
 
         return $this->fetchAll($this->select('*')->where("category_id=?", "0"))->toArray();
@@ -20,10 +27,13 @@ class Application_Model_Courses extends Application_Model_MyModel {
 
 # by maram
 
-    function getCategory() {
-        $cat_id = $this->category_id;
-        return $this->fetchAll($this->select('*')->where("category_id=?", "$cat_id"))->toArray();
+    function getCategory() 
+    {
+       $cat_id = $this->category_id;
+       return $this->fetchAll($this->select('*')->where("category_id=?","$cat_id")->where("is_active",1))->toArray();
     }
+
+    
 
     function getCategoryByID() {
         return $this->get_id();
@@ -50,6 +60,9 @@ class Application_Model_Courses extends Application_Model_MyModel {
 
     #Course Operation ...   
 
+    function listActiveCourses() {
+         return $this->fetchAll($this->select('*')->where("category_id !=?","0")->where("is_active",1))->toArray();
+    }
     function listCourses() {
         return $this->fetchAll($this->select('*')->where("category_id !=?", "0"))->toArray();
     }

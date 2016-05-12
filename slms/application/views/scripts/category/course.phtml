@@ -19,13 +19,13 @@
                 <div class="col-lg-6 col-md-6 col-sm-6">
                   <div class="single_course wow fadeInUp">
                     <div class="singCourse_imgarea">
-                      <img src="<?php echo'http://localhost'.$this->baseURL($cat['image'])?>" />
+                      <img src='<?php echo "http://localhost".$this->baseUrl() . '/img/courses_images_folder/' . $cat['image'] ?>' />
                       <div class="mask">         
-                        <a href="material-type/index/course_id/<?php echo $cat['id'] ?>" class="course_more">View Course</a>
+                        <a href="<?php echo $this->baseUrl().'/material-type/index/course_id/'.$cat['id'] ?>" class="course_more">View Course</a>
                       </div>
                     </div>
                     <div class="singCourse_content">
-                        <h3 class="singCourse_title"><a href="material-type/index/course_id/<?php echo $cat['id'] ?>"><?php echo $cat['course_name']; ?></a></h3>
+                        <h3 class="singCourse_title"><a href="<?php echo $this->baseUrl().'/material-type/index/course_id/'.$cat['id']?>"><?php echo $cat['course_name']; ?></a></h3>
                    </div>
                     
                   </div>

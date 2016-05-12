@@ -1,53 +1,112 @@
+
+
 <!-- Page Heading -->
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">
-            Categories Control
+            Courses Control
         </h1>
         <ol class="breadcrumb">
             <li>
                 <i class="fa fa-dashboard"></i>  <a href="<?php echo $this->baseUrl() . '/admin' ?>">Dashboard</a>
             </li>
             <li class="active">
-                <i class="fa fa-edit"></i> Category Control
+                <i class="fa fa-edit"></i> Courses Control
             </li>
         </ol>
     </div>
 </div>
 <!-- /.row -->
 <div class="col-lg-10">
-    <a href="<?php echo $this->baseUrl() . '/admin/addcategory' ?>" type="submit" class="btn btn-md btn-success pull-right" />Add New Category</a>
-    <h2>Categories Table</h2>
+    <a href="<?php echo $this->baseUrl() . '/admin/addcourse' ?>" type="submit" class="btn btn-md btn-success pull-right" />Add New Course</a>
+    <h2>Courses Table</h2>
     <div class="table-responsive">
         <table class="table table-bordered table-hover">
             <thead>
                 <tr>
-                    
-                    <th>Category name</th>
-                    <th>Avaliable</th>
-                    <th>Action</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
+                <th>Category</th>
+                <th>Image</th>
+                <th>Add Time</th>
+                <th>Active state</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <?php
+            foreach ($this->category as $cat) {
+
+              
+                ?>
                 <tr>
-                    <?php foreach ($this->category as $cat) { ?>
-                        <td><?php echo $cat['course_name'] ?></td>
-                        <?php if($cat['is_active']) 
-                            echo ' <td> <input type="checkbox" checked /> </td>';
-                       else 
-                            echo '<td><input type="checkbox"/></td>';
-                       ?> 
-                        <td><a href="deletecategory/id/<?php echo $cat['id']; ?>"><span class="glyphicon glyphicon-remove"></a></span></td>
-<td><a href="editcategory/id/<?php echo $cat['id']; ?>"><span class="glyphicon glyphicon-pencil"></span></a></td>
+                    <td><a href="<?php echo $this->baseUrl() . '/materials_upload_folder/' . $cat['course_name'] ?>"><?php echo $cat['course_name'] ?></a></td>
+                    
+                    <td><img  class="thumbnail" src='<?php echo $this->baseUrl() . '/img/courses_images_folder/' . $cat['image'] ?>' ></td>
+                    
+                    <td><?php echo $cat['created_at'] ?></td>
+                    <td>
 
-                   
+                        <?php if ($cat['is_active'] == 1) { ?>
+                                                
+
+                            <div class="btn-group" data-toggle="buttons">
+                                
+                                <label class="btn btn-md btn-default active">
+                                    <input type="radio" name="options"  id="option" autocomplete="off" value="<?php echo $this->baseUrl() . '/admin/changestate/id/' . $material['id'] . '/state/' . $material['is_active'] ?>" />
+                                    Yes
+                                </label>
+                                <label class="btn btn-md btn-default ">
+                                    <input type="radio" name="options" id="option2" autocomplete="off" value="<?php echo $this->baseUrl() . '/admin/changestate/id/' . $material['id'] . '/state/' . $material['is_active'] ?>"/>
+                                    No
+                                </label>
+
+                            </div>
+                        <?php } else { ?>
+                            <div class="btn-group" data-toggle="buttons">
+
+                                <label class="btn btn-md btn-default active">
+                                    <input type="radio" name="options"  id="option1" autocomplete="off" value="<?php echo $this->baseUrl() . '/admin/changestate/id/' . $material['id'] . '/state/' . $material['is_active'] ?>" />
+                                    Yes
+                                </label>
+                                <label class="btn btn-md btn-default ">
+                                    <input type="radio" name="options" id="option2" autocomplete="off" value="<?php echo $this->baseUrl() . '/admin/changestate/id/' . $material['id'] . '/state/' . $material['is_active'] ?>"/>
+                                    No
+                                </label>
+
+                            </div>
+                        <?php } ?>
+                    </td>
+                    <td>
+                      
+                        
+                       
+                        <!--edit action-->
+                        <a href="<?php echo $this->baseUrl() . '/admin/editmaterial/id/' . $cat['id'] ?>"data-placement="left" title="Edit This Material" class="btn btn-md btn-primary" >Edit</a>
+                        
+                    </td>
+
                 </tr>
-                <?php } ?>
-            </tbody>
-        </table>
-    </div>
+            <?php } ?>
+
+        </tbody>
+    </table>
+</div>
 </div>
 
-</div>
+
+<script src="<?php echo $this->baseUrl() . '/../public/js/jquery-1.12.3.js' ?>"></script>
+<script>
+    $(function () {
+        console.log('js started');
+        $('.btn-group').on('click', function () {
+//            console.log($(this).children().children().val());
+            window.location.replace($(this).children().children().val());
+        });
+
+
+
+    });
+
+</script>
+
 

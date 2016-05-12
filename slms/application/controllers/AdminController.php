@@ -146,13 +146,12 @@ class AdminController extends Zend_Controller_Action
                 $this->model->path = $data['path'];
                 $this->model->material_type_id = $data['material_type_id'];
                 $this->model->course_id = $data['course_id'];
-<<<<<<< HEAD
                $this->model->is_active = $data['is_active'];
                 if ($this->model->addMaterial($data))
-=======
+
                 $this->model->is_active = $data['is_active'];
                 if ($this->model->addMaterial())
->>>>>>> f82258a00006faebca3b7e60975e40a87d2a6a69
+
                     $this->redirect('admin/materials');
             }
         }
