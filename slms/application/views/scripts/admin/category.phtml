@@ -44,38 +44,7 @@
                     <td><img  class="thumbnail" src='<?php echo $this->baseUrl() . '/img/courses_images_folder/' . $cat['image'] ?>' ></td>
                     
                     <td><?php echo $cat['created_at'] ?></td>
-                    <td>
-
-                        <?php if ($cat['is_active'] == 1) { ?>
-                                                
-
-                            <div class="btn-group" data-toggle="buttons">
-                                
-                                <label class="btn btn-md btn-default active">
-                                    <input type="radio" name="options"  id="option" autocomplete="off" value="<?php echo $this->baseUrl() . '/admin/changestate/id/' . $material['id'] . '/state/' . $material['is_active'] ?>" />
-                                    Yes
-                                </label>
-                                <label class="btn btn-md btn-default ">
-                                    <input type="radio" name="options" id="option2" autocomplete="off" value="<?php echo $this->baseUrl() . '/admin/changestate/id/' . $material['id'] . '/state/' . $material['is_active'] ?>"/>
-                                    No
-                                </label>
-
-                            </div>
-                        <?php } else { ?>
-                            <div class="btn-group" data-toggle="buttons">
-
-                                <label class="btn btn-md btn-default active">
-                                    <input type="radio" name="options"  id="option1" autocomplete="off" value="<?php echo $this->baseUrl() . '/admin/changestate/id/' . $material['id'] . '/state/' . $material['is_active'] ?>" />
-                                    Yes
-                                </label>
-                                <label class="btn btn-md btn-default ">
-                                    <input type="radio" name="options" id="option2" autocomplete="off" value="<?php echo $this->baseUrl() . '/admin/changestate/id/' . $material['id'] . '/state/' . $material['is_active'] ?>"/>
-                                    No
-                                </label>
-
-                            </div>
-                        <?php } ?>
-                    </td>
+                    <td><a href="<?php echo $this->baseUrl() . '/admin/deletecategory/id/'. $cat['id'] ?>"data-placement="left" title="Edit This Material" class="btn btn-md btn-danger" >Delete</a></td>
                     <td>
                       
                         
