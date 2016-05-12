@@ -14,6 +14,18 @@ class AdminController extends Zend_Controller_Action {
         $contextSwitch = $this->_helper->getHelper('contextSwitch');
         $contextSwitch->addActionContext('changestateAction', 'json')
                 ->initContext();
+        # send loged in user data
+        $this->user_model = new Application_Model_Users();
+        $this->auth = Zend_Auth::getInstance()->getIdentity();
+        $layout = $this->_helper->layout();
+        $this->user_model->id =  $this->auth->id;
+        $currunt_user = $this->user_model->getUser();
+        if($currunt_user[0]['is_active'] == 1 && $currunt_user[0]['is_admin'] == 1)
+            $layout->user = $currunt_user;
+        elseif($currunt_user[0]['is_admin'] != 1 )
+            $this->redirect('index');
+        else 
+            $this->redirect('user/login');
     }
 
     public function indexAction() {

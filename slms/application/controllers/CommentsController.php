@@ -11,6 +11,16 @@ class CommentsController extends Zend_Controller_Action
         if(!$authorization->hasIdentity()) {
             $this->redirect('user/login');
         }
+        # send loged in user data
+        $this->user_model = new Application_Model_Users();
+        $this->auth = Zend_Auth::getInstance()->getIdentity();
+        $layout = $this->_helper->layout();
+        $this->user_model->id =  $this->auth->id;
+        $currunt_user = $this->user_model->getUser();
+        if($currunt_user[0]['is_active'] == 1)
+            $layout->user = $currunt_user;
+        else 
+            $this->redirect('user/login');
     }
 
 

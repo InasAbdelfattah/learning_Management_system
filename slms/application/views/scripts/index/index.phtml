@@ -72,7 +72,7 @@
                                 <li>
                                     <div class="single_course">
                                         <div class="singCourse_imgarea">
-                                            <img src="<?php echo $this->baseUrl($category['image']); ?>" />
+                                            <img src="<?php echo $this->baseUrl('/img/courses_images_folder/'.$category['image']); ?>" />
                                             <div class="mask">                         
                                                 <a href="<?php echo $category['id']; ?>" class="course_more">View Category Of <?php echo $category['course_name']; ?></a>
                                             </div>
@@ -126,10 +126,10 @@
                             <li>
                                 <div class="single_tutors">
                                     <div class="tutors_thumb">
-                                        <img src="<?php echo $this->baseUrl().$user['image'];?>" />                      
+                                        <img src="<?php echo $this->baseUrl().'/img/user/'.$user['image'];?>" />                      
                                     </div>
                                     <div class="singTutors_content">
-                                        <h3 class="tutors_name"><?php echo $user['username'];?></h3>
+                                        <a href="<?php echo $this->baseUrl().'/user/show-profile/id/'.$user['id'];?>"><h3 class="tutors_name"><?php echo $user['username'];?></h3></a>
                                         <span><?php echo$user['signature'];?></span>
                                         <p></p>
                                     </div>
