@@ -7,14 +7,11 @@ class MaterialTypeController extends Zend_Controller_Action
     {
         /* Initialize action controller here */
         $this->model = new Application_Model_MaterialTypes;
+        $authorization =Zend_Auth::getInstance();
+        if(!$authorization->hasIdentity()) {
+            $this->redirect('user/login');
+        }
     }
-
- /*       public function indexAction() {
-//         $this->model = new Application_Model_Courses;
-        $types = $this->model->listMaterialTypes();
-        var_dump($types);
-        // action body
-    }*/
 
     public function indexAction()
     {

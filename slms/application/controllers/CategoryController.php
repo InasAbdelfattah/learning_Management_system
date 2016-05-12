@@ -19,7 +19,7 @@ class CategoryController extends Zend_Controller_Action {
 //      if ($auth->hasIdentity())
 //        {
 //          
-        $this->view->category = $this->model->listCategories();
+            $this->view->category = $this->model->listActiveCategories();
 //        } 
 //      else 
 //      {
@@ -32,7 +32,7 @@ class CategoryController extends Zend_Controller_Action {
 //      if ($auth->hasIdentity())
 //        {
 //       
-        $this->view->category = $this->model->listCourses();
+        $this->view->category = $this->model->listActiveCourses(); 
 //         } 
 //      else 
 //      {

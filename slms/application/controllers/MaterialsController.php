@@ -7,17 +7,21 @@ class MaterialsController extends Zend_Controller_Action
     {
         /* Initialize action controller here */
         $this->model = new Application_Model_Materials;
+        $authorization =Zend_Auth::getInstance();
+        if(!$authorization->hasIdentity()) {
+            $this->redirect('user/login');
+        }
     }
 
     public function indexAction()
     {
         // action body
-    	$course_id=$this->getRequest()->getParam('course_id');
-    	$material_type_id=$this->getRequest()->getParam('material_type_id');
-    	#select materials where material_type_id=$material_type_id && course_id=$course_id
-    	$materials = $this->model->fetchAll($this->model->select('*')->where('material_type_id =?',$material_type_id )->where('course_id=?',$course_id))->toArray();
+        $course_id=$this->getRequest()->getParam('course_id');
+        $material_type_id=$this->getRequest()->getParam('material_type_id');
+        #select materials where material_type_id=$material_type_id && course_id=$course_id
+        $materials = $this->model->fetchAll($this->model->select('*')->where('material_type_id =?',$material_type_id )->where('course_id=?',$course_id))->toArray();
         #$this->view->materials = $this->model->listMaterials();
-    	$this->view->materials=$materials;
+        $this->view->materials=$materials;
     }
 
     public function downloadAction(){
@@ -81,8 +85,7 @@ class MaterialsController extends Zend_Controller_Action
     // And pass it through to the browser
     fpassthru($fh);
 
-    }
-    
+    }    
 }
 
 ?>
