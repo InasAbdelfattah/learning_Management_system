@@ -50,7 +50,7 @@ class UserController extends Zend_Controller_Action {
 
 
                 if ($this->model->register())
-                    $this->redirect('users/index');
+                    $this->redirect('user/index');
             }
         }
 //$form->removeElement('submit');

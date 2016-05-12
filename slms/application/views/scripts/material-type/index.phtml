@@ -1,15 +1,15 @@
 <br /><br />
-<div id="view-content">
+<div id="view-content" style="background-color:white;">
 
 <?php
-var_dump($this->types);
-echo $this->course_id;
+/*var_dump($this->types);
+echo $this->course_id;*/
 
 foreach ($this->types as $type){
-	echo "<label> ID: </label>".$type['id'].'<br />';
-	echo "<label> :name </label>".$type['material_name'].'<br />';
+	#echo "<label> ID: </label>".$type['id'].'<br />';
+	/*echo "<label> material name : </label>".$type['material_name'].'<br />';*/
 	echo "<a href='".$this->baseUrl()."/materials/index/material_type_id/".$type['id']."/course_id/".$this->course_id."'>".$type['material_name']."</a> ";
-	
+	echo "<br/>";
 	}
 
 
