@@ -17,7 +17,7 @@ class Application_Form_Category extends Zend_Form {
               ->setAttrib('class', ' btn btn-success changebutton');
                 $image->addValidator(new Zend_Validate_File_IsImage)
                 ->addValidator(new Zend_Validate_File_ImageSize(array('min' => 1, 'max' => 2000)))
-                ->setDestination(APPLICATION_PATH.'/../public/img')
+                ->setDestination(APPLICATION_PATH.'/../public/img/courses_images_folder')
                 ->setRequired(true);
                 
         

@@ -17,10 +17,10 @@
             <div class="courseArchive_content">              
                 <div class="singlecourse_ferimg_area">
                     <div class="singlecourse_ferimg">
-                        <img src="<?php echo'http://localhost'.$this->baseURL($cat['image'])?>">
+                       <img src='<?php echo "http://localhost".$this->baseUrl() . '/img/courses_images_folder/' . $cat['image'] ?>' />
                     </div>  
                     <div class="singlecourse_bottom">
-                         <h2><a href="material-type/index/course_id/<?php echo $cat['id'] ?>"><?php echo $cat['course_name']; ?></a></h2> 
+                         <h2><a href="<?php echo $this->baseUrl().'/material-type/index/course_id/'.$cat['id'] ?>"><?php echo $cat['course_name']; ?></a></h2> 
                     </div>
                 </div>
              
