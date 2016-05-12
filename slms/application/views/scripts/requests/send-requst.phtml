@@ -1,7 +1,27 @@
 <br /><br />
-<div class="container">
-    <?php
-    echo $this->form;
-    ?>
+<div class="container" style="background-color: white ; height: 300px;">
+
+    <form enctype="multipart/form-data" method="post" action="">
+        <label for="category" class="required">* Choose Category :</label>
+        <select name="category" id="category" class="form-control">
+            <option value="0">Please select category....</option>
+            <?php
+            foreach ($this->catgries as $catName)
+                echo "<option value='http://localhost".$this->baseURL("category/ajaxrequest/id/".$catName['id'])."'> " . $catName['course_name'] . "</option>";
+            ?>
+        </select>
+     
+        <label for="course" class="required">* Choose Course :</label>
+        <div id="courses">
+<!--        <select name="category" id="category" class="form-control">
+            <option value="0">Please select Course....</option>
+        </select>-->
+        </div>
+        <label for="courseStatus" class="blue-color">* Status :</label>
+        <input type="text" name="courseStatus" id="courseStatus" value="" class="form-control" />
+        <input type="submit" style="margin-top: 15px;" name="submit" id="submit" value="Send Request" class="btn btn-primary" /></dd></dl></form>
 
 </div>
+
+<script src="<?php echo $this->baseUrl() . '/../public/js/jquery-1.12.3.js' ?>"></script>
+<script src="<?php echo $this->baseUrl() . '/../public/js/request.js' ?>"></script>

@@ -59,6 +59,14 @@ class CategoryController extends Zend_Controller_Action
 //          $this->redirect('error/error');
 //      }
     }
+    
+    public function ajaxrequestAction() {
+       $category_id = $this->getRequest()->getParam('id');
+       $courses= $this->model->categoryCourses($category_id);
+//       $this->view->courses=$courses;
+//       return $courses;
+       $this->_helper->json($courses);
+    }
 
 }
 
