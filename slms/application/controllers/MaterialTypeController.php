@@ -9,13 +9,6 @@ class MaterialTypeController extends Zend_Controller_Action
         $this->model = new Application_Model_MaterialTypes;
     }
 
- /*       public function indexAction() {
-//         $this->model = new Application_Model_Courses;
-        $types = $this->model->listMaterialTypes();
-        var_dump($types);
-        // action body
-    }*/
-
     public function indexAction()
     {
         // action body
