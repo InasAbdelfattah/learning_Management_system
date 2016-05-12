@@ -2,7 +2,6 @@
 
 class Application_Model_Users extends Application_Model_MyModel {
 
-   
     protected $_name = 'users';
     protected $primary_key = "id";
     protected $fields = array("username", "email", "password", "image", "signature", "is_active", "is_admin", "is_loged", "joined_at", "updated_at");
@@ -26,19 +25,19 @@ class Application_Model_Users extends Application_Model_MyModel {
 //        return $this->find($id)->toArray();
 //    }
 
-    
+
     function saveData($data) {
         $row = $this->createRow();
 //        $row->username = $data['username'];
 //        $row->email = $data['email'];
 //        $row->signature = $data['signature'];
 //        $row->image = "/images/" . $data['image'];
-        $tme =new Zend_Date();
-        $data['updated_at']=$tme->now();
+        $tme = new Zend_Date();
+        $data['updated_at'] = $tme->now();
 //        $row->updated_at=$tme->now();
 //        return $row->save();
         $data['image'] = "/img/user/" . $data['image'];
-        return $this->update($data,"id=2");
+        return $this->update($data, "id=2");
 //         var_dump($row);		
     }
 
@@ -48,6 +47,12 @@ class Application_Model_Users extends Application_Model_MyModel {
 
     function addUser() {
         return $this->add_data();
+    }
+
+    function register() {
+        $this->fields = array("username", "email", "password","signature");
+        return $this->add_data();
+        
     }
 
     function deleteUser() {
@@ -60,19 +65,19 @@ class Application_Model_Users extends Application_Model_MyModel {
 
     function loginUser($param) {
 
-        $username = $param['username'];
+        $email = $param['email'];
         $password = $param['password'];
 
         $dp = Zend_Db_Table::getDefaultAdapter();
 
-        $authAdapter = new Zend_Auth_Adapter_DbTable($dp, $this->_name, 'username', 'password');
-        $authAdapter->setIdentity($user)->setCredential(md5($password));
+        $authAdapter = new Zend_Auth_Adapter_DbTable($dp, $this->_name, 'email', 'password');
+        $authAdapter->setIdentity($email)->setCredential(md5($password));
 
         $result = $authAdapter->authenticate();
         if ($result->isValid()) {
             $auth = Zend_Auth::getInstance();
             $storage = $auth->getStorage();
-            $storage->write($authAdapter->getResultRowObject(array('id', 'username')));
+            $storage->write($authAdapter->getResultRowObject(array('id', 'email')));
 
             return TRUE;
         } else {

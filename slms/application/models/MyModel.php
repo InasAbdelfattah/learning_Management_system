@@ -9,10 +9,22 @@ class Application_Model_MyModel extends Zend_Db_Table_Abstract {
     function get_columns() {
         $row = $this->createRow();
         foreach ($this->fields as $column) {
-            $row->$column = $this->$column;
+            $row[$column] = $this->$column;
+        }
+ 
+        return $row;
+    }
+
+
+    function get_updates() {
+        // $row = $this->createRow();
+        $row=[];
+        foreach ($this->fields as $column) {
+            $row[$column] = $this->$column;
         }
         return $row;
     }
+
 
     function list_data() {
 
@@ -35,7 +47,8 @@ class Application_Model_MyModel extends Zend_Db_Table_Abstract {
 
     function edit() {
         $primary_key = $this->primary_key;
-        $this->update($this->get_columns(), "$this->primary_key = $this->$primary_key");
+        $this->update($this->get_updates(), $this->primary_key .'='. $this->$primary_key);
+            
     }
 
 }

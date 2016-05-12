@@ -16,8 +16,7 @@ class Application_Form_User extends Zend_Form {
         $password = new Zend_Form_Element_Password('password');
         $signature = new Zend_Form_Element_Text('signature');
 //        $captcha = new Zend_Form_Element_Captcha('captcha');
-//        $captcha->setCaptcha(new Captcha\Dumb())
-//                ->setLabel('Please verify you are human');
+//        $captcha->setCaptcha(new Captcha\Dumb())->setLabel('Please verify you are human');
         $is_active = new Zend_Form_Element_Text('is_active');
         $is_admin = new Zend_Form_Element_Text('is_admin');
         $is_loged = new Zend_Form_Element_Text('is_loged');
@@ -29,7 +28,7 @@ class Application_Form_User extends Zend_Form {
         $username->setLabel('user name : ');
         $email->setLabel('Email : ');
         $signature->setLabel('Your Signature : ');
-        $username->setLabel('user name : ');
+        $password->setLabel('password : ');
 
         $username->setAttrib('class', 'form-control');
         $email->setAttrib('class', 'form-control');
@@ -53,7 +52,7 @@ class Application_Form_User extends Zend_Form {
 
         $password->setRequired()->addValidator(new Zend_Validate_StringLength(array('min' => 5, 'max' => 32)));
         $image->addValidator(new Zend_Validate_File_IsImage)->addValidator(new Zend_Validate_File_ImageSize(array('min' => 1, 'max' => 2000)));
-        $image->setDestination(APPLICATION_PATH);
+//        $image->setDestination(APPLICATION_PATH);
 //        $image->setDestination($this->baseUrl.'/img/user');
 
         $this->addElements(
