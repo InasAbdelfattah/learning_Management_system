@@ -74,6 +74,7 @@ class Application_Model_Courses extends Application_Model_MyModel {
     function categoryCourses($cat_id) {
         $courses = $this->fetchAll($this->select('*')->where('category_id=?', $cat_id))->toArray();
         return $courses;
+        
     }
 
 }

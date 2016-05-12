@@ -1,5 +1,5 @@
 <br /><br />
-<div class="container" style="background-color: white ; height: 300px;">
+<div class="container" style="background-color: white ; height: 300px; padding-top: 15px">
 
     <form enctype="multipart/form-data" method="post" action="">
         <label for="category" class="required">* Choose Category :</label>
@@ -7,7 +7,7 @@
             <option value="0">Please select category....</option>
             <?php
             foreach ($this->catgries as $catName)
-                echo "<option value='http://localhost".$this->baseURL("category/ajaxrequest/id/".$catName['id'])."'> " . $catName['course_name'] . "</option>";
+                echo "<option value='".$this->baseURL("category/ajaxrequest/id/".$catName['id'])."'> " . $catName['course_name'] . "</option>";
             ?>
         </select>
      

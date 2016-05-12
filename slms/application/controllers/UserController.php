@@ -43,9 +43,6 @@ class UserController extends Zend_Controller_Action {
         if ($authorization->hasIdentity()) {
 //            $this->redirect('users/index');
         }
-
-
-
         $form = new Application_Form_User();
         $form->getElement('email')->removeValidator('Zend_Validate_Db_NoRecordExists');
 
