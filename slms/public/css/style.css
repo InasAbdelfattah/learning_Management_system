@@ -83,6 +83,17 @@ img{
   background-color:#000; /* change if the mask should have another color then white */
   z-index:99999; /* makes sure it stays on top */
 }
+.myicon{
+
+    -ms-transform: rotate(30deg); /* IE 9 */
+    -webkit-transform: rotate(30deg); /* Chrome, Safari, Opera */
+    transform: rotate(-25deg);
+    margin-top:-20px;
+    margin-right: -12px;
+    width:40px;
+    height:25px;
+
+}
 .thumbnail{
     width:60px;
     height:40px; 

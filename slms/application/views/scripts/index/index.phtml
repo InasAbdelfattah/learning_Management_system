@@ -1,318 +1,225 @@
 
 <!--=========== BEGIN SLIDER SECTION ================-->
 <section id="slider">
-      <div class="row">
+    <div class="row">
         <div class="col-lg-12 col-md-12">
-          <div class="slider_area">
-            <!-- Start super slider -->
-            <div id="slides">
-              <ul class="slides-container">                          
-                <li>
-                  <img src="<?php echo $this->baseUrl()?>/img/2.jpg" alt="img">
-                   <div class="slider_caption">
-                    <h2>Largest & Beautiful Technology Institute </h2>
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-                    <a class="slider_btn" href="#">Know More</a>
-                  </div>
-                  </li>
-                <!-- Start single slider-->
-                <li>
-                  <img src="<?php echo $this->baseUrl()?>/img/3.jpg" alt="img">
-                   <div class="slider_caption slider_right_caption">
-                    <h2>Better Education Environment</h2>
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search</p>
-                    <a class="slider_btn" href="#">Know More</a>
-                  </div>
-                </li>
-                <!-- Start single slider-->
-                <li>
-                  <img src="<?php echo $this->baseUrl()?>/img/4.jpg" alt="img">
-                   <div class="slider_caption">
-                    <h2>Find out you in better way</h2>
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search</p>
-                    <a class="slider_btn" href="#">Know More</a>
-                  </div>
-                </li>
-              </ul>
-              <nav class="slides-navigation">
-                <a href="#" class="next"></a>
-                <a href="#" class="prev"></a>
-              </nav>
+            <div class="slider_area">
+                <!-- Start super slider -->
+                <div id="slides">
+                    <ul class="slides-container">                          
+                        <li>
+                            <img src="<?php echo $this->baseUrl() ?>/img/2.jpg" alt="img">
+                            <div class="slider_caption">
+                                <h2>Largest & Beautiful Technology Institute </h2>
+                                <p>Our website make it very simple for each  student to find his needs such as view all our tracks and each track material.</p>
+                                <a class="slider_btn" href="<?php echo $this->baseUrl() . '/category/index' ?>">Know More</a>
+                            </div>
+                        </li>
+                        <!-- Start single slider-->
+                        <li>
+                            <img src="<?php echo $this->baseUrl() ?>/img/3.jpg" alt="img">
+                            <div class="slider_caption slider_right_caption">
+                                <h2>Better Education Environment</h2>
+                                <p>student can find all his studing materials on each track nice and easy</p>
+                                <a class="slider_btn" href="<?php echo $this->baseUrl() . '/category/course' ?>">Know More</a>
+                            </div>
+                        </li>
+                        <!-- Start single slider-->
+                        <li>
+                            <img src="<?php echo $this->baseUrl() ?>/img/4.jpg" alt="img">
+                            <div class="slider_caption">
+                                <h2>Find out your Material</h2>
+                                <p>The most variable thing on our system is materials, we gave you full access to each matrial of each course with ability to view or dowenlowed it and also to make disscussion on this matrial via a comments </p>
+                                <a class="slider_btn" href="<?php echo $this->baseUrl() . '/category/course' ?>">Know More</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <nav class="slides-navigation">
+                        <a href="#" class="next"></a>
+                        <a href="#" class="prev"></a>
+                    </nav>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-    </section>
-    <!--=========== END SLIDER SECTION ================-->
+    </div>
+</section>
+<!--=========== END SLIDER SECTION ================-->
 
 
-    <!--=========== BEGIN OUR COURSES SECTION ================-->
-    <section id="ourCourses">
-      <div class="container">
-       <!-- Our courses titile -->
+<!--=========== BEGIN OUR COURSES SECTION ================-->
+<section id="ourCourses">
+    <div class="container">
+        <!-- Our courses titile -->
         <div class="row">
-          <div class="col-lg-12 col-md-12"> 
-            <div class="title_area">
-              <h2 class="title_two">Our Categories </h2>
-              <span></span> 
+            <div class="col-lg-12 col-md-12"> 
+                <div class="title_area">
+                    <h2 class="title_two">Our Categories </h2>
+                    <span></span> 
+                </div>
             </div>
-          </div>
         </div>
         <!-- End Our courses titile -->
         <!-- Start Our courses content -->
         <div class="row">
-          <div class="col-lg-12 col-md-12 col-sm-12">
-            <div class="ourCourse_content">
-              <ul class="course_nav">
-                  <?php  if($this->categories){
-                  foreach($this->categories  as $category ){ ?>
-                <li>
-                  <div class="single_course">
-                    <div class="singCourse_imgarea">
-                      <img src="<?php  echo $this->baseUrl($category['image']);?>" />
-                      <div class="mask">                         
-                          <a href="<?php echo  $category['id']; ?>" class="course_more">View Category Of <?php echo $category['course_name'];?></a>
-                      </div>
-                    </div>
-                    <div class="singCourse_content">
-                    <h3 class="singCourse_title"><a href="category/details/id/<?php echo $category['id'] ?>"><?php echo $category['course_name'];?></a></h3>
-<!--                    <p>when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>-->
-                    </div>
-<!--                    <div class="singCourse_author">
-                      <img src="<?php echo $this->baseUrl()?>/img/author.jpg" alt="img">
-                      <p>Richard Remus, Teacher</p>
-                    </div>-->
-                  </div>
-                </li>
-                 <?php  } } else { echo '<div class="alert alert-success" role="alert">No Course .. can request admin</div>'; } ?>
-                        
-              </ul>
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="ourCourse_content">
+                    <ul class="course_nav">
+                        <?php if ($this->categories) {
+                            foreach ($this->categories as $category) {
+                                ?>
+                                <li>
+                                    <div class="single_course">
+                                        <div class="singCourse_imgarea">
+                                            <img src="<?php echo $this->baseUrl($category['image']); ?>" />
+                                            <div class="mask">                         
+                                                <a href="<?php echo $category['id']; ?>" class="course_more">View Category Of <?php echo $category['course_name']; ?></a>
+                                            </div>
+                                        </div>
+                                        <div class="singCourse_content">
+                                            <h3 class="singCourse_title"><a href="category/details/id/<?php echo $category['id'] ?>"><?php echo $category['course_name']; ?></a></h3>
+                        <!--                    <p>when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>-->
+                                        </div>
+                                        <!--                    <div class="singCourse_author">
+                                                              <img src="<?php echo $this->baseUrl() ?>/img/author.jpg" alt="img">
+                                                              <p>Richard Remus, Teacher</p>
+                                                            </div>-->
+                                    </div>
+                                </li>
+    <?php }
+} else {
+    echo '<div class="alert alert-success" role="alert">No Course .. can request admin</div>';
+} ?>
+
+                    </ul>
+                </div>
             </div>
-          </div>
         </div>
         <!-- End Our courses content -->
-      </div>
-    </section>
-    <!--=========== END OUR COURSES SECTION ================-->  
+    </div>
+</section>
+<!--=========== END OUR COURSES SECTION ================-->  
 
-    <!--=========== BEGIN OUR TUTORS SECTION ================-->
-    <section id="ourTutors">
-      <div class="container">
-       <!-- Our courses titile -->
+<!--=========== BEGIN OUR TUTORS SECTION ================-->
+<section id="ourTutors">
+    <div class="container">
+        <!-- Our courses titile -->
         <div class="row">
-          <div class="col-lg-12 col-md-12"> 
-            <div class="title_area">
-              <h2 class="title_two">Our Stuff</h2>
-              <span></span> 
+            <div class="col-lg-12 col-md-12"> 
+                <div class="title_area">
+                    <h2 class="title_two">Our Stuff</h2>
+                    <span></span> 
+                </div>
             </div>
-          </div>
-        </div>
-        <!-- End Our courses titile -->
-
-        <!-- Start Our courses content -->
-        <div class="row">
-          <div class="col-lg-12 col-md-12 col-sm-12">
-            <div class="ourTutors_content">
-              <!-- Start Tutors nav -->
-              <ul class="tutors_nav">
-                <li>
-                  <div class="single_tutors">
-                    <div class="tutors_thumb">
-                      <img src="<?php echo $this->baseUrl()?>/img/author.jpg" />                      
-                    </div>
-                    <div class="singTutors_content">
-                      <h3 class="tutors_name">Jame Burns</h3>
-                      <span>Technology Teacher</span>
-                      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
-                    </div>
-                    <div class="singTutors_social">
-                      <ul class="tutors_socnav">
-                        <li><a class="fa fa-facebook" href="#"></a></li>
-                        <li><a class="fa fa-twitter" href="#"></a></li>
-                        <li><a class="fa fa-instagram" href="#"></a></li>
-                        <li><a class="fa fa-google-plus" href="#"></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="single_tutors">
-                    <div class="tutors_thumb">
-                      <img src="<?php echo $this->baseUrl()?>/img/course-1.jpg" />                      
-                    </div>
-                    <div class="singTutors_content">
-                      <h3 class="tutors_name">Jame Burns</h3>
-                      <span>Technology Teacher</span>
-                      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
-                    </div>
-                    <div class="singTutors_social">
-                      <ul class="tutors_socnav">
-                        <li><a class="fa fa-facebook" href="#"></a></li>
-                        <li><a class="fa fa-twitter" href="#"></a></li>
-                        <li><a class="fa fa-instagram" href="#"></a></li>
-                        <li><a class="fa fa-google-plus" href="#"></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="single_tutors">
-                    <div class="tutors_thumb">
-                      <img src="<?php echo $this->baseUrl()?>/img/author.jpg" />                      
-                    </div>
-                    <div class="singTutors_content">
-                      <h3 class="tutors_name">Jame Burns</h3>
-                      <span>Technology Teacher</span>
-                      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
-                    </div>
-                    <div class="singTutors_social">
-                      <ul class="tutors_socnav">
-                        <li><a class="fa fa-facebook" href="#"></a></li>
-                        <li><a class="fa fa-twitter" href="#"></a></li>
-                        <li><a class="fa fa-instagram" href="#"></a></li>
-                        <li><a class="fa fa-google-plus" href="#"></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="single_tutors">
-                    <div class="tutors_thumb">
-                      <img src="<?php echo $this->baseUrl()?>/img/course-1.jpg" />                      
-                    </div>
-                    <div class="singTutors_content">
-                      <h3 class="tutors_name">Jame Burns</h3>
-                      <span>Technology Teacher</span>
-                      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
-                    </div>
-                    <div class="singTutors_social">
-                      <ul class="tutors_socnav">
-                        <li><a class="fa fa-facebook" href="#"></a></li>
-                        <li><a class="fa fa-twitter" href="#"></a></li>
-                        <li><a class="fa fa-instagram" href="#"></a></li>
-                        <li><a class="fa fa-google-plus" href="#"></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="single_tutors">
-                    <div class="tutors_thumb">
-                      <img src="<?php echo $this->baseUrl()?>/img/author.jpg" />                      
-                    </div>
-                    <div class="singTutors_content">
-                      <h3 class="tutors_name">Jame Burns</h3>
-                      <span>Technology Teacher</span>
-                      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
-                    </div>
-                    <div class="singTutors_social">
-                      <ul class="tutors_socnav">
-                        <li><a class="fa fa-facebook" href="#"></a></li>
-                        <li><a class="fa fa-twitter" href="#"></a></li>
-                        <li><a class="fa fa-instagram" href="#"></a></li>
-                        <li><a class="fa fa-google-plus" href="#"></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="single_tutors">
-                    <div class="tutors_thumb">
-                      <img src="<?php echo $this->baseUrl()?>/img/course-1.jpg" />                      
-                    </div>
-                    <div class="singTutors_content">
-                      <h3 class="tutors_name">Jame Burns</h3>
-                      <span>Technology Teacher</span>
-                      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
-                    </div>
-                    <div class="singTutors_social">
-                      <ul class="tutors_socnav">
-                        <li><a class="fa fa-facebook" href="#"></a></li>
-                        <li><a class="fa fa-twitter" href="#"></a></li>
-                        <li><a class="fa fa-instagram" href="#"></a></li>
-                        <li><a class="fa fa-google-plus" href="#"></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </li>                                             
-              </ul>
-            </div>
-          </div>
-        </div>
-        <!-- End Our courses content -->
-      </div>
-    </section>
-    <!--=========== END OUR TUTORS SECTION ================-->
-
-    <!--=========== BEGIN STUDENTS TESTIMONIAL SECTION ================-->
-    <section id="studentsTestimonial">
-      <div class="container">
-       <!-- Our courses titile -->
-        <div class="row">
-          <div class="col-lg-12 col-md-12"> 
-            <div class="title_area">
-              <h2 class="title_two">What our Student says</h2>
-              <span></span> 
-            </div>
-          </div>
         </div>
         <!-- End Our courses titile -->
 
         <!-- Start Our courses content -->
         <div class="row">
-          <div class="col-lg-12 col-md-12 col-sm-12">
-            <div class="studentsTestimonial_content">              
-              <div class="row">
-                <!-- start single student testimonial -->
-                <div class="col-lg-4 col-md-4 col-sm-4">
-                  <div class="single_stsTestimonial wow fadeInUp">
-                    <div class="stsTestimonial_msgbox">
-                      <p>when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
-                    </div>
-                    <img class="stsTesti_img" src="<?php echo $this->baseUrl()?>/img/author.jpg" alt="img">
-                    <div class="stsTestimonial_content">
-                      <h3>Johnathan Doe</h3>                      
-                      <span>Ex. Student</span>
-                      <p>Software Department</p>
-                    </div>
-                  </div>
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="ourTutors_content">
+                    <!-- Start Tutors nav -->
+                    <ul class="tutors_nav">
+                    <?php foreach($this->users as $user) {
+                        if($user['is_admin']==1){?>
+                            <li>
+                                <div class="single_tutors">
+                                    <div class="tutors_thumb">
+                                        <img src="<?php echo $this->baseUrl().$user['image'];?>" />                      
+                                    </div>
+                                    <div class="singTutors_content">
+                                        <h3 class="tutors_name"><?php echo $user['username'];?></h3>
+                                        <span><?php echo$user['signature'];?></span>
+                                        <p></p>
+                                    </div>
+<!--                                    <div class="singTutors_social">
+                                        <ul class="tutors_socnav">
+                                            <li><a class="fa fa-facebook" href="#"></a></li>
+                                            <li><a class="fa fa-twitter" href="#"></a></li>
+                                            <li><a class="fa fa-instagram" href="#"></a></li>
+                                            <li><a class="fa fa-google-plus" href="#"></a></li>
+                                        </ul>
+                                    </div>-->
+                                </div>
+                            </li>
+                    <?php }} ?>                                     
+                    </ul>
                 </div>
-                <!-- End single student testimonial -->
-                <!-- start single student testimonial -->
-                <div class="col-lg-4 col-md-4 col-sm-4">
-                  <div class="single_stsTestimonial wow fadeInUp">
-                    <div class="stsTestimonial_msgbox">
-                      <p>when an unknown printer took a galley of type and scrambled it to make a type specimen book.scrambled it to make a type specimen book</p>
-                    </div>
-                    <img class="stsTesti_img" src="<?php echo $this->baseUrl()?>/img/author.jpg" alt="img">
-                    <div class="stsTestimonial_content">
-                      <h3>Johnathan Doe</h3>                      
-                      <span>Ex. Student</span>
-                      <p>Software Department</p>
-                    </div>
-                  </div>
-                </div>
-                <!-- End single student testimonial -->
-                <!-- start single student testimonial -->
-                <div class="col-lg-4 col-md-4 col-sm-4">
-                  <div class="single_stsTestimonial wow fadeInUp">
-                    <div class="stsTestimonial_msgbox">
-                      <p>when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
-                    </div>
-                    <img class="stsTesti_img" src="<?php echo $this->baseUrl()?>/img/author.jpg" alt="img">
-                    <div class="stsTestimonial_content">
-                      <h3>Johnathan Doe</h3>                      
-                      <span>Ex. Student</span>
-                      <p>Software Department</p>
-                    </div>
-                  </div>
-                </div>
-                <!-- End single student testimonial -->
-              </div>
             </div>
-          </div>
         </div>
         <!-- End Our courses content -->
-      </div>
-    </section>
-    <!--=========== END STUDENTS TESTIMONIAL SECTION ================-->    
+    </div>
+</section>
+<!--=========== END OUR TUTORS SECTION ================-->
+
+<!--=========== BEGIN STUDENTS TESTIMONIAL SECTION ================-->
+<section id="studentsTestimonial">
+    <div class="container">
+        <!-- Our courses titile -->
+        <div class="row">
+            <div class="col-lg-12 col-md-12"> 
+                <div class="title_area">
+                    <h2 class="title_two">What our Student says</h2>
+                    <span></span> 
+                </div>
+            </div>
+        </div>
+        <!-- End Our courses titile -->
+
+        <!-- Start Our courses content -->
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="studentsTestimonial_content">              
+                    <div class="row">
+                        <!-- start single student testimonial -->
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <div class="single_stsTestimonial wow fadeInUp">
+                                <div class="stsTestimonial_msgbox">
+                                    <p>when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
+                                </div>
+                                <img class="stsTesti_img" src="<?php echo $this->baseUrl() ?>/img/author.jpg" alt="img">
+                                <div class="stsTestimonial_content">
+                                    <h3>Johnathan Doe</h3>                      
+                                    <span>Ex. Student</span>
+                                    <p>Software Department</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End single student testimonial -->
+                        <!-- start single student testimonial -->
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <div class="single_stsTestimonial wow fadeInUp">
+                                <div class="stsTestimonial_msgbox">
+                                    <p>when an unknown printer took a galley of type and scrambled it to make a type specimen book.scrambled it to make a type specimen book</p>
+                                </div>
+                                <img class="stsTesti_img" src="<?php echo $this->baseUrl() ?>/img/author.jpg" alt="img">
+                                <div class="stsTestimonial_content">
+                                    <h3>Johnathan Doe</h3>                      
+                                    <span>Ex. Student</span>
+                                    <p>Software Department</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End single student testimonial -->
+                        <!-- start single student testimonial -->
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <div class="single_stsTestimonial wow fadeInUp">
+                                <div class="stsTestimonial_msgbox">
+                                    <p>when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
+                                </div>
+                                <img class="stsTesti_img" src="<?php echo $this->baseUrl() ?>/img/author.jpg" alt="img">
+                                <div class="stsTestimonial_content">
+                                    <h3>Johnathan Doe</h3>                      
+                                    <span>Ex. Student</span>
+                                    <p>Software Department</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End single student testimonial -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Our courses content -->
+    </div>
+</section>
+<!--=========== END STUDENTS TESTIMONIAL SECTION ================-->    
