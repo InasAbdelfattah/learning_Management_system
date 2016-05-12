@@ -4,10 +4,9 @@ class Application_Model_MaterialTypes  extends Application_Model_MyModel
 {
     protected $_name = 'material_types';
     protected $primary_key = "id";
-    protected $fields = array('','');
+    protected $fields = array("material_name");
     public $id;
     public $material_name;
-    public $created_at;
     function listMaterialTypes() {
         return $this->list_data();
      
