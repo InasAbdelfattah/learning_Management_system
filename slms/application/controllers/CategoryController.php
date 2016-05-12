@@ -18,46 +18,46 @@ class CategoryController extends Zend_Controller_Action
 
   public function indexAction()
     {
-      $auth = Zend_Auth::getInstance();
-      if ($auth->hasIdentity())
-        {
+//      $auth = Zend_Auth::getInstance();
+//      if ($auth->hasIdentity())
+//        {
             $this->model->category_id = 0 ;  
             $this->view->category = $this->model->listCategories();
-        } 
-      else 
-      {
-          $this->redirect('error/error');
-      }
+//        } 
+//      else 
+//      {
+//          $this->redirect('error/error');
+//      }
 
 
     }
     public function courseAction()
     {
-      $auth = Zend_Auth::getInstance();
-      if ($auth->hasIdentity())
-        {
+//      $auth = Zend_Auth::getInstance();
+//      if ($auth->hasIdentity())
+//        {
         $this->model->category_id = 1; 
         $this->view->category = $this->model->listCourses(); 
-         } 
-      else 
-      {
-          $this->redirect('error/error');
-      }
+//         } 
+//      else 
+//      {
+//          $this->redirect('error/error');
+//      }
     }
     
     public function detailsAction()
     {
-        $auth = Zend_Auth::getInstance();
-      if ($auth->hasIdentity())
-        {
+//        $auth = Zend_Auth::getInstance();
+//      if ($auth->hasIdentity())
+//        {
         $category_id =  $this->getRequest()->getParam('id');
         $this->model->category_id = $category_id; 
         $this->view->category = $this->model->getcategory();
-         } 
-      else 
-      {
-          $this->redirect('error/error');
-      }
+//         } 
+//      else 
+//      {
+//          $this->redirect('error/error');
+//      }
     }
 
 }
