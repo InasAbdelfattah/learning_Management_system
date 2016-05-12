@@ -8,13 +8,11 @@
 <body>
 <!-- header -->
 <html lang="en">
-  
   <body>    
 
     <!-- SCROLL TOP BUTTON -->
     <a class="scrollToTop" href="#"></a>
     <!-- END SCROLL TOP BUTTON -->
-
     <!--=========== BEGIN HEADER SECTION ================-->
     <header id="header">
       <!-- BEGIN MENU -->
@@ -44,7 +42,7 @@
                 <li><a href="<?php echo $this->baseUrl().'/category/course' ?>">Courses</a></li>
                 <li><a href="<?php echo $this->baseUrl().'/' ?>">Events</a></li>
                 <li><a href="<?php echo $this->baseUrl().'/user/login' ?>">Login</a></li>                
-                <li><a href="<?php echo $this->baseUrl().'/user/add' ?>">Register</a></li>
+                <li><a href="<?php echo $this->baseUrl().'/user/register' ?>">Register</a></li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Page<span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
@@ -63,7 +61,41 @@
     </header>
     <!--=========== END HEADER SECTION ================--> 
 
-    
+                            </div>
+                            <div id="navbar" class="navbar-collapse collapse">
+                                <ul id="top-menu" class="nav navbar-nav navbar-right main-nav">
+                                    <li class="active"><a href="<?php echo $this->baseUrl() . '/index' ?>">Home</a></li>
+                                    <li><a href="<?php echo $this->baseUrl() . '/category/index' ?>">Categories</a></li>
+                                    <li><a href="<?php echo $this->baseUrl() . '/category/course' ?>">Courses</a></li>
+                                    <li><a href="<?php echo $this->baseUrl() . '/' ?>">Events</a></li>
+                                    <?php if(isset($this->layout()->user) && $this->layout()->user[0]['is_active'] == 1 ) { 
+                                   echo ' <li><a href="'.$this->baseUrl() . '/user/show-profile/id/'.$this->layout()->user[0]['id'].'">'.$this->layout()->user[0]['username'].'</a></li>';
+                                    echo '<li><a href="'.$this->baseUrl() . '/user/logout">Logout</a></li> ';
+                                    } 
+                                     elseif(!isset($this->layout()->user)) { ?>
+                                        <li><a href="<?php echo $this->baseUrl() . '/user/login' ?>">Login</a></li>                
+                                        <li><a href="<?php echo $this->baseUrl() . '/user/register' ?>">Register</a></li>
+                                    <?php }else $this->layout()->redirect($this->baseUrl() . '/user/login' );
+ ?>
+<!--                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Page<span class="caret"></span></a>
+                                            <ul class="dropdown-menu" role="menu">
+                                                <li><a href="404.html">404 Page</a></li>
+                                                <li><a href="#">Link Two</a></li>
+                                                <li><a href="#">Link Three</a></li>               
+                                            </ul>
+                                        </li>               -->
+                                        <?php if($this->layout()->user[0]['is_active'] == 1 && $this->layout()->user[0]['is_admin'] == 1 ) { 
+                                        echo '<li><a href="'.$this->baseUrl() . '/admin">Admin Panal</a></li>';
+                                        }?>
+                                    </ul>           
+                                </div><!--/.nav-collapse -->
+                            </div>     
+                        </nav>  
+                    </div>
+                    <!-- END MENU -->    
+                </header>
+                <!--=========== END HEADER SECTION ================--> 
 
 <!-- end of header -->
 

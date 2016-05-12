@@ -1,39 +1,36 @@
 <?php
 
-class AdminController extends Zend_Controller_Action
-{
+class AdminController extends Zend_Controller_Action {
+
     private $model;
-    public function init()
-    {
+
+    public function init() {
         /* Initialize action controller here */
-         $this->model = new Application_Model_Materials();
-         $this->cat_model = new Application_Model_Courses;
-         $this->type_model = new Application_Model_MaterialTypes;
-         $this->_helper->layout->setLayout('admin');
+        $this->model = new Application_Model_Materials();
+        $this->cat_model = new Application_Model_Courses;
+        $this->type_model = new Application_Model_MaterialTypes;
+        $this->_helper->layout->setLayout('admin');
         #add ajax to my controller
-         $contextSwitch = $this->_helper->getHelper('contextSwitch');
-         $contextSwitch->addActionContext('changestateAction','json')
-                        ->initContext();
+        $contextSwitch = $this->_helper->getHelper('contextSwitch');
+        $contextSwitch->addActionContext('changestateAction', 'json')
+                ->initContext();
     }
 
-    public function indexAction()
-    {
+    public function indexAction() {
         // action body
     }
-   
+
 #Category
-    public function categoryAction()
-    {
-         $this->view->category = $this->cat_model->listCategories();
+
+    public function categoryAction() {
+        $this->view->category = $this->cat_model->listCategories();
     }
-    
-    
-    public function addcategoryAction()
-    {
-        $form = new  Application_Form_Category();
+
+    public function addcategoryAction() {
+        $form = new Application_Form_Category();
         if ($this->getRequest()->isPost()) {
             if ($form->isValid($this->getRequest()->getParams())) {
-                $data = $form->getValues(); 
+                $data = $form->getValues();
                 $this->cat_model->course_name = $data['course_name'];
                 $this->cat_model->image = $data['image'];
                 $this->cat_model->category_id = 0;
@@ -42,10 +39,7 @@ class AdminController extends Zend_Controller_Action
                     $this->redirect('admin/category');
             }
         }
-         $this->view->form = $form;
-	
-   
-    
+        $this->view->form = $form;
     }
     public function editcategoryAction()
     {
@@ -69,29 +63,25 @@ class AdminController extends Zend_Controller_Action
             $this->render('addcategory');
 //        
     }
-    
- //delete category or course...   
-    public function deletecategoryAction()
-    {
+
+    //delete category or course...   
+    public function deletecategoryAction() {
         $this->cat_model->id = $this->getRequest()->getParam('id');
         $this->cat_model->deleteCategory();
         $this->redirect('admin/category');
-    
-    
     }
-    
- #Course ...  
-   public function courseAction()
-    {
+
+    #Course ...  
+
+    public function courseAction() {
         $this->view->category = $this->cat_model->listCourses();
     }
-    
-    public function addcourseAction()
-    {
-         $form = new  Application_Form_Course();
+
+    public function addcourseAction() {
+        $form = new Application_Form_Course();
         if ($this->getRequest()->isPost()) {
             if ($form->isValid($this->getRequest()->getParams())) {
-                $data = $form->getValues(); 
+                $data = $form->getValues();
                 $this->cat_model->course_name = $data['course_name'];
                 $this->cat_model->image = $data['image'];
                 $this->cat_model->category_id = $data['course_id'];
@@ -102,8 +92,7 @@ class AdminController extends Zend_Controller_Action
                     $this->redirect('admin/course');
             }
         }
-         $this->view->form = $form;
-	
+        $this->view->form = $form;
     }
 
   
@@ -129,11 +118,10 @@ class AdminController extends Zend_Controller_Action
             $this->view->form = $form;
             $this->render('addcourse');
     }
-    
-    
+
 #materials....    
-    public function materialsAction()
-    {
+
+    public function materialsAction() {
         //list All matrials with it's full data
         $materials = $this->model->listMaterials();
         $this->view->materials = $materials;
@@ -141,61 +129,62 @@ class AdminController extends Zend_Controller_Action
         $matrialTypesDB = new Application_Model_MaterialTypes();
         $materialsTypes = $matrialTypesDB->listMaterialTypes();
         $this->view->materialsTypes = $materialsTypes;
-        
     }
+
 #delete material
-     public function deletematerialAction()
-    {
+
+    public function deletematerialAction() {
         $this->model->id = $this->getRequest()->getParam('id');
         $this->model->deleteMaterial();
         $this->redirect('admin/materials');
-    
-    
     }
+
 #changestate
-   public function changestateAction()
-    {
+
+    public function changestateAction() {
         $this->model->id = $this->getRequest()->getParam('id');
         $state = $this->getRequest()->getParam('state');
-        
 
-         $this->model->activeMaterial($state);
+
+        $this->model->activeMaterial($state);
 //        $this->redirect('admin/materials');
-        foreach ($this->model->getMaterial() as $mat)
-        {
+        foreach ($this->model->getMaterial() as $mat) {
             $state = $mat['is_active'];
         }
         exit(0);
         $this->view->data = $state;
-        
+
 //        die();
-        
-    
     }
+
 #add new material
+
     public function addmaterialAction() {
         $form = new Application_Form_Material();
         if ($this->getRequest()->isPost()) {
             if ($form->isValid($this->getRequest()->getParams())) {
                 $data = $form->getValues();
                 $this->model->material_name = $data['material_name'];
-                $this->model->image = $data['image'];
+                if ($data['image'])
+                    $this->model->image = $data['image'];
+                else
+                    $this->model->image = 'defaultmaterial.png';
+
                 $this->model->descib = $data['descib'];
                 $this->model->path = $data['path'];
                 $this->model->material_type_id = $data['material_type_id'];
                 $this->model->course_id = $data['course_id'];
-               $this->model->is_active = $data['is_active'];
-                if ($this->model->addMaterial($data))
-
                 $this->model->is_active = $data['is_active'];
-                if ($this->model->addMaterial())
-
+                if ($this->model->addMaterial($data))
+                    
                     $this->redirect('admin/materials');
             }
         }
-         $this->view->form = $form;
+        $this->view->form = $form;
     }
+
 #edit new material
+
     public function editmaterialAction() {
         $form = new Application_Form_Material();
         $this->model->id = $this->getRequest()->getParam('id');
@@ -215,22 +204,26 @@ class AdminController extends Zend_Controller_Action
                     $this->redirect('admin/materials');
             }
         }
-         $this->view->form = $form;
+        $this->view->form = $form;
     }
- #add new material
+
+    #add new material
+
     public function addmaterialtypeAction() {
         $form = new Application_Form_Materialtype();
         if ($this->getRequest()->isPost()) {
             if ($form->isValid($this->getRequest()->getParams())) {
                 $data = $form->getValues();
-                $this->type_model ->material_name = $data['material_name'];
-                if ($this->type_model ->addMaterialType())
+                $this->type_model->material_name = $data['material_name'];
+                if ($this->type_model->addMaterialType())
                     $this->redirect('admin/materials');
             }
         }
-         $this->view->form = $form;
+        $this->view->form = $form;
     }
+
 #edit new material type
+
     public function editmaterialtypeAction() {
         $form = new Application_Form_Materialtype();
         $this->type_model->id = $this->getRequest()->getParam('id');
@@ -239,23 +232,20 @@ class AdminController extends Zend_Controller_Action
         if ($this->getRequest()->isPost()) {
             if ($form->isValid($this->getRequest()->getParams())) {
                 $data = $form->getValues();
-                $this->type_model ->material_name = $data['material_name'];
+                $this->type_model->material_name = $data['material_name'];
                 if ($this->type_model->updateMaterialType())
                     $this->redirect('admin/materials');
             }
         }
-         $this->view->form = $form;
+        $this->view->form = $form;
     }
+
 #delete material type
-     public function deletematerialtypeAction()
-    {
+
+    public function deletematerialtypeAction() {
         $this->type_model->id = $this->getRequest()->getParam('id');
         $this->type_model->deleteMaterialType();
         $this->redirect('admin/materials');
-    
-    
     }
 
-
 }
-

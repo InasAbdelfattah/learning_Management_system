@@ -168,21 +168,22 @@
         console.log('js started');
         $('.btn-group').on('click', function () {
 //            console.log($(this).children().children().val());
-//            window.location.replace();
-            var url = $(this).children().children().val();
-            $.ajax({
-                url: url,
-                type: 'POST',
-                data: "format=json",
-                async: false,
-                success: function (response) {
-//                    var result = JSON.parse(response);
-                    alert(response);
-                },
-                error: function (error) {
-                    console.log(error);
-                }
-            });//end of ajax request
+        var url = $(this).children().children().val();
+            window.location.replace(url);
+            
+//            $.ajax({
+//                url: url,
+//                type: 'POST',
+//                data: "format=json",
+//                async: false,
+//                success: function (response) {
+////                    var result = JSON.parse(response);
+//                    alert(response);
+//                },
+//                error: function (error) {
+//                    console.log(error);
+//                }
+//            });//end of ajax request
 
         });
 

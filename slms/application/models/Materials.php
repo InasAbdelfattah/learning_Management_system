@@ -39,12 +39,17 @@ class Application_Model_Materials extends Application_Model_MyModel {
     }
 
     function activeMaterial($state) {
+        $now = new Zend_Date();
+        $data = array('is_active' => '1', 'updated_at'=> $now);
         if ($state == 1)
-            $data = array('is_active' => 0);
-        else
-            $data = array('is_active' => 1);
+        { 
+            $data = array(
+                'is_active' => '0',
+                'updated_at'=> $now
+            );
+        }
         $where = 'id = ?' . $this->id;
-        $this->update($data, $where);
+       $this->update($data, $where);
     }
 
     function getMaterial() {
