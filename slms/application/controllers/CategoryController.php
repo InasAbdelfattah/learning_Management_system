@@ -21,7 +21,7 @@ class CategoryController extends Zend_Controller_Action
 //      $auth = Zend_Auth::getInstance();
 //      if ($auth->hasIdentity())
 //        {
-            $this->model->category_id = 0 ;  
+//          
             $this->view->category = $this->model->listCategories();
 //        } 
 //      else 
@@ -36,7 +36,7 @@ class CategoryController extends Zend_Controller_Action
 //      $auth = Zend_Auth::getInstance();
 //      if ($auth->hasIdentity())
 //        {
-        $this->model->category_id = 1; 
+//       
         $this->view->category = $this->model->listCourses(); 
 //         } 
 //      else 

@@ -25,6 +25,11 @@ class Application_Model_Courses extends Application_Model_MyModel {
        $cat_id = $this->category_id;
        return $this->fetchAll($this->select('*')->where("category_id=?","$cat_id"))->toArray();
     }
+    
+    function getCategoryByID()
+    {
+        return $this->get_id();
+    }
 # by salama
     function getoneCategory() 
     {
