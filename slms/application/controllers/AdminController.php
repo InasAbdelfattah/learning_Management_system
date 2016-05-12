@@ -98,7 +98,6 @@ class AdminController extends Zend_Controller_Action {
                 $this->cat_model->image = $data['image'];
                 $this->cat_model->category_id = $data['course_id'];
                 echo $data['is_active'];
-                die();
                 $this->cat_model->is_active = $data['is_active'];
                 if ($this->cat_model->addCategory($data))
                     $this->redirect('admin/course');
@@ -129,6 +128,18 @@ class AdminController extends Zend_Controller_Action {
             }
             $this->view->form = $form;
             $this->render('addcourse');
+    }
+    
+     public function categorydetailsAction()
+    {
+      $this->cat_model->category_id = $this->getRequest()->getParam('id');
+      $this->view->category =  $this->cat_model->getCategory() ;
+     }
+// get material by course_id...  
+    public function materialAction()
+    {
+         $id = $this->getRequest()->getParam('id');
+         $this->view->materials = $this->model->getCategoryByCorID($id);
     }
 
 #materials....    

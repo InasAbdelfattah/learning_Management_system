@@ -39,11 +39,11 @@
                 $course = new Application_Model_Courses();
                 $course->id = $cat['category_id'];
                 $coursecat = $course->getCategoryByID();      
-                echo $cat['id'];
+               
                 ?>
                 <tr>
-                    <td><a href="<?php echo $this->baseUrl() . '/materials_upload_folder/' . $cat['course_name'] ?>"><?php echo $cat['course_name'] ?></a></td>
-                    <td><?php echo $coursecat[0]['course_name'];  ?> </td>
+                    <td><a href="<?php echo $this->baseUrl() . '/admin/material/id/' . $cat['id'] ?>"><?php echo $cat['course_name'] ?></a></td>
+                    <td><a href='<?php echo $this->baseUrl() . '/admin/categorydetails/id/' . $coursecat[0]['id'] ?>'><?php echo $coursecat[0]['course_name'];  ?></a> </td>
                     <td><img  class="thumbnail" src='<?php echo $this->baseUrl() . '/img/courses_images_folder/' . $cat['image'] ?>' ></td>
                     
                     <td><?php echo $cat['created_at'] ?></td>

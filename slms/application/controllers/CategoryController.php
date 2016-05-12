@@ -26,43 +26,23 @@ class CategoryController extends Zend_Controller_Action {
     }
 
     public function indexAction() {
-//      $auth = Zend_Auth::getInstance();
-//      if ($auth->hasIdentity())
-//        {
-//          
+
             $this->view->category = $this->model->listActiveCategories();
-//        } 
-//      else 
-//      {
-//          $this->redirect('error/error');
-//      }
+//    
     }
 
     public function courseAction() {
-//      $auth = Zend_Auth::getInstance();
-//      if ($auth->hasIdentity())
-//        {
-//       
+     
         $this->view->category = $this->model->listActiveCourses(); 
-//         } 
-//      else 
-//      {
-//          $this->redirect('error/error');
-//      }
+
     }
 
     public function detailsAction() {
-//        $auth = Zend_Auth::getInstance();
-//      if ($auth->hasIdentity())
-//        {
+
         $category_id = $this->getRequest()->getParam('id');
         $this->model->category_id = $category_id;
-        $this->view->category = $this->model->getcategory();
-//         } 
-//      else 
-//      {
-//          $this->redirect('error/error');
-//      }
+        $this->view->category = $this->model->getActivecategory();
+
     }
 
     public function ajaxrequestAction() {
