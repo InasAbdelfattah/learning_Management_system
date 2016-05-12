@@ -40,13 +40,17 @@
                 $matrialcatDB = new Application_Model_Courses();
                 $matrialcatDB->category_id = $material['CategoryId'];
                 $matrialcat = $matrialcatDB->getoneCategory();
+                foreach ($matrialcat as $category) {
+                    $cat = $category['course_name'];
+                }
                 ?>
                 <tr>
                     <td><a href="<?php echo $this->baseUrl() . '/materials_upload_folder/' . $material['material_name'] ?>"><?php echo $material['material_name'] ?></a></td>
                     <td>
-                        <a href="<?php echo $this->baseUrl() . '/category/details/id/' . $material['CategoryId'] ?>" class="tooltip" data-toggle="tooltip" data-placement="left" title="<?php echo $matrialcat[0]['course_name'] ?>">
-                            <?php echo $material['Course'] ?>
+                        <a href="<?php echo $this->baseUrl() . '/category/details/id/' . $material['CategoryId'] ?>"  data-placement="left" title="<?php echo $cat ?>">
+                            <?php echo $material['Course']; ?>
                         </a>
+
                     </td>
                     <td><img  class="thumbnail" src='<?php echo $this->baseUrl() . '/img/materials_images_folder/' . $material['image'] ?>' ></td>
                     <td><?php echo $material['descib'] ?></td>
@@ -55,10 +59,7 @@
                     <td>
 
                         <?php if ($material['is_active'] == 1) { ?>
-                                                
-
                             <div class="btn-group" data-toggle="buttons">
-                                
                                 <label class="btn btn-md btn-default active">
                                     <input type="radio" name="options"  id="option" autocomplete="off" value="<?php echo $this->baseUrl() . '/admin/changestate/id/' . $material['id'] . '/state/' . $material['is_active'] ?>" />
                                     Yes
@@ -67,27 +68,24 @@
                                     <input type="radio" name="options" id="option2" autocomplete="off" value="<?php echo $this->baseUrl() . '/admin/changestate/id/' . $material['id'] . '/state/' . $material['is_active'] ?>"/>
                                     No
                                 </label>
-
                             </div>
                         <?php } else { ?>
                             <div class="btn-group" data-toggle="buttons">
-
-                                <label class="btn btn-md btn-default active">
-                                    <input type="radio" name="options"  id="option1" autocomplete="off" value="<?php echo $this->baseUrl() . '/admin/changestate/id/' . $material['id'] . '/state/' . $material['is_active'] ?>" />
+                                <label class="btn btn-md btn-default ">
+                                    <input type="radio" name="options"  id="option" autocomplete="off" value="<?php echo $this->baseUrl() . '/admin/changestate/id/' . $material['id'] . '/state/' . $material['is_active'] ?>" />
                                     Yes
                                 </label>
-                                <label class="btn btn-md btn-default ">
+                                <label class="btn btn-md btn-default active">
                                     <input type="radio" name="options" id="option2" autocomplete="off" value="<?php echo $this->baseUrl() . '/admin/changestate/id/' . $material['id'] . '/state/' . $material['is_active'] ?>"/>
                                     No
                                 </label>
-
                             </div>
                         <?php } ?>
                     </td>
                     <td>
                         <!--delete action-->
-                        <input type="submit"  data-placement="left" title="Delete This MAterial permently" class="btn btn-md btn-danger" name="delete" value="Delete" data-toggle="modal" data-target="#deleteModal"/>
-                        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <input type="submit"  data-placement="left" title="Delete This MAterial permently" class="btn btn-md btn-danger" name="delete" value="Delete" data-toggle="modal" data-target="#deleteModal<?php echo $material['id'] ?>"/>
+                        <div class="modal fade" id="deleteModal<?php echo $material['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -95,7 +93,7 @@
                                         <h4 class="modal-title" id="myModalLabel">Warning</h4>
                                     </div>
                                     <div class="modal-body">
-                                        <?php echo $matrialcat[0]['course_name'] ?></br>
+                                        <?php echo $cat ?></br>
                                         Are you sure you wand to delete material "<span style="color:green;"><?php echo $material['material_name'] ?></span>"
                                         of course "<span style="color:royalblue;"><?php echo $material['Course'] ?></span>" !!?
                                     </div>
@@ -108,9 +106,7 @@
                         </div>
                         <!--edit action-->
                         <a href="<?php echo $this->baseUrl() . '/admin/editmaterial/id/' . $material['id'] ?>"data-placement="left" title="Edit This Material" class="btn btn-md btn-primary" >Edit</a>
-                        
                     </td>
-
                 </tr>
             <?php } ?>
 
@@ -119,7 +115,7 @@
 </div>
 </div>
 <div class="col-lg-7">
-    <a href="<?php echo $this->baseUrl() . '/admin' ?>" type="submit" class="btn btn-md btn-success pull-right" />Add New Material Type</a>
+    <a href="<?php echo $this->baseUrl() . '/admin/addmaterialtype' ?>" type="submit" class="btn btn-md btn-success pull-right" />Add New Material Type</a>
 <h2>Materials Types Table</h2>
 <div class="table-responsive">
     <table class="table table-bordered table-hover">
@@ -137,8 +133,8 @@
                     <td><?php echo $materialsTypes['created_at'] ?></td>
                     <td>
                         <!--delete action-->
-                        <input type="submit" class="btn btn-md btn-danger" name="delete" value="Delete" data-toggle="modal" data-target="#typeModal"/>
-                        <div class="modal fade" id="typeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <input type="submit" class="btn btn-md btn-danger" name="delete" value="Delete" data-toggle="modal" data-target="#typeModal<?php echo $materialsTypes['id'] ?>"/>
+                        <div class="modal fade" id="typeModal<?php echo $materialsTypes['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -150,14 +146,14 @@
                                         Are you sure you wand to delete material type "<span style="color:green;"><?php echo $materialsTypes['material_name'] ?></span>" !!?
                                     </div>
                                     <div class="modal-footer">
-                                        <a href="<?php echo $this->baseUrl() . '/admin/deletematerial/id/' . $material['id'] ?>" class="btn btn-md btn-danger"> Yes Delete</a>
+                                        <a href="<?php echo $this->baseUrl() . '/admin/deletematerialtype/id/' . $materialsTypes['id'] ?>" class="btn btn-md btn-danger"> Yes Delete</a>
                                         <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!--edit action-->   
-                        <input type="submit" class="btn btn-md btn-primary" name="active" value="Active"/>
+                        <!--edit action-->
+                        <a href="<?php echo $this->baseUrl() . '/admin/editmaterialtype/id/' . $materialsTypes['id'] ?>"data-placement="left" title="Edit This Material Type" class="btn btn-md btn-primary" >Edit</a>
                     </td>
                 </tr>
             <?php } ?>
@@ -172,8 +168,24 @@
         console.log('js started');
         $('.btn-group').on('click', function () {
 //            console.log($(this).children().children().val());
-            window.location.replace($(this).children().children().val());
+//            window.location.replace();
+            var url = $(this).children().children().val();
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: "format=json",
+                async: false,
+                success: function (response) {
+//                    var result = JSON.parse(response);
+                    alert(response);
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });//end of ajax request
+
         });
+
 
 
 
