@@ -16,9 +16,13 @@ class RequestsController extends Zend_Controller_Action
     public function sendRequstAction()
     {
         // action body
-        $form=new Application_Form_Requset();
-        $this->view->form=$form;
+//        $form=new Application_Form_Requset();
+//        $this->view->form=$form;
+        $coursesModel=new Application_Model_Courses();
+        $catgryNames=$coursesModel->listCategories();
+        $this->view->catgries=$catgryNames;
     }
+ 
 
 
 }
