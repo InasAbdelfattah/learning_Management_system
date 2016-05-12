@@ -49,7 +49,25 @@ class AdminController extends Zend_Controller_Action
     }
     public function editcategoryAction()
     {
-         $this->view->category = $this->cat_model->editCategory(); 
+        $this->cat_model->id = $this->getRequest()->getParam('id');
+        $id = $this->cat_model->id;
+        
+        $old = $this->cat_model->getCategoryByID();
+        var_dump($old);
+        $form = new  Application_Form_Category();
+        $form->populate($old[0]);
+            if($this->getRequest()->isPost())
+            {
+                if($form->isValid($this->getRequest()->getParams()))
+                {
+                    $data = $form->getValues();
+                    $this->cat_model->update($data , "id=$id");
+                    $this->redirect("admin/category");
+                }
+            }
+            $this->view->form = $form;
+            $this->render('addcategory');
+//        
     }
     
  //delete category or course...   
@@ -77,6 +95,8 @@ class AdminController extends Zend_Controller_Action
                 $this->cat_model->course_name = $data['course_name'];
                 $this->cat_model->image = $data['image'];
                 $this->cat_model->category_id = $data['course_id'];
+                echo $data['is_active'];
+                die();
                 $this->cat_model->is_active = $data['is_active'];
                 if ($this->cat_model->addCategory($data))
                     $this->redirect('admin/course');
@@ -89,7 +109,25 @@ class AdminController extends Zend_Controller_Action
   
     public function editcourseAction()
     {
-         $this->view->category = $this->cat_model->editCourse(); 
+        $this->cat_model->id = $this->getRequest()->getParam('id');
+        $old = $this->cat_model->getCategoryByID();
+        $form = new  Application_Form_Course();
+        $form->populate($old[0]);
+            if($this->getRequest()->isPost())
+            {
+                if($form->isValid($this->getRequest()->getParams()))
+                {
+                    $data = $form->getValues();
+                    $this->cat_model->course_name = $data['course_name'];
+                    $this->cat_model->image = $data['image'];
+                    $this->cat_model->category_id = $data['course_id'];
+                    $this->cat_model->is_active = $data['is_active'];
+                    $this->cat_model-> editCourse();
+                    $this->redirect("admin/course");
+                }
+            }
+            $this->view->form = $form;
+            $this->render('addcourse');
     }
     
     
