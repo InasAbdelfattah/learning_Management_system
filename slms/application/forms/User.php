@@ -48,12 +48,10 @@ class Application_Form_User extends Zend_Form {
             'field' => 'email'
                 )
         ));
-
-
         $password->setRequired()->addValidator(new Zend_Validate_StringLength(array('min' => 5, 'max' => 32)));
         $image->addValidator(new Zend_Validate_File_IsImage)->addValidator(new Zend_Validate_File_ImageSize(array('min' => 1, 'max' => 2000)));
-//        $image->setDestination(APPLICATION_PATH);
-//        $image->setDestination($this->baseUrl.'/img/user');
+//        $image->setDestination(APPLICATION_PATH."/../img/user");
+        $image->setDestination($this->baseUrl.'img/user');
 
         $this->addElements(
                 array
