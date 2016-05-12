@@ -13,12 +13,13 @@
           <div class="col-lg-8 col-md-8 col-sm-8">
             <div class="courseArchive_content">
               <div class="row">
-               <?php    foreach ($this->category as $cat){ ?>
+                  <?php  if($this->category){
+                foreach ($this->category as $cat){ ?>
                 <!-- start single course -->
                 <div class="col-lg-6 col-md-6 col-sm-6">
                   <div class="single_course wow fadeInUp">
                     <div class="singCourse_imgarea">
-                      <img src="img/course-1.jpg" />
+                      <img src="<?php echo'http://localhost'.$this->baseURL($cat['image'])?>" />
                       <div class="mask">         
                         <a href="material-type/index/course_id/<?php echo $cat['id'] ?>" class="course_more">View Course</a>
                       </div>
@@ -30,7 +31,7 @@
                   </div>
                 </div>
                 <!-- End single course -->
-                <?php } ?>
+                <?php  } } else { echo '<div class="alert alert-success" role="alert">No Course .. can request admin</div>'; } ?>
               </div>
               <!-- start previous & next button -->
               <div class="single_blog_prevnext">

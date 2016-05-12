@@ -12,7 +12,8 @@
           <div class="col-lg-8 col-md-8 col-sm-8">
             <div class="courseArchive_content">
               <div class="row">
-               <?php    foreach ($this->category as $cat){ ?>
+                   <?php  if($this->category){
+               foreach ($this->category as $cat){ ?>
                 <!-- start single course -->
                 <div class="col-lg-6 col-md-6 col-sm-6">
                   <div class="single_course wow fadeInUp">
@@ -29,7 +30,7 @@
                   </div>
                 </div>
                 <!-- End single course -->
-                <?php } ?>
+                   <?php } } else { echo '<div class="alert alert-success" role="alert">No Course .. can request admin</div>'; }  ?>
               </div>
               <!-- start previous & next button -->
               <div class="single_blog_prevnext">

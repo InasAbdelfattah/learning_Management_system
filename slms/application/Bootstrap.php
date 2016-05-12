@@ -65,7 +65,9 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                 $view->headScript()->appendFile($view->baseUrl().'/js/jquery.js');
                 $view->headScript()->appendFile($view->baseUrl().'/js/plugins/morris/raphael.min.js');
                 $view->headScript()->appendFile($view->baseUrl().'/js/plugins/morris/morris.min.js');
-                $view->headScript()->appendFile($view->baseUrl().'/js/plugins/morris/morris-data.js');
+                $view->headScript()->appendFile($view->baseUrl().'/js/plugins/morris/morris-data.js'); 
+                $view->headScript()->appendFile($view->baseUrl().'/js/myJQ.js');
+
     
     
 
