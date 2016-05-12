@@ -1,0 +1,17 @@
+<br /><br />
+<div id="view-content">
+
+<?php
+var_dump($this->types);
+echo $this->course_id;
+
+foreach ($this->types as $type){
+	echo "<label> ID: </label>".$type['id'].'<br />';
+	echo "<label> :name </label>".$type['material_name'].'<br />';
+	echo "<a href='".$this->baseUrl()."/materials/index/material_type_id/".$type['id']."/course_id/".$this->course_id."'>".$type['material_name']."</a> ";
+	
+	}
+
+
+?>
+</div>

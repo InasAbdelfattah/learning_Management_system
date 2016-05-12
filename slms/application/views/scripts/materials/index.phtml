@@ -1,0 +1,11 @@
+<br /><br />
+<div id="view-content">
+<?php
+print_r($this->materials);
+foreach ($this->materials as $material){
+	echo "<label> :name </label>".$material['material_name'].'<br />';
+	echo "<a href='".$this->baseUrl()."/comments/index/material_id/".$material['id']."'>Details ".$material['material_name']."</a>";
+	
+	}
+?>
+</div>

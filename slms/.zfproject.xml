@@ -24,6 +24,7 @@
         <formFile formName="User"/>
         <formFile formName="Requset"/>
         <formFile formName="HandleSelect"/>
+        <formFile formName="Comment"/>
       </formsDirectory>
       <layoutsDirectory enabled="false"/>
       <modelsDirectory>
