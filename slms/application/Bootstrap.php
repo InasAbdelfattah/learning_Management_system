@@ -22,8 +22,10 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		$view->doctype('XHTML1_STRICT');
 		$view->headMeta()->appendName('keywords', 'framework, PHP')->appendHttpEquiv('Content-Type','text/html;charset=utf-8');
 		// Set the initial title and separator:
-		$view->headTitle('Zend Proj')->setSeparator(' :: ');
+		$view->headTitle('ITI Mansoura')->setSeparator(' :: ');
 		// Set the initial stylesheet:
+                $view->headLink(array('rel' => 'shortcut icon', 'href' => $view->baseUrl().'/img/myicon.png', 'type' => 'image/x-icon'), 'PREPEND');
+
 		$view->headLink()->appendStylesheet($view->baseUrl().'/css/animate.css');
 		$view->headLink()->appendStylesheet($view->baseUrl().'/css/bootstrap.min.css');
 		$view->headLink()->appendStylesheet($view->baseUrl().'/css/superslides.css');

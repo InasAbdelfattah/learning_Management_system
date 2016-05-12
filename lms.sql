@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 11, 2016 at 01:41 AM
+-- Generation Time: May 12, 2016 at 01:01 PM
 -- Server version: 5.5.49-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.16
 
@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `courses` (
   `is_active` tinyint(4) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `category_id` (`category_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `courses`
@@ -63,10 +63,9 @@ INSERT INTO `courses` (`id`, `course_name`, `image`, `created_at`, `category_id`
 (2, 'E-Learning DP.', 'img/course-2.jpg', '0000-00-00 00:00:00', 0, 1),
 (3, 'Java DP.', 'img/course-3.jpg', '0000-00-00 00:00:00', 0, 0),
 (4, 'System Development DP.', 'img/course-single.jpg', '0000-00-00 00:00:00', 0, 0),
-(5, 'Java DP.', 'img/course-3.jpg', '0000-00-00 00:00:00', 0, 1),
-(6, 'System Development DP.', 'img/course-single.jpg', '0000-00-00 00:00:00', 0, 1),
-(7, 'Zend', '/img/zend.png', '0000-00-00 00:00:00', 1, 1),
-(8, 'Laravel', 'img/notice.jpg', '2016-05-10 21:51:09', 1, 1);
+(7, 'Zend', '/img/zend.png', '0000-00-00 00:00:00', 4, 1),
+(8, 'Laravel', 'img/notice.jpg', '2016-05-10 21:51:09', 1, 1),
+(9, 'Ruby', '/img/course1.jpg', '2016-05-11 11:06:35', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -103,15 +102,15 @@ CREATE TABLE IF NOT EXISTS `materials` (
   PRIMARY KEY (`id`),
   KEY `material_type_id` (`material_type_id`),
   KEY `course_id` (`course_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `materials`
 --
 
 INSERT INTO `materials` (`id`, `material_name`, `descib`, `image`, `path`, `created_at`, `material_type_id`, `course_id`, `is_active`) VALUES
-(1, 'zend_book.pdf', 'this is pdf that contail main lessons of zend', 'Untitled.png', '', '0000-00-00 00:00:00', 1, 7, 1),
-(5, 'zend Fram Work', 'Book of Zend', 'PRINCE-tmagArticle.jpg', 'Zend_Framework_Day1.pdf', '2016-05-10 21:54:39', 1, 7, 0);
+(2, 'zend Fram Work', 'Book of Zend', 'PRINCE-tmagArticle.jpg', 'Zend_Framework_Day1.pdf', '2016-05-10 21:54:39', 1, 7, 1),
+(6, 'my cv ', 'this is my cv', '12190989_1646099602295594_8371255997786664700_n.jpg', 'Ahmed salama CV 2011.2016 .pdf', '2016-05-12 06:19:18', 1, 9, 0);
 
 -- --------------------------------------------------------
 
@@ -124,7 +123,7 @@ CREATE TABLE IF NOT EXISTS `material_types` (
   `material_name` varchar(100) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `material_types`
@@ -167,22 +166,26 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password` char(32) NOT NULL,
   `image` varchar(300) NOT NULL,
   `signature` varchar(255) DEFAULT NULL,
-  `is_active` tinyint(2) NOT NULL,
-  `is_admin` tinyint(2) NOT NULL,
-  `is_loged` tinyint(2) NOT NULL,
+  `is_active` tinyint(2) NOT NULL DEFAULT '0',
+  `is_admin` tinyint(2) NOT NULL DEFAULT '0',
+  `is_loged` tinyint(2) NOT NULL DEFAULT '0',
+  `last_login` timestamp NULL DEFAULT NULL,
   `joined_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`,`email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `password`, `image`, `signature`, `is_active`, `is_admin`, `is_loged`, `joined_at`, `updated_at`) VALUES
-(1, 'ahmed salama', 'ahmed.salama1679@gmail.com', 'salama2010', '/img/user/8264_860045890807858_4902325188664268365_n.jpg', 'Ahmed Salama', 1, 1, 1, '2016-05-09 22:00:00', '2016-05-09 22:00:00'),
-(2, 'ahmed salama', 'ahmed.salama@gmail.com', '123456', '/img/user/8264_860045890807858_4902325188664268365_n.jpg', 'Ahmed Salama', 1, 0, 0, '2016-05-10 14:33:30', '0000-00-00 00:00:00');
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `image`, `signature`, `is_active`, `is_admin`, `is_loged`, `last_login`, `joined_at`, `updated_at`) VALUES
+(1, 'ahmed salama', 'ahmed.salama1679@gmail.com', 'salama2010', '/img/user/1.jpg', 'Ahmed Salama', 1, 1, 1, NULL, '2016-05-09 22:00:00', '2016-05-09 22:00:00'),
+(2, 'abanoub', 'abanoub@gmail.com', '123456', '/img/user/2.jpg', 'Abanoub Todary', 1, 1, 0, NULL, '2016-05-10 14:33:30', '0000-00-00 00:00:00'),
+(3, 'Hani Shaker', 'hani@yahoo.com', 'hani', '/img/user/3.jpg', 'Hani shaker Elzoghby', 1, 1, 0, NULL, '2016-05-12 09:29:11', '0000-00-00 00:00:00'),
+(5, 'Mahmoud Wael', 'mahmoud@yahoo.com', '123', '/img/user/4.jpg', 'Mahmoud Wael ', 1, 1, 0, NULL, '2016-05-12 09:32:47', '0000-00-00 00:00:00'),
+(6, 'Shreif Wahdan', 'shreif@yahoo.com', '123456', '/img/user/5.jpg', 'Shrief Wahdan', 1, 1, 0, NULL, '2016-05-12 09:33:37', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
