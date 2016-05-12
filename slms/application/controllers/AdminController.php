@@ -27,9 +27,32 @@ class AdminController extends Zend_Controller_Action {
         else 
             $this->redirect('user/login');
     }
-
+#all index of control by salama
     public function indexAction() {
-        // action body
+      //list All matrials with it's full data
+        $time = new Zend_Date();
+        $date = strtotime($time) - (48*60*60);
+        $previousDay = date('Y-m-d H:i:s', $date) ;
+        // lest recent materials of 48 hours
+        $select = $this->model->select()
+                      ->order('created_at DESC')
+                      ->where("created_at >= '".$previousDay."'");
+        $this->view->materials = count($this->model->fetchAll($select)->toArray());
+        
+        // lest recent materials of 48 hours
+        $commentsDB = new Application_Model_Comments();
+        $select = $commentsDB->select()
+                      ->order('created_at DESC')
+                      ->where("created_at >= '".$previousDay."'");
+        $this->view->comments = count($commentsDB->fetchAll($select)->toArray());
+        
+        // lest recent orders of 48 hours
+//        $requestsDB = new Application_Model_Requests();
+//        $select = $requestsDB->select()
+//                      ->order('created_at DESC')
+//                      ->where("created_at >= '".$previousDay."'");
+//        $this->view->requests = count($requestsDB->fetchAll($select)->toArray());
+
     }
 
 #Category
