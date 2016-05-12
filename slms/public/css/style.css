@@ -83,7 +83,19 @@ img{
   background-color:#000; /* change if the mask should have another color then white */
   z-index:99999; /* makes sure it stays on top */
 }
-
+.thumbnail{
+    width:60px;
+    height:40px; 
+}
+.thumbnail:hover {
+    position:absolute;
+    top:-25px;
+    left:100px;
+    width:auto;
+    height:auto;
+    display:block;
+    z-index:999;
+}
 #status {
   width:200px;
   height:200px;

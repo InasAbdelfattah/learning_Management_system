@@ -92,22 +92,57 @@ class AdminController extends Zend_Controller_Action
         $this->view->materialsTypes = $materialsTypes;
         
     }
+#delete material
+     public function deletematerialAction()
+    {
+        $this->model->id = $this->getRequest()->getParam('id');
+        $this->model->deleteMaterial();
+        $this->redirect('admin/materials');
+    
+    
+    }
+#changestate
+   public function changestateAction()
+    {
+        $this->model->id = $this->getRequest()->getParam('id');
+        $state = $this->getRequest()->getParam('state');
+        echo $state;
+                die();
 
-   
-
+        $this->model->activeMaterial();
+        $this->redirect('admin/materials');
+    
+    
+    }
+#add new material
     public function addmaterialAction() {
         $form = new Application_Form_Material();
         if ($this->getRequest()->isPost()) {
             if ($form->isValid($this->getRequest()->getParams())) {
                 $data = $form->getValues();
-                $this->model->material_name = $data['material_name'];
-                $this->model->image = $data['image'];
-                $this->model->descib = $data['descib'];
-                $this->model->path = $data['path'];
-                $this->model->material_type_id = $data['material_type_id'];
-                $this->model->course_id = $data['course_id'];
-                $this->model->is_active = $data['is_active'];
-                if ($this->model->addMaterial())
+//                $this->model->material_name = $data['material_name'];
+//                $this->model->image = $data['image'];
+//                $this->model->descib = $data['descib'];
+//                $this->model->path = $data['path'];
+//                $this->model->material_type_id = $data['material_type_id'];
+//                $this->model->course_id = $data['course_id'];
+//                $this->model->is_active = $data['is_active'];
+                if ($this->model->addMaterial($data))
+                    $this->redirect('admin/materials');
+            }
+        }
+         $this->view->form = $form;
+    }
+#edit new material
+    public function editmaterialAction() {
+        $form = new Application_Form_Material();
+        $this->id = $this->getRequest()->getParam('id');
+        $material = $this->model->getMaterial();
+        $form->populate($material[0]);
+        if ($this->getRequest()->isPost()) {
+            if ($form->isValid($this->getRequest()->getParams())) {
+                $data = $form->getValues();
+                if ($this->model->submitEditMaterial($data))
                     $this->redirect('admin/materials');
             }
         }

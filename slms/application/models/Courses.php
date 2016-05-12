@@ -19,12 +19,19 @@ class Application_Model_Courses extends Application_Model_MyModel {
         return $this->fetchAll($this->select('*')->where("category_id=?","0"))->toArray();
         
     }
+# by maram
     function getCategory() 
     {
        $cat_id = $this->category_id;
-//       die();
        return $this->fetchAll($this->select('*')->where("category_id=?","$cat_id"))->toArray();
     }
+# by salama
+    function getoneCategory() 
+    {
+       $cat_id = $this->category_id;
+       return $this->fetchAll($this->select('*')->where("id=?","$cat_id"))->toArray();
+    }
+
 
     function addCategory()
     {
