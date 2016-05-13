@@ -15,7 +15,10 @@
                 <div class="col-lg-6 col-md-6 col-sm-6">
                   <div class="single_course wow fadeInUp">
                     <div class="singCourse_imgarea">
-                      <img src="img/type.jpg" />
+                      <!-- <img src="img/type.jpg" /> -->
+                      <?php
+                      echo "<img src='".$this->baseUrl()."/img/type.jpg'>";
+                      ?>
                       <div class="mask">                         
                      <!--    <a href="course-single.html" class="course_more">View Course</a> -->
                         <?php 
@@ -38,10 +41,10 @@
                 
               </div>
               <!-- start previous & next button -->
-              <div class="single_blog_prevnext">
+              <!-- <div class="single_blog_prevnext">
                 <a href="#" class="prev_post wow fadeInLeft animated" style="visibility: visible; animation-name: fadeInLeft;"><i class="fa fa-angle-left"></i>Previous</a>
                 <a href="#" class="next_post wow fadeInRight animated" style="visibility: visible; animation-name: fadeInRight;">Next<i class="fa fa-angle-right"></i></a>
-              </div>
+              </div> -->
             </div>
           </div>
           <!-- End course content -->

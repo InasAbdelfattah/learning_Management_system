@@ -61,34 +61,54 @@ class MaterialsController extends Zend_Controller_Action {
     public function viewAction() {
         $material_id = $this->getRequest()->getParam('material_id');
         $file = $this->model->fetchAll($this->model->select('*')->where('id =?', $material_id))->toArray();
-        $path = $file[0]['path'];
+        $fpath = $file[0]['path'];
+        $path='materials_upload_folder/'.$fpath ;
+        #handle video view
+        /*$vid_ext=strtolower(end(explode(".",$fpath)));
+        $video=array('mkv');
+        if (in_array($vid_ext, $video )) {
+                #$this->redirect('materials/download/material_id/'.$material_id);
+            $this->view->vpath=$path;
+            $this->render('try');
+        }else{*/
+
         // disable view and layout 
         Zend_Layout::getMvcInstance()->disableLayout();
         $this->_helper->viewRenderer->setNoRender();
 
-        //set mimetype (content-type image/jpeg etc)
         $mtype = '';
 
         // magic_mime module installed?
         if (function_exists('mime_content_type')) {
             $mtype = mime_content_type($path);
         }
+       
         // fileinfo module installed?
         else if (function_exists('finfo_file')) {
             $finfo = finfo_open(FILEINFO_MIME); // return mime type
             $mtype = finfo_file($finfo, $path);
             finfo_close($finfo);
         }
-        // set headers 
-        header("Content-Type: " . $mtype);
 
-        // Open the file for reading
-        $fh = fopen($path, 'r');
+        $rare=array('application/zip','application/x-rar-compressed',);
+        #$video=array('video/quicktime','video/quicktime',);
+        if (in_array($mtype, $rare )) {
+                $this->redirect('materials/download/material_id/'.$material_id);
+        }
+        /*elseif (in_array($mtype, $video )) {
+                # code...
+            }*/ 
+        else{
+            // set headers 
+            header("Content-Type: " . $mtype);
 
-        // And pass it through to the browser
-        fpassthru($fh);
+            // Open the file for reading
+            $fh = fopen($path, 'r');
+
+            // And pass it through to the browser
+            fpassthru($fh);
+        }    
     }
-
 }
-
+#}
 ?>

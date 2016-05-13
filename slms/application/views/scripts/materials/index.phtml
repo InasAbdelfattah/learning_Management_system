@@ -3,6 +3,10 @@
     <!--=========== END COURSE BANNER SECTION ================-->
     
     <!--=========== BEGIN COURSE BANNER SECTION ================-->
+    <?php echo $this->type ; 
+    echo "<br/>";
+    echo $this->infotype;
+    ?>
     <section id="courseArchive">
       <div class="container">
         <div class="row">
@@ -15,7 +19,9 @@
                 <div class="col-lg-6 col-md-6 col-sm-6">
                   <div class="single_course wow fadeInUp">
                     <div class="singCourse_imgarea">
-                      <img src="img/material.jpg" />
+                      <?php
+                      echo "<img src='".$this->baseUrl()."/img/material.jpg'>";
+                      ?>
                       <div class="mask">                         
                      <!--    <a href="course-single.html" class="course_more">View Course</a> -->
                         <?php 

@@ -27,7 +27,7 @@
                     </div>
                     <!-- Top Menu Items -->
                     <ul class="nav navbar-right top-nav">
-                        <li class="dropdown">
+<!--                        <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
                             <ul class="dropdown-menu message-dropdown">
                                 <li class="message-preview">
@@ -106,7 +106,7 @@
                                     <a href="#">View All</a>
                                 </li>
                             </ul>
-                        </li>
+                        </li>-->
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $this->layout()->user[0]['username']?> <b class="caret"></b></a>
                             <ul class="dropdown-menu">
@@ -143,23 +143,21 @@
                                 <a href="<?php echo $this->baseUrl() . '/admin/materials' ?>"><i class="fa fa-fw fa-file"></i> Materials</a>
                             </li>
                             <li>
-                                <a href="<?php echo $this->baseUrl() . '/admin/materialTypes' ?>"><i class="fa fa-fw fa-file-pdf-o"></i> Materials Types</a>
+                                <a href="<?php echo $this->baseUrl() . '/admin/materialtypes' ?>"><i class="fa fa-fw fa-file-pdf-o"></i> Materials Types</a>
                             </li>
                             <li>
                                 <a href="<?php echo $this->baseUrl() . '/admin/users' ?>"><i class="fa fa-fw fa-user"></i> Users</a>
                             </li>
                             <li>
-                                <a href="<?php echo $this->baseUrl() . '/admin/comments' ?>"><i class="fa fa-comments"></i> Comments</a>
+                                <a href="<?php echo $this->baseUrl() . '/admin/comment' ?>"><i class="fa fa-comments"></i> Comments</a>
                             </li>
                             <li>
                                 <a href="<?php echo $this->baseUrl() . '/admin/requests' ?>"><i class="fa fa-flag-checkered "></i> Requests</a>
                             </li>
-                            <li>
+<!--                            <li>
                                 <a href="<?php echo $this->baseUrl() . '/admin/events' ?>"><i class="fa fa-flag-fire "></i> Events</a>
-                            </li>
-                            <li>
-                                <a href="<?php echo $this->baseUrl() . '/admin/comment' ?>"><i class="fa fa-fw fa-desktop"></i>Comments</a>
-                            </li>
+                            </li>-->
+                            
 <!--                            <li>
                                 <a href="bootstrap-grid.html"><i class="fa fa-fw fa-wrench"></i> Bootstrap Grid</a>
                             </li>

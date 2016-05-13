@@ -37,7 +37,11 @@ class MaterialTypeController extends Zend_Controller_Action {
         $types = [];
         foreach ($m as $value) {
             $type_id = $value['material_type_id'];
-            $types = $this->model->fetchAll($this->model->select('*')->where("id=?", "$type_id"))->toArray();
+            $type = $this->model->fetchAll($this->model->select('*')->where("id=?", "$type_id"))->toArray();
+            if (!in_array($type[0], $types )) {
+                array_push($types,$type[0]);
+            }
+            
         }
         $this->view->types = $types;
         $this->view->course_id = $course_id;
