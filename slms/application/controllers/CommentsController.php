@@ -35,9 +35,12 @@ class CommentsController extends Zend_Controller_Action {
         //show comments where material_id=$material_id
         $comments = $this->model->fetchAll($this->model->select('*')->where('material_id =?', $material_id))->toArray();
         $this->view->comments = $comments;
-        $session = Zend_auth::getInstance()->getStorage()->read();
-        $user_id = $session->id;
-        $this->view->user = $user_id;
+        $session=Zend_auth::getInstance()->getStorage()->read();
+        $user_id=$session->id;
+        $user_obj= new Application_Model_Users();
+        $user_obj->id=$user_id;
+        $user=$user_obj->getUser();
+        $this->view->user = $user;
         $form = new Application_Form_Comment();
         if ($this->getRequest()->isPost()) {
             if ($form->isValid($this->getRequest()->getParams())) {
@@ -51,6 +54,7 @@ class CommentsController extends Zend_Controller_Action {
             }
         }
         $this->view->form = $form;
+        $this->render('single');
     }
 
     public function editAction() {
@@ -85,7 +89,7 @@ class CommentsController extends Zend_Controller_Action {
             }
         }
         $this->view->form = $form;
-        $this->render('index');
+        $this->render('single');
     }
 
     function deleteAction() {
