@@ -17,6 +17,8 @@ class MaterialsController extends Zend_Controller_Action {
             else
                 $this->redirect('user/login');
         }
+        else
+                $this->redirect('user/login');
     }
 
     public function indexAction() {
