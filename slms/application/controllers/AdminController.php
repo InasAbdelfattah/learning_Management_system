@@ -258,33 +258,31 @@ class AdminController extends Zend_Controller_Action
 
     //comments control
 
-       public function editAction(){
+       public function editcommentAction(){
         $id = $this->getRequest()->getParam('id');
-        $comment = $this->model->id=$id;
-        $comment=$this->model->getComment();
-        #material
-        $material_obj= new Application_Model_Materials();
         $material_id = $this->getRequest()->getParam('material_id');
-        $material_obj->id=$material_id;
-        $material=$material_obj->getMaterial();
-        $this->view->material=$material;
+        $comment_obj= new Application_Model_Comments();
+        $comment_obj->id=$id;
+        $comment=$comment_obj->getComment();
+        $user_id=$comment[0]['user_id'];
+        $user_obj= new Application_Model_Users();
+        $user_obj->id=$user_id;
+        $user=$user_obj->getUser();
+        $username=$user[0]['username'];
+        $this->view->username = $username;
         #comments
-        $comments = $this->model->fetchAll($this->model->select('*')->where('material_id =?',$material_id ))->toArray();
+        $comments = $comment_obj->listComments();
+        #$comments = $comment_obj->fetchAll($this->model->select('*')->where('material_id =?',$material_id ))->toArray();
         $this->view->comments = $comments;
-        #$user_id=1;
-        $session=Zend_auth::getInstance()->getStorage()->read();
-        $user_id=$session->id;
-        $this->view->user_id = $user_id;
         $form = new Application_Form_Comment();
         $form->populate($comment[0]);
         if($this->getRequest()->isPost()){
             if($form->isValid($this->getRequest()->getParams())){
                 $data = $form->getValues();
-                 $this->model->comment = $data['comment'];
-                $this->model->material_id = $data['material_id'];
-                $this->model->user_id =$user_id;
-                $this->view->user_id = $user_id;
-                if ($this->model->updateComment())
+                $comment_obj->comment = $data['comment'];
+                $comment_obj->material_id = $data['material_id'];
+                $comment_obj->user_id =$user_id;
+                if ($comment_obj->updateComment())
                     $form->reset();
                 $this->redirect('admin/comment');
                 
@@ -294,7 +292,7 @@ class AdminController extends Zend_Controller_Action
         $this->render('comment');
 
    }
-    function deleteAction(){
+    function deletecommentAction(){
         $material_id = $this->getRequest()->getParam('material_id');
         $id = $this->getRequest()->getParam('id');
         $comment_obj= new Application_Model_Comments();
