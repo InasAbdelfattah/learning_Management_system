@@ -1,6 +1,6 @@
 <?php
 
-class Application_Form_Material extends Zend_Form {
+class Application_Form_MaterialDoc extends Zend_Form {
 
     public function init() {
         $this->setAttrib('enctype', 'multipart/form-data');
@@ -28,7 +28,8 @@ class Application_Form_Material extends Zend_Form {
                 ->setAllowEmpty(true);
         
         $materialTypesObj = new Application_Model_MaterialTypes();
-        $materialTypes = $materialTypesObj->listMaterialTypes();
+        $select = $materialTypesObj->select()->where("`type` = 'doc'");
+        $materialTypes = $materialTypesObj->fetchAll($select)->toArray();
         $avialableTypes = '';
         foreach ($materialTypes as $type)
         {

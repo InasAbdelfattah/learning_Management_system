@@ -18,17 +18,17 @@
 </div>
 <!-- /.row -->
 <div class="col-lg-10">
-    <a href="<?php echo $this->baseUrl() . '/admin/addcategory' ?>" type="submit" class="btn btn-md btn-success pull-right" />Add New Category</a>
+    <a href="<?php echo $this->baseUrl() . '/admin/addcategory' ?>" type="submit" class="btn btn-md btn-default pull-right" /><i class="fa fa-fw fa-university"></i> Add New Category</a>
     <h2>Categories Table</h2>
     <div class="table-responsive">
         <table class="table table-bordered table-hover">
             <thead>
                 <tr>
-                <th>Category</th>
-                <th>Image</th>
-                <th>Add Time</th>
-                <th>Active state</th>
-                <th>Action</th>
+                <th><i class="fa fa-fw fa-university"></i> Category</th>
+                <th><i class="fa fa-fw fa-image"></i> Image</th>
+                <th><i class="fa fa-fw fa-clock-o"></i> Add Time</th>
+                <th><i class="fa fa-fw fa-star-half-o"></i> Active state</th>
+                <th><i class="fa fa-fw fa-cogs"></i> Action</th>
             </tr>
         </thead>
         <tbody>
@@ -44,13 +44,13 @@
                     <td><img  class="thumbnail" src='<?php echo $this->baseUrl() . '/img/courses_images_folder/' . $cat['image'] ?>' ></td>
                     
                     <td><?php echo $cat['created_at'] ?></td>
-                    <td><a href="<?php echo $this->baseUrl() . '/admin/deletecategory/id/'. $cat['id'] ?>"data-placement="left" title="Edit This Material" class="btn btn-md btn-danger" >Delete</a></td>
+                    <td><a href="<?php echo $this->baseUrl() . '/admin/deletecategory/id/'. $cat['id'] ?>"data-placement="left" title="Edit This Material" class="btn btn-md btn-danger" ><i class="fa fa-fw fa-trash"></i> Delete</a></td>
                     <td>
                       
                         
                        
                         <!--edit action-->
-                        <a href="<?php echo $this->baseUrl() . '/admin/editcategory/id/' . $cat['id'] ?>"data-placement="left" title="Edit This Material" class="btn btn-md btn-primary" >Edit</a>
+                        <a href="<?php echo $this->baseUrl() . '/admin/editcategory/id/' . $cat['id'] ?>"data-placement="left" title="Edit This Material" class="btn btn-md btn-primary" ><i class="fa fa-fw fa-pencil-square-o"></i> Edit</a>
                         
                     </td>
 
