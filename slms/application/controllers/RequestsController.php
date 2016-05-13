@@ -48,7 +48,7 @@ class RequestsController extends Zend_Controller_Action {
                 } else {
                     $this->model->course_id = 0;
                 }
-                $this->model->status = $_POST['courseStatus'];
+                $this->model->description = $_POST['description'];
                 $this->model->addRequest();
             }
         } else {
@@ -73,5 +73,4 @@ class RequestsController extends Zend_Controller_Action {
 //    ["course"]=> string(1) "7"
 //    ["courseStatus"]=> string(6) "abefer" 
 //    ["submit"]=> string(12) "Send Request" }
-=======
->>>>>>> origin/master
+
