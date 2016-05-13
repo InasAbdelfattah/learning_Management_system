@@ -21,25 +21,6 @@ class Application_Model_Users extends Application_Model_MyModel {
         return $this->list_data();
     }
 
-//    function getUserById($id) {
-//        return $this->find($id)->toArray();
-//    }
-
-
-    function saveData($data) {
-        $row = $this->createRow();
-//        $row->username = $data['username'];
-//        $row->email = $data['email'];
-//        $row->signature = $data['signature'];
-//        $row->image = "/images/" . $data['image'];
-        $tme = new Zend_Date();
-        $data['updated_at'] = $tme->now();
-//        $row->updated_at=$tme->now();
-//        return $row->save();
-        $data['image'] = "/img/user/" . $data['image'];
-        return $this->update($data, "id=2");
-//         var_dump($row);		
-    }
 
     function getUser() {
         return $this->get_id();
@@ -104,16 +85,18 @@ class Application_Model_Users extends Application_Model_MyModel {
 
         $authAdapter = new Zend_Auth_Adapter_DbTable($dp, $this->_name, 'email', 'password');
         $authAdapter->setIdentity($email)->setCredential(md5($password));
-
         $result = $authAdapter->authenticate();
         if ($result->isValid()) {
             $auth = Zend_Auth::getInstance();
             $storage = $auth->getStorage();
             $storage->write($authAdapter->getResultRowObject(array('id', 'email')));
+
             $this->auth = Zend_Auth::getInstance()->getIdentity();
             $this->id = $this->auth->id;
 
             return $this->get_id();
+
+
         } else {
             return FALSE;
         }

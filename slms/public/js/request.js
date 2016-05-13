@@ -16,7 +16,7 @@ $(function () {
 //                        console.log(data[0].course_name);
                         result = data;
                         var HTMLtxt = "<select name='course' class='form-control'>";
-                        HTMLtxt += "<option value='0'>Please select category....</option>";
+                        HTMLtxt += "<option value='0'>Please Select Course....</option>";
                         $.each(result, function (array, object) {
                             HTMLtxt += "<option value="+ object.id+">" + object.course_name + "</option>";
 

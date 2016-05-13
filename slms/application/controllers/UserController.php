@@ -13,12 +13,22 @@ class UserController extends Zend_Controller_Action {
         $this->user_model = new Application_Model_Users();
         $this->auth = Zend_Auth::getInstance()->getIdentity();
         $layout = $this->_helper->layout();
+
         $this->user_model->id = $this->auth->id;
         $currunt_user = $this->user_model->getUser();
         if ($currunt_user[0]['is_active'] == 1)
             $layout->user = $currunt_user;
         else
             $this->view->massage = "Sorry You are Blocked of login and interact , please wait untill admin active you";
+        if ($this->auth) {
+
+            $this->user_model->id = $this->auth->id;
+            $currunt_user = $this->user_model->getUser();
+            if ($currunt_user[0]['is_active'] == 1)
+                $layout->user = $currunt_user;
+            else
+                $this->view->massage = "Sorry You are Blocked of login and interact , please wait untill admin active you";
+        }
     }
 
     public function indexAction() {
@@ -112,39 +122,49 @@ class UserController extends Zend_Controller_Action {
         $this->view->form = $form;
     }
 
-    public function showProfileAction() {
+    public function updateProfileAction() {
         // action body
-        $form = new Application_Form_User();
-        $form->removeElement('id');
-        $form->removeElement('is_active');
-        $form->removeElement('is_admin');
-        $form->removeElement('is_loged');
-        $form->removeElement('password');
-        $form->removeElement('joined_at');
-        $form->removeElement('updated_at');
-        $this->model->id = $this->getRequest()->getParam('id');
-        $user = $this->model->getUser();
-        $form->populate($user[0]);
-        $this->view->form = $form;
-        $form->getElement('email')->removeValidator('Zend_Validate_Db_NoRecordExists');
-        $this->view->user = $user[0];
-        if ($this->getRequest()->isPost()) {
-            if ($form->isValid($this->getRequest()->getParams())) {
-                $data = $form->getValues();
-                $this->model->saveData($data);
-                if ($this->model->saveData($data)) {
-                    return back();
+        $auth = Zend_Auth::getInstance();
+        if ($auth->hasIdentity())
+            $loggedIn = true;
+        if ($loggedIn) {
+            $authr = Zend_Auth::getInstance()->getStorage()->read();
+            $form = new Application_Form_User();
+            $form->removeElement('id');
+            $form->removeElement('is_active');
+            $form->removeElement('is_admin');
+            $form->removeElement('is_loged');
+            $form->removeElement('password');
+            $form->removeElement('joined_at');
+            $form->removeElement('updated_at');
+            $this->model->id = $authr->id;
+            $user = $this->model->getUser();
+            $form->populate($user[0]);
+            $this->view->form = $form;
+            $form->getElement('email')->removeValidator('Zend_Validate_Db_NoRecordExists');
+            $this->view->user = $user[0];
+            if ($this->getRequest()->isPost()) {
+                if ($form->isValid($this->getRequest()->getParams())) {
+                    $data = $form->getValues();
+//                    $this->model->saveData($data);
+                    $this->view->$data['username'];
+                    $this->model->username = $data['username'];
+                    $this->model->email = $data['email'];
+                    $this->model->image = "/img/user/" . $data['image'];
+                    $this->model->signature = $data['signature'];
+                    $this->model->updateUser();
+                    if ($this->model->updateUser()) {
+                        return redirect('user/show-profile');
+                    }
                 }
             }
+        } else {
+            $this->redirect('user/login');
         }
     }
 
-    public function logoutAction() {
-        $auth = Zend_Auth::getInstance();
-        $auth->clearIdentity();
-        $this->redirect('index/');
-    }
 
+    
     public function deleteAction() {
         $this->model->id = $this->getRequest()->getParam('id');
         return $this->model->deleteUser();
@@ -165,6 +185,30 @@ class UserController extends Zend_Controller_Action {
         $this->model->id = $this->getRequest()->getParam('id');
         $this->model->is_loged = $this->getRequest()->getParam('loged');
         return $this->_helper->json($this->model->IsLoged());
+     }
+
+    public function showProfileAction() {
+        $auth = Zend_Auth::getInstance();
+        if ($auth->hasIdentity())
+            $loggedIn = true;
+        if ($loggedIn) {
+            $authr = Zend_Auth::getInstance()->getStorage()->read();
+            $this->model->id = $authr->id;
+            $user = $this->model->getUser();
+            $this->view->user = $user[0];
+        } else {
+            $this->redirect('user/login');
+        }
     }
+
+    public function logoutAction() {
+
+        $auth = Zend_Auth::getInstance();
+        $auth->clearIdentity();
+        $this->redirect('index/');
+
+    }
+    
+
 
 }

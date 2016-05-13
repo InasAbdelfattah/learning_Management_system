@@ -37,6 +37,12 @@ class Application_Model_Materials extends Application_Model_MyModel {
                 ->where('course.id = ' . $id);
         return $this->fetchAll($select)->toArray();
     }
+    
+    function getCategoryByCorID($id) {
+        $select = $this->select()
+                ->where('course_id = ' . $id);
+        return $this->fetchAll($select)->toArray();
+    }
 
     function activeMaterial($state) {
         $now = new Zend_Date();

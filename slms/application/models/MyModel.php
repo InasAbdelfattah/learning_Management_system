@@ -1,7 +1,8 @@
 <?php
 
 class Application_Model_MyModel extends Zend_Db_Table_Abstract {
-
+ protected $_rowsetClass = 'Zend_Db_Table_Rowset';
+ 
     protected $_name;
     protected $fields = array();
     protected $primary_key;
@@ -46,6 +47,7 @@ class Application_Model_MyModel extends Zend_Db_Table_Abstract {
     }
 
     function delete_id() {
+       
         $primary_key = $this->primary_key;
         return $this->delete($this->primary_key . '=' . $this->$primary_key);
     }
