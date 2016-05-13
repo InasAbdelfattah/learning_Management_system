@@ -1,0 +1,63 @@
+    <section id="imgBanner">
+      <!-- <h2>Blog Single</h2> -->
+    </section>
+    <!--=========== END COURSE BANNER SECTION ================-->
+    
+    <!--=========== BEGIN COURSE BANNER SECTION ================-->
+    <section id="courseArchive">
+      <div class="container">
+        <div class="row">
+          <!-- start course content -->
+          <div class="col-lg-8 col-md-8 col-sm-8">
+            <div class="courseArchive_content">
+              <!-- start blog archive  -->
+              <div class="row">
+                <!-- start single blog -->
+                <div class="col-lg-12 col-12 col-sm-12">
+                  <div class="single_blog">
+                    <!-- <div class="blogimg_container">
+                      <a href="#" class="blog_img">
+                        <img alt="img" src="img/blog.jpg">
+                      </a>
+                    </div> -->
+                    <h2 class="blog_title"><?php echo $this->material[0]['material_name']?></h2>
+                    <div class="blog_commentbox">
+                      <p><i class="fa fa-user"></i><?php echo $this->user[0]['username'] ?></p>
+                      <p><i class="fa fa-calendar"></i><?php echo $this->material[0]['created_at']?></p>
+                      <?php
+                        echo "<a href='".$this->baseUrl()."/materials/view/material_id/".$this->material[0]['id']."' class='fa fa-comments'></i>View</a>";
+                        echo " | ";
+                        echo "<a href='".$this->baseUrl()."/materials/download/material_id/".$this->material[0]['id']."' class='fa fa-comments'></i>Download</a>";
+                      ?>
+                      
+                    </div>
+                    <p>
+                      <?php 
+                        echo $this->material[0]['descib'];
+                      ?>
+                    </p>
+                    <table class="table table-bordered table-hover" style="border:0px;">
+                    <?php
+                    foreach ($this->comments as $comment) {
+echo "<tr><td><img class='thumbnail' src='".$this->baseUrl()."/img/user/".$this->user[0]['image']."' >".$this->user[0]['username']."</td>";
+  echo "<td>".$comment['comment']."</td>";
+  if($this->user[0]['id']==$comment['user_id']){
+  echo "<td><a href='".$this->baseUrl()."/comments/edit/id/".$comment['id']."/material_id/".$this->material[0]['id']."' class='btn btn-primary'> Edit </a></td> "."<td><a href='".$this->baseUrl()."/comments/delete/id/".$comment['id']."/material_id/".$this->material[0]['id']."' class='btn btn-warning'>Delete</a></td></tr>";
+  }else{
+    echo "</tr>";
+  }
+}
+echo "</table>";
+echo"<div class='form-group'>";
+echo $this->form;
+?>
+
+</div>
+                   
+                </div>               
+              </div>           
+            </div>
+          </div> 
+          </div>
+          </div>
+       

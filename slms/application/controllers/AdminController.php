@@ -256,6 +256,59 @@ class AdminController extends Zend_Controller_Action
     
     }
 
+    //comments control
+
+       public function editAction(){
+        $id = $this->getRequest()->getParam('id');
+        $comment = $this->model->id=$id;
+        $comment=$this->model->getComment();
+        #material
+        $material_obj= new Application_Model_Materials();
+        $material_id = $this->getRequest()->getParam('material_id');
+        $material_obj->id=$material_id;
+        $material=$material_obj->getMaterial();
+        $this->view->material=$material;
+        #comments
+        $comments = $this->model->fetchAll($this->model->select('*')->where('material_id =?',$material_id ))->toArray();
+        $this->view->comments = $comments;
+        #$user_id=1;
+        $session=Zend_auth::getInstance()->getStorage()->read();
+        $user_id=$session->id;
+        $this->view->user_id = $user_id;
+        $form = new Application_Form_Comment();
+        $form->populate($comment[0]);
+        if($this->getRequest()->isPost()){
+            if($form->isValid($this->getRequest()->getParams())){
+                $data = $form->getValues();
+                 $this->model->comment = $data['comment'];
+                $this->model->material_id = $data['material_id'];
+                $this->model->user_id =$user_id;
+                $this->view->user_id = $user_id;
+                if ($this->model->updateComment())
+                    $form->reset();
+                $this->redirect('admin/comment');
+                
+            }
+        }
+        $this->view->form = $form;
+        $this->render('comment');
+
+   }
+    function deleteAction(){
+        $material_id = $this->getRequest()->getParam('material_id');
+        $id = $this->getRequest()->getParam('id');
+        $comment_obj= new Application_Model_Comments();
+        $comment =$comment_obj->id=$id;
+        $comment=$comment_obj->deleteComment();
+        $this->redirect('admin/comment');
+    } 
+
+   public function commentAction(){
+    $comment_obj=new Application_Model_Comments();
+    $comments=$comment_obj->listComments();
+    $this->view->comments=$comments;
+   } 
+
 
 }
 
