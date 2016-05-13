@@ -259,5 +259,13 @@ class AdminController extends Zend_Controller_Action {
         $this->type_model->deleteMaterialType();
         $this->redirect('admin/materials');
     }
+    
+    
+      public function usersAction() {
+        $this->view->users = $this->user_model->listUsers();
+    }
+
+    
+    
 
 }

@@ -50,9 +50,41 @@ class Application_Model_Users extends Application_Model_MyModel {
     }
 
     function register() {
-        $this->fields = array("username", "email", "password","signature");
-        return $this->add_data();
-        
+        $this->fields = array("username", "email", "password", "signature");
+
+//        $this->add_data();
+        if ($this->add_data()) {
+            $email = $this->email;
+            $password = $this->password;
+            $dp = Zend_Db_Table::getDefaultAdapter();
+            $authAdapter = new Zend_Auth_Adapter_DbTable($dp, $this->_name, 'email', 'password');
+            $authAdapter->setIdentity($email)->setCredential($password);
+            $result = $authAdapter->authenticate();
+
+            /////////////////////////////////////////////////////////////////////
+//            mail('abanob.todary@gmail.com', 'My Subject', 'login');
+
+            require_once 'Zend/Mail/Transport/Smtp.php';
+            $tr = new Zend_Mail_Transport_Sendmail('abanob.todary@gmail.com');
+            Zend_Mail::setDefaultTransport($tr);
+            $mail = new Zend_Mail();
+            $mail->setBodyText('This is the text of the mail.');
+            $mail->setFrom('abanoub.raafat.todary@gmail.com', 'Some Sender');
+            $mail->addTo('abanob.todary@gmail.com', 'Some Recipient');
+            $mail->setSubject('TestSubject');
+            $mail->send();
+
+            ///////////////////////////////////////////////////////////////////////
+            if ($result->isValid()) {
+                $auth = Zend_Auth::getInstance();
+                $storage = $auth->getStorage();
+                $storage->write($authAdapter->getResultRowObject(array('id', 'email')));
+
+                return TRUE;
+            } else {
+                return FALSE;
+            }
+        }
     }
 
     function deleteUser() {
@@ -78,11 +110,28 @@ class Application_Model_Users extends Application_Model_MyModel {
             $auth = Zend_Auth::getInstance();
             $storage = $auth->getStorage();
             $storage->write($authAdapter->getResultRowObject(array('id', 'email')));
+            $this->auth = Zend_Auth::getInstance()->getIdentity();
+            $this->id = $this->auth->id;
 
-            return TRUE;
+            return $this->get_id();
         } else {
             return FALSE;
         }
+    }
+
+    function IsActive() {
+        $this->fields = array("is_active");
+        return $this->edit();
+    }
+
+    function IsAdmin() {
+        $this->fields = array("is_admin");
+        return $this->edit();
+    }
+    
+    function IsLoged() {
+        $this->fields = array("is_loged");
+        return $this->edit();
     }
 
 }

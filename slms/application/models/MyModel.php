@@ -11,20 +11,18 @@ class Application_Model_MyModel extends Zend_Db_Table_Abstract {
         foreach ($this->fields as $column) {
             $row[$column] = $this->$column;
         }
- 
+
         return $row;
     }
 
-
     function get_updates() {
         // $row = $this->createRow();
-        $row=[];
+        $row = [];
         foreach ($this->fields as $column) {
             $row[$column] = $this->$column;
         }
         return $row;
     }
-
 
     function list_data() {
 
@@ -34,6 +32,13 @@ class Application_Model_MyModel extends Zend_Db_Table_Abstract {
     function get_id() {
         $primary_key = $this->primary_key;
         return $this->find($this->$primary_key)->toArray();
+    }
+
+    function get_where($filed) {
+//        $primary_key = $this->primary_key;
+//        $bugs->fetchRow($bugs->select()->where('bug_id = ?', 1));
+       return $this->fetchRow($bugs->select()->where($filed.'='.$this->field , 1))->toArray();
+//         $this->find($this->$primary_key);
     }
 
     function add_data() {
@@ -47,8 +52,7 @@ class Application_Model_MyModel extends Zend_Db_Table_Abstract {
 
     function edit() {
         $primary_key = $this->primary_key;
-        $this->update($this->get_updates(), $this->primary_key .'='. $this->$primary_key);
-            
+        $this->update($this->get_updates(), $this->primary_key . '=' . $this->$primary_key);
     }
 
 }
