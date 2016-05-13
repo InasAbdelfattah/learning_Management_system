@@ -9,6 +9,19 @@ class UserController extends Zend_Controller_Action {
     public function init() {
         /* Initialize action controller here */
         $this->model = new Application_Model_Users;
+        # send loged in user data
+        $this->user_model = new Application_Model_Users();
+        $this->auth = Zend_Auth::getInstance()->getIdentity();
+        $layout = $this->_helper->layout();
+        if ($this->auth) {
+
+            $this->user_model->id = $this->auth->id;
+            $currunt_user = $this->user_model->getUser();
+            if ($currunt_user[0]['is_active'] == 1)
+                $layout->user = $currunt_user;
+            else
+                $this->view->massage = "Sorry You are Blocked of login and interact , please wait untill admin active you";
+        }
     }
 
     public function indexAction() {
@@ -148,6 +161,13 @@ class UserController extends Zend_Controller_Action {
         } else {
             $this->redirect('user/login');
         }
+    }
+
+    public function logoutAction() {
+
+        $auth = Zend_Auth::getInstance();
+        $auth->clearIdentity();
+        $this->redirect('index/');
     }
 
 }

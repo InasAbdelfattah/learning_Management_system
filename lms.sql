@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 12, 2016 at 01:01 PM
+-- Generation Time: May 12, 2016 at 10:30 PM
 -- Server version: 5.5.49-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.16
 
@@ -59,13 +59,13 @@ CREATE TABLE IF NOT EXISTS `courses` (
 --
 
 INSERT INTO `courses` (`id`, `course_name`, `image`, `created_at`, `category_id`, `is_active`) VALUES
-(1, 'Open Source DP.', '/img/course-1.jpg', '0000-00-00 00:00:00', 0, 1),
-(2, 'E-Learning DP.', 'img/course-2.jpg', '0000-00-00 00:00:00', 0, 1),
-(3, 'Java DP.', 'img/course-3.jpg', '0000-00-00 00:00:00', 0, 0),
-(4, 'System Development DP.', 'img/course-single.jpg', '0000-00-00 00:00:00', 0, 0),
-(7, 'Zend', '/img/zend.png', '0000-00-00 00:00:00', 4, 1),
-(8, 'Laravel', 'img/notice.jpg', '2016-05-10 21:51:09', 1, 1),
-(9, 'Ruby', '/img/course1.jpg', '2016-05-11 11:06:35', 3, 1);
+(1, 'Open Source DP.', 'course-1.jpg', '0000-00-00 00:00:00', 0, 1),
+(2, 'E-Learning DP.', 'course-2.jpg', '0000-00-00 00:00:00', 0, 1),
+(3, 'Java DP.', 'course-3.jpg', '0000-00-00 00:00:00', 0, 0),
+(4, 'System Development DP.', 'course-single.jpg', '0000-00-00 00:00:00', 0, 0),
+(7, 'Zend', 'zend.png', '0000-00-00 00:00:00', 4, 1),
+(8, 'Laravel', 'notice.jpg', '2016-05-10 21:51:09', 1, 1),
+(9, 'Ruby', 'course1.jpg', '2016-05-11 11:06:35', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -93,24 +93,26 @@ CREATE TABLE IF NOT EXISTS `materials` (
   `id` int(255) unsigned NOT NULL AUTO_INCREMENT,
   `material_name` varchar(100) NOT NULL,
   `descib` varchar(500) NOT NULL,
-  `image` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL DEFAULT 'defaultmaterial.png',
   `path` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL,
   `material_type_id` int(255) unsigned NOT NULL,
   `course_id` int(255) unsigned NOT NULL,
   `is_active` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `material_type_id` (`material_type_id`),
   KEY `course_id` (`course_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 --
 -- Dumping data for table `materials`
 --
 
-INSERT INTO `materials` (`id`, `material_name`, `descib`, `image`, `path`, `created_at`, `material_type_id`, `course_id`, `is_active`) VALUES
-(2, 'zend Fram Work', 'Book of Zend', 'PRINCE-tmagArticle.jpg', 'Zend_Framework_Day1.pdf', '2016-05-10 21:54:39', 1, 7, 1),
-(6, 'my cv ', 'this is my cv', '12190989_1646099602295594_8371255997786664700_n.jpg', 'Ahmed salama CV 2011.2016 .pdf', '2016-05-12 06:19:18', 1, 9, 0);
+INSERT INTO `materials` (`id`, `material_name`, `descib`, `image`, `path`, `created_at`, `updated_at`, `material_type_id`, `course_id`, `is_active`) VALUES
+(2, 'zend Fram Work', 'Book of Zend', 'PRINCE-tmagArticle.jpg', 'Zend_Framework_Day1.pdf', '2016-05-10 21:54:39', NULL, 1, 7, 1),
+(6, 'my cv ', 'this is my cv', '12190989_1646099602295594_8371255997786664700_n.jpg', 'Ahmed salama CV 2011.2016 .pdf', '2016-05-12 06:19:18', NULL, 1, 9, 0),
+(13, 'laravel material', 'this is book on laravel which have content', 'defaultmaterial.png', 'laravel-5-0-documentation.pdf', '2016-05-12 16:48:34', NULL, 1, 8, 1);
 
 -- --------------------------------------------------------
 
@@ -174,18 +176,18 @@ CREATE TABLE IF NOT EXISTS `users` (
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`,`email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `image`, `signature`, `is_active`, `is_admin`, `is_loged`, `last_login`, `joined_at`, `updated_at`) VALUES
-(1, 'ahmed salama', 'ahmed.salama1679@gmail.com', 'salama2010', '/img/user/1.jpg', 'Ahmed Salama', 1, 1, 1, NULL, '2016-05-09 22:00:00', '2016-05-09 22:00:00'),
-(2, 'abanoub', 'abanoub@gmail.com', '123456', '/img/user/2.jpg', 'Abanoub Todary', 1, 1, 0, NULL, '2016-05-10 14:33:30', '0000-00-00 00:00:00'),
-(3, 'Hani Shaker', 'hani@yahoo.com', 'hani', '/img/user/3.jpg', 'Hani shaker Elzoghby', 1, 1, 0, NULL, '2016-05-12 09:29:11', '0000-00-00 00:00:00'),
-(5, 'Mahmoud Wael', 'mahmoud@yahoo.com', '123', '/img/user/4.jpg', 'Mahmoud Wael ', 1, 1, 0, NULL, '2016-05-12 09:32:47', '0000-00-00 00:00:00'),
-(6, 'Shreif Wahdan', 'shreif@yahoo.com', '123456', '/img/user/5.jpg', 'Shrief Wahdan', 1, 1, 0, NULL, '2016-05-12 09:33:37', '0000-00-00 00:00:00');
+(2, 'abanoub', 'abanoub@gmail.com', 'fff527fb1b92ef4e15d113c40fc0d8f6', '2.jpg', 'Abanoub Todary', 1, 0, 0, NULL, '2016-05-10 14:33:30', '0000-00-00 00:00:00'),
+(3, 'Hani Shaker', 'hani@yahoo.com', 'fff527fb1b92ef4e15d113c40fc0d8f6', '3.jpg', 'Hani shaker Elzoghby', 0, 0, 0, NULL, '2016-05-12 09:29:11', '0000-00-00 00:00:00'),
+(5, 'Mahmoud Wael', 'mahmoud@yahoo.com', 'fff527fb1b92ef4e15d113c40fc0d8f6', '4.jpg', 'Mahmoud Wael ', 0, 1, 0, NULL, '2016-05-12 09:32:47', '0000-00-00 00:00:00'),
+(6, 'Shreif Wahdan', 'shreif@yahoo.com', 'fff527fb1b92ef4e15d113c40fc0d8f6', '5.jpg', 'Shrief Wahdan', 1, 1, 0, NULL, '2016-05-12 09:33:37', '0000-00-00 00:00:00'),
+(7, 'ahmed salama2', 'ahmed.salama1679@gmail.com', 'fff527fb1b92ef4e15d113c40fc0d8f6', 'default.png', 'Ahmed Salama , PHP WebDeveloper', 1, 1, 0, NULL, '2016-05-12 17:38:16', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 

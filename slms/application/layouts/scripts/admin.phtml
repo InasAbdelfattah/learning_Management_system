@@ -108,20 +108,20 @@
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $this->layout()->user[0]['username']?> <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                                   <a href="<?php echo $this->baseUrl().'/user/show-profile/id/'.$this->layout()->user[0]['id']; ?>"/><i class="fa fa-fw fa-user"></i> Profile</a>
                                 </li>
                                 <li>
                                     <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
                                 </li>
                                 <li>
-                                    <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
+                                    <a href="<?php echo $this->baseUrl().'/admin/users'; ?>"/><i class="fa fa-fw fa-gear"></i> Settings</a>
                                 </li>
                                 <li class="divider"></li>
                                 <li>
-                                    <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                                    <a href="<?php echo $this->baseUrl().'/user/logout'; ?><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                                 </li>
                             </ul>
                         </li>
@@ -130,25 +130,32 @@
                     <div class="collapse navbar-collapse navbar-ex1-collapse">
                         <ul class="nav navbar-nav side-nav">
                             <li class="active">
-                                <a href="<?php echo $this->baseUrl() . '/admin' ?>"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                                <a href="<?php echo $this->baseUrl() . '/admin' ?>"><i class="fa fa-fw fa-cogs"></i> Dashboard</a>
                             </li>
                             <li>
-                                <a href="<?php echo $this->baseUrl() . '/admin/category' ?>"><i class="fa fa-fw fa-table"></i> Categories</a>
+                                <a href="<?php echo $this->baseUrl() . '/admin/category' ?>"><i class="fa fa-fw fa-university"></i> Categories</a>
+                            </li>
+                            
+                            <li>
+                                <a href="<?php echo $this->baseUrl() . '/admin/course' ?>"><i class="fa fa-fw fa-leaf"></i> Courses</a>
                             </li>
                             <li>
-                                <a href="<?php echo $this->baseUrl() . '/admin/materialTypes' ?>"><i class="fa fa-fw fa-edit"></i> Materials Types</a>
+                                <a href="<?php echo $this->baseUrl() . '/admin/materials' ?>"><i class="fa fa-fw fa-file"></i> Materials</a>
                             </li>
                             <li>
-                                <a href="<?php echo $this->baseUrl() . '/admin/course' ?>"><i class="fa fa-fw fa-table"></i> Courses</a>
+                                <a href="<?php echo $this->baseUrl() . '/admin/materialTypes' ?>"><i class="fa fa-fw fa-file-pdf-o"></i> Materials Types</a>
                             </li>
                             <li>
-                                <a href="<?php echo $this->baseUrl() . '/admin/materials' ?>"><i class="fa fa-fw fa-table"></i> Materials</a>
+                                <a href="<?php echo $this->baseUrl() . '/admin/users' ?>"><i class="fa fa-fw fa-user"></i> Users</a>
                             </li>
                             <li>
-                                <a href="<?php echo $this->baseUrl() . '/admin/users' ?>"><i class="fa fa-fw fa-wrench"></i> Users</a>
+                                <a href="<?php echo $this->baseUrl() . '/admin/comments' ?>"><i class="fa fa-comments"></i> Comments</a>
                             </li>
                             <li>
-                                <a href="<?php echo $this->baseUrl() . '/admin/requests' ?>"><i class="fa fa-fw fa-desktop"></i> Requests</a>
+                                <a href="<?php echo $this->baseUrl() . '/admin/requests' ?>"><i class="fa fa-flag-checkered "></i> Requests</a>
+                            </li>
+                            <li>
+                                <a href="<?php echo $this->baseUrl() . '/admin/events' ?>"><i class="fa fa-flag-fire "></i> Events</a>
                             </li>
 <!--                            <li>
                                 <a href="bootstrap-grid.html"><i class="fa fa-fw fa-wrench"></i> Bootstrap Grid</a>

@@ -3,10 +3,23 @@
 class RequestsController extends Zend_Controller_Action {
 
     private $model = null;
-
     public function init() {
         /* Initialize action controller here */
+
         $this->model = new Application_Model_Requests;
+        # send loged in user data
+        $this->user_model = new Application_Model_Users();
+        $this->auth = Zend_Auth::getInstance()->getIdentity();
+        $layout = $this->_helper->layout();
+        $this->user_model->id = $this->auth->id;
+        $currunt_user = $this->user_model->getUser();
+        if ($this->auth) {
+            if ($currunt_user[0]['is_active'] == 1)
+                $layout->user = $currunt_user;
+            else
+                $this->redirect('user/login');
+        }
+
     }
 
     public function indexAction() {
@@ -14,6 +27,7 @@ class RequestsController extends Zend_Controller_Action {
     }
 
     public function sendRequstAction() {
+
         $auth = Zend_Auth::getInstance();
         if ($auth->hasIdentity())
             $loggedIn = true;
@@ -40,9 +54,18 @@ class RequestsController extends Zend_Controller_Action {
         } else {
             $this->redirect('user/login');
         }
+
+        // action body
+//        $form=new Application_Form_Requset();
+//        $this->view->form=$form;
+        $coursesModel = new Application_Model_Courses();
+        $catgryNames = $coursesModel->listCategories();
+        $this->view->catgries = $catgryNames;
+
     }
 
 }
+
 
 //array(4) { 
 //    ["category"]=> string(82) 
@@ -50,3 +73,5 @@ class RequestsController extends Zend_Controller_Action {
 //    ["course"]=> string(1) "7"
 //    ["courseStatus"]=> string(6) "abefer" 
 //    ["submit"]=> string(12) "Send Request" }
+=======
+>>>>>>> origin/master

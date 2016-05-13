@@ -27,7 +27,6 @@
                 <th>Image</th>
                 <th>Description</th>
                 <th>Add Time</th>
-                <th>MAterial Type</th>
                 <th>Active state</th>
                 <th>Action</th>
             </tr>
@@ -38,24 +37,19 @@
             foreach ($this->materials as $material) {
 
                 $matrialcatDB = new Application_Model_Courses();
-                $matrialcatDB->category_id = $material['CategoryId'];
+                $matrialcatDB->category_id = $material['course_id'];
                 $matrialcat = $matrialcatDB->getoneCategory();
                 foreach ($matrialcat as $category) {
                     $cat = $category['course_name'];
+                    echo $cat;
                 }
                 ?>
                 <tr>
                     <td><a href="<?php echo $this->baseUrl() . '/materials_upload_folder/' . $material['material_name'] ?>"><?php echo $material['material_name'] ?></a></td>
-                    <td>
-                        <a href="<?php echo $this->baseUrl() . '/category/details/id/' . $material['CategoryId'] ?>"  data-placement="left" title="<?php echo $cat ?>">
-                            <?php echo $material['Course']; ?>
-                        </a>
-
-                    </td>
+                    <td> <?php echo $category['course_name']; ?> </td>
                     <td><img  class="thumbnail" src='<?php echo $this->baseUrl() . '/img/materials_images_folder/' . $material['image'] ?>' ></td>
                     <td><?php echo $material['descib'] ?></td>
                     <td><?php echo $material['created_at'] ?></td>
-                    <td><?php echo $material['type'] ?></td>
                     <td>
 
                         <?php if ($material['is_active'] == 1) { ?>
@@ -114,53 +108,7 @@
     </table>
 </div>
 </div>
-<div class="col-lg-7">
-    <a href="<?php echo $this->baseUrl() . '/admin/addmaterialtype' ?>" type="submit" class="btn btn-md btn-success pull-right" />Add New Material Type</a>
-<h2>Materials Types Table</h2>
-<div class="table-responsive">
-    <table class="table table-bordered table-hover">
-        <thead>
-            <tr>
-                <th>Material Type</th>
-                <th>Created At</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($this->materialsTypes as $materialsTypes) { ?>
-                <tr>
-                    <td><?php echo $materialsTypes['material_name'] ?></td>
-                    <td><?php echo $materialsTypes['created_at'] ?></td>
-                    <td>
-                        <!--delete action-->
-                        <input type="submit" class="btn btn-md btn-danger" name="delete" value="Delete" data-toggle="modal" data-target="#typeModal<?php echo $materialsTypes['id'] ?>"/>
-                        <div class="modal fade" id="typeModal<?php echo $materialsTypes['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                        <h4 class="modal-title" id="myModalLabel">Warning</h4>
-                                    </div>
-                                    <div class="modal-body">
 
-                                        Are you sure you wand to delete material type "<span style="color:green;"><?php echo $materialsTypes['material_name'] ?></span>" !!?
-                                    </div>
-                                    <div class="modal-footer">
-                                        <a href="<?php echo $this->baseUrl() . '/admin/deletematerialtype/id/' . $materialsTypes['id'] ?>" class="btn btn-md btn-danger"> Yes Delete</a>
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--edit action-->
-                        <a href="<?php echo $this->baseUrl() . '/admin/editmaterialtype/id/' . $materialsTypes['id'] ?>"data-placement="left" title="Edit This Material Type" class="btn btn-md btn-primary" >Edit</a>
-                    </td>
-                </tr>
-            <?php } ?>
-        </tbody>
-    </table>
-</div>
-</div>
 
 <script src="<?php echo $this->baseUrl() . '/../public/js/jquery-1.12.3.js' ?>"></script>
 <script>
@@ -170,20 +118,7 @@
 //            console.log($(this).children().children().val());
         var url = $(this).children().children().val();
             window.location.replace(url);
-            
-//            $.ajax({
-//                url: url,
-//                type: 'POST',
-//                data: "format=json",
-//                async: false,
-//                success: function (response) {
-////                    var result = JSON.parse(response);
-//                    alert(response);
-//                },
-//                error: function (error) {
-//                    console.log(error);
-//                }
-//            });//end of ajax request
+
 
         });
 

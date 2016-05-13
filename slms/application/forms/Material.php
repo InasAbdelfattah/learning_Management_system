@@ -24,7 +24,8 @@ class Application_Form_Material extends Zend_Form {
                 $image->addValidator(new Zend_Validate_File_IsImage)
                 ->addValidator(new Zend_Validate_File_ImageSize(array('min' => 1, 'max' => 2000)))
                 ->setDestination(APPLICATION_PATH.'/../public/img/materials_images_folder/')
-                ->setRequired(true);
+               ->setRequired(false)
+                ->setAllowEmpty(true);
         
         $materialTypesObj = new Application_Model_MaterialTypes();
         $materialTypes = $materialTypesObj->listMaterialTypes();
@@ -40,11 +41,11 @@ class Application_Form_Material extends Zend_Form {
                ->addValidator('Extension', false,$avialableTypes)
 //               ->getValidator('Extension')
 //                 ->setError('This File type is not supportted.')
-                ->addValidator(new Zend_Validate_File_FilesSize(array('min' => 1, 'max' => 1125829.12)))
+                ->addValidator(new Zend_Validate_File_FilesSize(array('min' => 1, 'max' => 11125829.12)))
                 ->setDestination(APPLICATION_PATH.'/../public/materials_upload_folder/')
                 ->setRequired(true);
         
-        $is_active = new Zend_Form_Element_Radio('is_active',array('multiOptions' => array('true'=>'Active', 'false'=>'Deactive')));
+        $is_active = new Zend_Form_Element_Radio('is_active',array('multiOptions' => array('1'=>'Active', '0'=>'Deactive')));
         $is_active->setLabel('Active :')->addValidator('NotEmpty', true)->setAttrib('class', 'form-group btn btn-default');
         
         $options = [];
