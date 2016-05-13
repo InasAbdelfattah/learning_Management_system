@@ -24,16 +24,37 @@
                     <div class="blog_commentbox">
                       <p><i class="fa fa-user"></i><?php echo $this->user[0]['username'] ?></p>
                       <p><i class="fa fa-calendar"></i><?php echo $this->material[0]['created_at']?></p>
+                      </div>
                       <?php
-                        echo "<a href='".$this->baseUrl()."/materials/view/material_id/".$this->material[0]['id']."' class='fa fa-comments'></i>View</a>";
-                        echo " | ";
-                        echo "<a href='".$this->baseUrl()."/materials/download/material_id/".$this->material[0]['id']."' class='fa fa-comments'></i>Download</a>";
+                        $fpath = $this->material[0]['path'];
+                        $vpath='materials_upload_folder/'.$fpath ;
+                        $ext=strtolower(end(explode(".",$fpath)));
                       ?>
                       
-                    </div>
+                    
                     <p>
+               
                       <?php 
+
+                        echo "<img class='img-responsive' src='".$this->baseUrl()."/img/materials_images_folder/".$this->material[0]['image']."' >";
+                        #echo "</div>";
+                        echo "<h3>";
                         echo $this->material[0]['descib'];
+                        echo "</h3>";
+                         echo "<a href='".$this->baseUrl()."/materials/view/material_id/".$this->material[0]['id']."' class='btn btn-md btn-primary'></i>View</a>";
+                        
+                        $pattern = '/com/*';
+                        if($ext != 'mp4'){
+                        echo "<a href='".$this->baseUrl()."/materials/download/material_id/".$this->material[0]['id']."' class='btn btn-md btn-primary'></i>Download</a>";
+                      }
+                      echo "<br/><br/>";
+                        if($ext == 'mp4' ){
+                       echo" <video width='320' height='240' controls loop='true'>";
+                       echo "<source type='video/webm' src='".$this->baseUrl()."/".$vpath."' >";
+                       echo "<source type='video/mp4' src='".$this->baseUrl()."/".$vpath."' >";
+                        echo "<source type='video/ogg' src='".$this->baseUrl()."/".$vpath."' >";
+                        echo "</video>";
+                    }
                       ?>
                     </p>
                     <table class="table table-bordered table-hover" style="border:0px;">

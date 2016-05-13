@@ -29,6 +29,7 @@ class MaterialsController extends Zend_Controller_Action {
         $materials = $this->model->fetchAll($this->model->select('*')->where('material_type_id =?', $material_type_id)->where('course_id=?', $course_id))->toArray();
         #$this->view->materials = $this->model->listMaterials();
         $this->view->materials = $materials;
+
     }
 
     public function downloadAction() {
@@ -61,16 +62,24 @@ class MaterialsController extends Zend_Controller_Action {
     public function viewAction() {
         $material_id = $this->getRequest()->getParam('material_id');
         $file = $this->model->fetchAll($this->model->select('*')->where('id =?', $material_id))->toArray();
+        /*$this->model->id=$material_id;
+        $file=$this->model->getMaterial();*/
         $fpath = $file[0]['path'];
+        $this->view->path=$fpath;
         $path='materials_upload_folder/'.$fpath ;
         #handle video view
-        /*$vid_ext=strtolower(end(explode(".",$fpath)));
-        $video=array('mkv');
-        if (in_array($vid_ext, $video )) {
+        $ext=strtolower(end(explode(".",$fpath)));
+        $this->view->ext=$ext;
+        $this->view->vpath=$path;
+        /*if (in_array($ext, $video )) {
                 #$this->redirect('materials/download/material_id/'.$material_id);
             $this->view->vpath=$path;
-            $this->render('try');
-        }else{*/
+            $this->render('try');}
+        /*}elseif (strtolower(end(explode(".",$fpath)))=='com') {
+            # code...
+        }*/
+
+        #else{*/
 
         // disable view and layout 
         Zend_Layout::getMvcInstance()->disableLayout();

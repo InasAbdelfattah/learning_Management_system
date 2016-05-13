@@ -3,10 +3,7 @@
     <!--=========== END COURSE BANNER SECTION ================-->
     
     <!--=========== BEGIN COURSE BANNER SECTION ================-->
-    <?php echo $this->type ; 
-    echo "<br/>";
-    echo $this->infotype;
-    ?>
+
     <section id="courseArchive">
       <div class="container">
         <div class="row">
@@ -25,6 +22,7 @@
                       <div class="mask">                         
                      <!--    <a href="course-single.html" class="course_more">View Course</a> -->
                         <?php 
+
                         echo "<a href='".$this->baseUrl()."/comments/index/material_id/".$material['id']."' class='course_more'>".$material['material_name']."</a>";
                     
                       ?>
@@ -32,7 +30,18 @@
                     </div>
                     <div class="singCourse_content">
                     <?php 
-                      echo "<h3 class='singCourse_title'><a href='".$this->baseUrl()."/comments/index/material_id/".$material['id']."'>Details ".$material['material_name']."</a></h3> ";
+                   $fpath = $material['path'];
+                    $vpath='materials_upload_folder/'.$fpath ;
+                    $ext=strtolower(end(explode(".",$fpath)));
+                    $pattern = '/com\/*/';
+
+                    if($ext == 'com' || preg_match($pattern, $ext, $matches)){
+                       echo "<h3 class='singCourse_title'><a href='".$fpath."'>".$material['material_name']."</a></h3>";
+                    }
+                    else{
+                       echo "<h3 class='singCourse_title'><a href='".$this->baseUrl()."/comments/index/material_id/".$material['id']."'> ".$material['material_name']."</a></h3> ";
+
+                   }
                       ?>
                   <!--   <p class="singCourse_price"><span>$20</span> Per One Month</p>
                     <p>when an unknown printer took a galley of type and scrambled it to make a type specimen book</p> -->
