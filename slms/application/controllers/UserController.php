@@ -54,7 +54,7 @@ class UserController extends Zend_Controller_Action {
                 $this->model->email = $data['email'];
                 $this->model->password = md5($data['password']);
                 $this->model->signature = $data['signature'];
-
+                $this->model->image = "/img/user/default.jpg";
 
 //                  $this->model->email = $data['email'];
 //                $bcrypt = new Bcrypt();
@@ -99,6 +99,9 @@ class UserController extends Zend_Controller_Action {
                 $result = $this->model->loginUser($data);
                 if ($result) {
 
+
+                    $this->model->last_login = Zend_Date::now()->toString('yyyyMMddHHmmss');
+                    $this->model->LastLogin();
                     if ($result[0]['is_admin'])
                         $this->redirect('admin/index');
                     else {
@@ -198,5 +201,32 @@ class UserController extends Zend_Controller_Action {
         $auth->clearIdentity();
         $this->redirect('index/');
     }
+
+    public function updateuserAction() {
+            $form = new Application_Form_User();
+            $form->removeElement('id');
+            $this->model->id = $this->getRequest()->getParams('id');
+            $user = $this->model->getUser();
+            $form->populate($user[0]);
+            $this->view->form = $form;
+//            $form->getElement('email')->removeValidator('Zend_Validate_Db_NoRecordExists');
+            $this->view->user = $user[0];
+            if ($this->getRequest()->isPost()) {
+                if ($form->isValid($this->getRequest()->getParams())) {
+                    $data = $form->getValues();
+//                    $this->model->saveData($data);
+                    $this->view->$data['username'];
+                    $this->model->username = $data['username'];
+                    $this->model->email = $data['email'];
+                    $this->model->image = "/img/user/" . $data['image'];
+                    $this->model->signature = $data['signature'];
+                    $this->model->updateUser();
+                    if ($this->model->updateUser()) {
+                        return redirect('user/show-profile');
+                    }
+                }
+            }
+        } 
+    
 
 }

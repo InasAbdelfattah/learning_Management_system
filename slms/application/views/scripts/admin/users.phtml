@@ -1,3 +1,5 @@
+
+<link href="<?php echo $this->baseUrl() . '/css/mangeUser.css' ?>" rel="stylesheet" >
 <div class="col-lg-12">
 <!--    <a href="<?php echo $this->baseUrl() . '/admin/addcourse' ?>" type="submit" class="btn btn-md btn-success pull-right" />Add New Category</a>-->
     <h2>Users Table</h2>
@@ -18,7 +20,7 @@
                 </tr>
             </thead>
             <tbody>
-                
+
 
                 <?php
                 foreach ($this->users as $user) {
@@ -27,39 +29,39 @@
                     <tr>
                         <td><?php echo $user['username'] ?></td>
                         <td><?php echo $user['email'] ?></td>
-                        <td><img  class="thumbnail" src='<?= $this->baseUrl($user['image']); ?>' ></td>
+                        <td><img  class="thumbnail" src='<?= $this->baseurl($user['image']); ?>' ></td>
 
                         <td><?php echo $user['signature'] ?></td>
                         <!-- is active -->
                         <?php if ($user['is_active']) {
                             ?>
-                            <td><input type='button' name="active"  value='active' class='active btn btn-primary ' data-rowid='<?php echo $this->baseUrl() . '/user/active/id/' . $user['id'] ?>'/></td>
+                            <td><input type='button' name="active"  value='active' class='active correctCss  btn btn-primary ' data-rowid='<?php echo $this->baseUrl() . '/user/active/id/' . $user['id'] ?>'/></td>
                             <?php
                         } else {
                             ?>
-                            <td><input type = 'button' name = "active" value = 'nonactive' class = 'active btn btn-primary ' data-rowid = '<?php echo $this->baseUrl() . '/user/active/id/' . $user['id'] ?>'/></td>
+                            <td><input type = 'button' name = "active" value = 'nonactive' class = 'active falseCss  btn btn-primary ' data-rowid = '<?php echo $this->baseUrl() . '/user/active/id/' . $user['id'] ?>'/></td>
 
                         <?php }
                         ?>
                         <!-- is admin -->
                         <?php if ($user['is_admin']) {
                             ?>
-                            <td><input type='button' name="admin"  value='is_admin' class='admin btn btn-primary ' data-rowid='<?php echo $this->baseUrl() . '/user/admin/id/' . $user['id'] ?>'/></td>
+                        <td><input type='button' name="admin"  value='is_admin' class='admin correctCss btn btn-primary ' data-deletid="<?php echo $user['id'] ?>" data-rowid='<?php echo $this->baseUrl() . '/user/admin/id/' . $user['id'] ?>'/></td>
                             <?php
                         } else {
                             ?>
-                            <td><input type = 'button' name = "admin" value = 'isnot_admin' class = 'admin btn btn-primary ' data-rowid = '<?php echo $this->baseUrl() . '/user/admin/id/' . $user['id'] ?>'/></td>
+                            <td><input type = 'button' name = "admin" value = 'isnot_admin' class = 'admin falseCss btn btn-primary ' data-deletid="<?php echo $user['id'] ?>" data-rowid = '<?php echo $this->baseUrl() . '/user/admin/id/' . $user['id'] ?>'/></td>
 
                         <?php }
                         ?>
                         <!-- is loged -->
                         <?php if ($user['is_loged']) {
                             ?>
-                            <td><input type='button' name="loged"  value='is_loged' class='loged btn btn-primary ' data-rowid='<?php echo $this->baseUrl() . '/user/loged/id/' . $user['id'] ?>'/></td>
+                            <td><input type='button' name="loged"  value='is_loged' class='loged correctCss btn btn-primary ' data-rowid='<?php echo $this->baseUrl() . '/user/loged/id/' . $user['id'] ?>'/></td>
                             <?php
                         } else {
                             ?>
-                            <td><input type = 'button' name = "loged" value = 'isnot_loged' class = 'loged btn btn-primary ' data-rowid = '<?php echo $this->baseUrl() . '/user/loged/id/' . $user['id'] ?>'/></td>
+                            <td><input type = 'button' name = "loged" value = 'isnot_loged' class = 'loged falseCss btn btn-primary ' data-rowid = '<?php echo $this->baseUrl() . '/user/loged/id/' . $user['id'] ?>'/></td>
 
                         <?php }
                         ?>
@@ -74,19 +76,24 @@
                         </td>
                         <?php
                         if ($user['is_admin']) {
-                            
-                        } else {
                             ?>
-                            <td>
-                                <!--Delete action-->
-                                <input type="button"  data-placement="left" title="Delete This Material" data-rowid="<?php echo $this->baseUrl() . '/user/delete/id/' . $user['id'] ?>" class="delete  btn btn-md btn-primary" value="Delete"/>
-                            </td>
+                        <td>
+                        <!--Delete action-->
+                        <input type="button" disabled data-placement="left" title="Delete This Material" data-rowid="<?php echo $this->baseUrl() . '/user/delete/id/' . $user['id'] ?>" id="delete<?php echo $user['id'] ?>"  class="delete  btn btn-md btn-primary" value="Delete"/>
+                    </td>
+                    <?php
+                } else {
+                    ?>
+                    <td>
+                        <!--Delete action-->
+                        <input type="button"  data-placement="left" title="Delete This Material" data-rowid="<?php echo $this->baseUrl() . '/user/delete/id/' . $user['id'] ?>"  id="delete<?php echo $user['id'] ?>" class="delete  btn btn-md btn-primary" value="Delete"/>
+                    </td>
 
-                        </tr>
-                        <?php
-                    }
+                    </tr>
+                    <?php
                 }
-                ?>
+            }
+            ?>
 
             </tbody>
         </table>
