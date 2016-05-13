@@ -3,8 +3,7 @@
     <br/>
     <br/>
     <br/>
-
-
+    <?php echo "/var/www/html/".$this->baseUrl()."/".$this->vpath ?>
     </div>
 
   <video width="320" height="240" controls>
@@ -12,6 +11,11 @@
 
 
 <?php
-   echo "<source src='".$this->vapth."' type='video/mp4'>";
+ /*  echo "<source src='/var/www/html/".$this->baseUrl()."/".$this->vapth."' type='video/mp4'>";*/
+
+   echo "<source src='".$this->baseUrl()."/".$this->vpath."' >"
+
 ?>
 </video>
+
+<!--  <video id="video1" width="420" controls="" autoplay="" src="/SLMS_zend/public/upload/material/php.mp4"> -->
