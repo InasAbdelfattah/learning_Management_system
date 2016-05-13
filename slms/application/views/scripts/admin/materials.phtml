@@ -34,11 +34,11 @@
                     <th><i class="fa fa-fw fa-file"></i> Material</th>
                     <th><i class="fa fa-fw fa-leaf"></i> Course</th>
                     <th><i class="fa fa-fw fa-image"></i> Image</th>
-                    <th><i class="fa fa-fw fa-bars"></i> Description</th>
+                    <!--<th><i class="fa fa-fw fa-bars"></i> Description</th>-->
                     <th><i class="fa fa-fw fa-clock-o"></i> Add Time</th>
                     <th><i class="fa fa-fw fa-file-pdf-o"></i> Type</th>
+                    <th><i class="fa fa-fw fa-sticky-cog"></i>Download</th>
                     <th><i class="fa fa-fw fa-star-half-o"></i> Active state</th>
-                    <!--<th><i class="fa fa-fw fa-sticky-cog"></i>Download</th>-->
                     <th><i class="fa fa-fw fa-cogs"></i> Action</th>
                 </tr>
             </thead>
@@ -55,7 +55,7 @@
                     }
                     ?>
                     <tr>
-                        <td><a href="<?php echo $this->baseUrl() . '/materials_upload_folder/' . $material['material_name'] ?>"><?php echo $material['material_name'] ?></a></td>
+                        <td><a href="<?php echo $this->baseUrl() . '/materials_upload_folder/' . $material['material_name'] ?>"data-placement="left" title="<?php echo $material['descib'] ?>"><?php echo $material['material_name'] ?></a></td>
                         <td>
                             <a href="<?php echo $this->baseUrl() . '/category/details/id/' . $material['CategoryId'] ?>"  data-placement="left" title="<?php echo $cat ?>">
                                 <?php echo $material['Course']; ?>
@@ -63,55 +63,55 @@
 
                         </td>
                         <td><img  class="thumbnail" src='<?php echo $this->baseUrl() . '/img/materials_images_folder/' . $material['image'] ?>' ></td>
-                        <td><?php echo $material['descib'] ?></td>
+                        <!--<td><?php // echo $material['descib'] ?></td>-->
                         <td><?php echo $material['created_at'] ?></td>
                         <td><?php echo $material['type'] ?></td>
-<!--                       <td>
-                            <?php // if ($material['is_downloadable'] == 1) { ?>
+                       <td>
+                            <?php if ($material['is_downloadable'] == 1) { ?>
                                 <div class="btn-group" data-toggle="buttons">
                                     <label class="btn btn-md btn-default active">
-                                        <input type="radio" name="options"  id="option" autocomplete="off" value="<?php echo $this->baseUrl() . '/admin/changestate/id/' . $material['id'] . '/state/' . $material['is_downloadable'] ?>" />
+                                        <input type="radio" name="options"  id="option" autocomplete="off" value="<?php echo $this->baseUrl() . '/admin/changestate/do/1/id/' . $material['id'] . '/state/' . $material['is_downloadable'] ?>" />
                                         Yes
                                     </label>
                                     <label class="btn btn-md btn-default ">
-                                        <input type="radio" name="options" id="option2" autocomplete="off" value="<?php echo $this->baseUrl() . '/admin/changestate/id/' . $material['id'] . '/state/' . $material['is_downloadable'] ?>"/>
-                                        No
-                                    </label>
-                                </div>
-                            <?php // } else { ?>
-                                <div class="btn-group" data-toggle="buttons">
-                                    <label class="btn btn-md btn-default ">
-                                        <input type="radio" name="options"  id="option" autocomplete="off" value="<?php echo $this->baseUrl() . '/admin/changestate/id/' . $material['id'] . '/state/' . $material['is_downloadable'] ?>" />
-                                        Yes
-                                    </label>
-                                    <label class="btn btn-md btn-default active">
-                                        <input type="radio" name="options" id="option2" autocomplete="off" value="<?php echo $this->baseUrl() . '/admin/changestate/id/' . $material['id'] . '/state/' . $material['is_downloadable'] ?>"/>
-                                        No
-                                    </label>
-                                </div>
-                            <?php // } ?>
-                        </td>-->
-                        <td>
-
-                            <?php if ($material['is_active'] == 1) { ?>
-                                <div class="btn-group" data-toggle="buttons">
-                                    <label class="btn btn-md btn-default active">
-                                        <input type="radio" name="options"  id="option" autocomplete="off" value="<?php echo $this->baseUrl() . '/admin/changestate/id/' . $material['id'] . '/state/' . $material['is_active'] ?>" />
-                                        Yes
-                                    </label>
-                                    <label class="btn btn-md btn-default ">
-                                        <input type="radio" name="options" id="option2" autocomplete="off" value="<?php echo $this->baseUrl() . '/admin/changestate/id/' . $material['id'] . '/state/' . $material['is_active'] ?>"/>
+                                        <input type="radio" name="options" id="option2" autocomplete="off" value="<?php echo $this->baseUrl() . '/admin/changestate/do/1/id/' . $material['id'] . '/state/' . $material['is_downloadable'] ?>"/>
                                         No
                                     </label>
                                 </div>
                             <?php } else { ?>
                                 <div class="btn-group" data-toggle="buttons">
                                     <label class="btn btn-md btn-default ">
-                                        <input type="radio" name="options"  id="option" autocomplete="off" value="<?php echo $this->baseUrl() . '/admin/changestate/id/' . $material['id'] . '/state/' . $material['is_active'] ?>" />
+                                        <input type="radio" name="options"  id="option" autocomplete="off" value="<?php echo $this->baseUrl() . '/admin/changestate/do/1/id/' . $material['id'] . '/state/' . $material['is_downloadable'] ?>" />
                                         Yes
                                     </label>
                                     <label class="btn btn-md btn-default active">
-                                        <input type="radio" name="options" id="option2" autocomplete="off" value="<?php echo $this->baseUrl() . '/admin/changestate/id/' . $material['id'] . '/state/' . $material['is_active'] ?>"/>
+                                        <input type="radio" name="options" id="option2" autocomplete="off" value="<?php echo $this->baseUrl() . '/admin/changestate/do/1/id/' . $material['id'] . '/state/' . $material['is_downloadable'] ?>"/>
+                                        No
+                                    </label>
+                                </div>
+                            <?php } ?>
+                        </td>
+                        <td>
+
+                            <?php if ($material['is_active'] == 1) { ?>
+                                <div class="btn-group" data-toggle="buttons">
+                                    <label class="btn btn-md btn-default active">
+                                        <input type="radio" name="options"  id="option" autocomplete="off" value="<?php echo $this->baseUrl() . '/admin/changestate/do/2/id/' . $material['id'] . '/state/' . $material['is_active'] ?>" />
+                                        Yes
+                                    </label>
+                                    <label class="btn btn-md btn-default ">
+                                        <input type="radio" name="options" id="option2" autocomplete="off" value="<?php echo $this->baseUrl() . '/admin/changestate/do/2/id/' . $material['id'] . '/state/' . $material['is_active'] ?>"/>
+                                        No
+                                    </label>
+                                </div>
+                            <?php } else { ?>
+                                <div class="btn-group" data-toggle="buttons">
+                                    <label class="btn btn-md btn-default ">
+                                        <input type="radio" name="options"  id="option" autocomplete="off" value="<?php echo $this->baseUrl() . '/admin/changestate/do/2/id/' . $material['id'] . '/state/' . $material['is_active'] ?>" />
+                                        Yes
+                                    </label>
+                                    <label class="btn btn-md btn-default active">
+                                        <input type="radio" name="options" id="option2" autocomplete="off" value="<?php echo $this->baseUrl() . '/admin/changestate/do/2/id/' . $material['id'] . '/state/' . $material['is_active'] ?>"/>
                                         No
                                     </label>
                                 </div>

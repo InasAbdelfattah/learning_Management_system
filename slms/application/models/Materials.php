@@ -37,25 +37,36 @@ class Application_Model_Materials extends Application_Model_MyModel {
                 ->where('course.id = ' . $id);
         return $this->fetchAll($select)->toArray();
     }
-    
+
     function getCategoryByCorID($id) {
         $select = $this->select()
                 ->where('course_id = ' . $id);
         return $this->fetchAll($select)->toArray();
     }
 
-    function activeMaterial($state) {
+    function activeMaterial($state, $action) {
         $now = new Zend_Date();
-        $data = array('is_active' => '1', 'updated_at'=> $now);
-        if ($state == 1)
-        { 
-            $data = array(
-                'is_active' => '0',
-                'updated_at'=> $now
-            );
+        
+        if ($action == 2) {
+            if ($state == 1) {
+                $sql = "Update materials set is_active = 0 
+        Where id =" . $this->id;
+            } else {
+                $sql = "Update materials set is_active = 1 
+        Where id =" . $this->id;
+            }
         }
-        $where = 'id = ?' . $this->id;
-       $this->update($data, $where);
+        elseif($action == 1) {
+            if ($state == 1) {
+                $sql = "Update materials set is_downloadable = 0 
+        Where id =" . $this->id;
+            } else {
+                $sql = "Update materials set is_downloadable = 1 
+        Where id =" . $this->id;
+            }
+        }
+        $query = $this->getAdapter()->query($sql);
+        $query->execute();
     }
 
     function getMaterial() {

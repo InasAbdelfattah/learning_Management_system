@@ -194,17 +194,9 @@ class AdminController extends Zend_Controller_Action {
     public function changestateAction() {
         $this->model->id = $this->getRequest()->getParam('id');
         $state = $this->getRequest()->getParam('state');
-
-
-        $this->model->activeMaterial($state);
-//        $this->redirect('admin/materials');
-        foreach ($this->model->getMaterial() as $mat) {
-            $state = $mat['is_active'];
-        }
-        exit(0);
-        $this->view->data = $state;
-
-//        die();
+        $action = $this->getRequest()->getParam('do');
+        $this->model->activeMaterial($state,$action);
+        $this->redirect('admin/materials');
     }
 
 #add new material
