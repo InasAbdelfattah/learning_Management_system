@@ -16,16 +16,16 @@
 
 
 <div class="row">
-    <div class="col-lg-3 col-md-6">
+    <div class="col-lg-2 col-md-4">
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <div class="row">
-                    <div class="col-xs-3">
-                        <i class="fa fa-comments fa-5x"></i>
+                    <div class="col-xs-2">
+                        <i class="fa fa-comments fa-3x"></i>
                     </div>
-                    <div class="col-xs-9 text-right">
+                    <div class="col-xs-10 text-right">
                         <div class="huge"><?php echo $this->comments?></div>
-                        <div>New Comments</div>
+                        <div>Comments!!</div>
                     </div>
                 </div>
             </div>
@@ -38,14 +38,14 @@
             </a>
         </div>
     </div>
-    <div class="col-lg-3 col-md-6">
+    <div class="col-lg-2 col-md-4">
         <div class="panel panel-green">
             <div class="panel-heading">
                 <div class="row">
-                    <div class="col-xs-3">
-                        <i class="fa fa-file fa-5x"></i>
+                    <div class="col-xs-2">
+                        <i class="fa fa-file fa-3x"></i>
                     </div>
-                    <div class="col-xs-9 text-right">
+                    <div class="col-xs-10 text-right">
                         <div class="huge"><?php echo $this->materials?></div>
                         <div>New Materials!</div>
                     </div>
@@ -60,15 +60,15 @@
             </a>
         </div>
     </div>
-    <div class="col-lg-3 col-md-6">
+    <div class="col-lg-2 col-md-4">
         <div class="panel panel-yellow">
             <div class="panel-heading">
                 <div class="row">
-                    <div class="col-xs-3">
-                        <i class="fa fa-flag-checkered fa-5x"></i>
+                    <div class="col-xs-2">
+                        <i class="fa fa-flag-checkered fa-3x"></i>
                     </div>
-                    <div class="col-xs-9 text-right">
-                        <div class="huge"><?php // echo $this->requests?></div>
+                    <div class="col-xs-10 text-right">
+                        <div class="huge">14<?php // echo $this->requests?></div>
                         <div>New Requests!</div>
                     </div>
                 </div>
@@ -82,20 +82,64 @@
             </a>
         </div>
     </div>
-    <div class="col-lg-3 col-md-6">
-        <div class="panel panel-red">
+    <div class="col-lg-2 col-md-4">
+        <div class="panel panel-gray">
             <div class="panel-heading">
                 <div class="row">
-                    <div class="col-xs-3">
-                        <i class="fa fa-fire fa-5x"></i>
+                    <div class="col-xs-2">
+                        <i class="fa fa-users fa-3x"></i>
                     </div>
-                    <div class="col-xs-9 text-right">
-                        <div class="huge">13</div>
+                    <div class="col-xs-10 text-right">
+                        <div class="huge"><?php echo $this->users?></div>
+                        <div>Online Users!</div>
+                    </div>
+                </div>
+            </div>
+            <a href="<?php echo $this->baseUrl().'/admin/users'?>">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-2 col-md-4">
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-2">
+                        <i class="fa fa-download fa-3x"></i>
+                    </div>
+                    <div class="col-xs-10 text-right">
+                        <div class="huge">5<?php // echo $this->dowenloads?></div>
+                        <div>Downloads !</div>
+                    </div>
+                </div>
+            </div>
+            <a href="<?php echo $this->baseUrl().'/admin/materials'?>">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-2 col-md-4">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-2">
+                        <i class="fa fa-fire fa-3x"></i>
+                    </div>
+                    <div class="col-xs-10 text-right">
+                        <div class="huge">8<?php // echo $this->events?></div>
                         <div>New Events!</div>
                     </div>
                 </div>
             </div>
-            <a href="#">
+            <a href="<?php echo $this->baseUrl().'/admin/events'?>">
                 <div class="panel-footer">
                     <span class="pull-left">View Details</span>
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

@@ -45,6 +45,10 @@ class Application_Form_Material extends Zend_Form {
                 ->setDestination(APPLICATION_PATH.'/../public/materials_upload_folder/')
                 ->setRequired(true);
         
+       #check if this material can be dowenload
+        $is_downloadable = new Zend_Form_Element_Radio('is_downloadable',array('multiOptions' => array('1'=>'Accept', '0'=>'Refuse')));
+        $is_downloadable->setLabel('users can dowenload :')->addValidator('NotEmpty', true)->setAttrib('class', 'form-group btn btn-default');
+        # check if this material active 
         $is_active = new Zend_Form_Element_Radio('is_active',array('multiOptions' => array('1'=>'Active', '0'=>'Deactive')));
         $is_active->setLabel('Active :')->addValidator('NotEmpty', true)->setAttrib('class', 'form-group btn btn-default');
         
@@ -77,8 +81,8 @@ class Application_Form_Material extends Zend_Form {
         $this->addElements(
                 array
                     (
-                    $id, $material_name,$image, $descib,$path, 
-                    $is_active,$material_type_id, $course_id, $submit
+                    $id, $material_name,$image, $descib,$material_type_id,$path, 
+                    $is_active,$is_downloadable, $course_id, $submit
         ));
     }
 

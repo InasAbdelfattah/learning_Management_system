@@ -17,7 +17,7 @@ class AdminController extends Zend_Controller_Action {
         # send loged in user data
         $this->user_model = new Application_Model_Users();
         $this->auth = Zend_Auth::getInstance()->getIdentity();
-        if ($this->auth) {
+        if (isset($this->auth)) {
             $layout = $this->_helper->layout();
             $this->user_model->id = $this->auth->id;
             $currunt_user = $this->user_model->getUser();
@@ -28,6 +28,8 @@ class AdminController extends Zend_Controller_Action {
             else
                 $this->redirect('user/login');
         }
+       else
+       $this->redirect('user/login');
     }
 
 #all index of control by salama
@@ -216,6 +218,7 @@ class AdminController extends Zend_Controller_Action {
                 $this->model->path = $data['path'];
                 $this->model->material_type_id = $data['material_type_id'];
                 $this->model->course_id = $data['course_id'];
+                $this->model->is_active = $data['is_downloadable'];
                 $this->model->is_active = $data['is_active'];
                 if ($this->model->addMaterial($data))
                     $this->redirect('admin/materials');

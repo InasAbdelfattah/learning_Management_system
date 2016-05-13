@@ -3,7 +3,7 @@
     <div class="container" style="background-color: white ; height: 500px; padding-top: 15px">
     <!--<h1>Welcome Bero</h1>-->
     <div>
-        <img src="<?= $this->baseUrl($this->user['image']); ?>"  width="200" height="300" class="thumbnail">	
+        <img src="<?= $this->baseUrl('/img/user/'.$this->user['image']); ?>"  width="200" height="300" class="thumbnail">	
     </div>
     <form enctype="multipart/form-data" method="post">
     <?php  

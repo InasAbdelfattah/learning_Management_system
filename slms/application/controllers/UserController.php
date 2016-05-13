@@ -13,15 +13,7 @@ class UserController extends Zend_Controller_Action {
         $this->user_model = new Application_Model_Users();
         $this->auth = Zend_Auth::getInstance()->getIdentity();
         $layout = $this->_helper->layout();
-
-        $this->user_model->id = $this->auth->id;
-        $currunt_user = $this->user_model->getUser();
-        if ($currunt_user[0]['is_active'] == 1)
-            $layout->user = $currunt_user;
-        else
-            $this->view->massage = "Sorry You are Blocked of login and interact , please wait untill admin active you";
         if ($this->auth) {
-
             $this->user_model->id = $this->auth->id;
             $currunt_user = $this->user_model->getUser();
             if ($currunt_user[0]['is_active'] == 1)
@@ -83,10 +75,10 @@ class UserController extends Zend_Controller_Action {
     public function loginAction() {
 
 
-//        $authorization = Zend_Auth::getInstance();
-//        if ($authorization->hasIdentity()) {
-//            $this->redirect('user/index');
-//        }
+        $authorization = Zend_Auth::getInstance();
+        if ($authorization->hasIdentity()) {
+            $this->redirect('user/index');
+        }
         $form = new Application_Form_User();
         $form->removeElement('id');
         $form->removeElement('is_active');
@@ -163,8 +155,6 @@ class UserController extends Zend_Controller_Action {
         }
     }
 
-
-    
     public function deleteAction() {
         $this->model->id = $this->getRequest()->getParam('id');
         return $this->model->deleteUser();
@@ -175,17 +165,18 @@ class UserController extends Zend_Controller_Action {
         $this->model->is_active = $this->getRequest()->getParam('active');
         return $this->_helper->json($this->model->IsActive());
     }
-    
+
     public function adminAction() {
         $this->model->id = $this->getRequest()->getParam('id');
         $this->model->is_admin = $this->getRequest()->getParam('admin');
         return $this->_helper->json($this->model->IsAdmin());
     }
-     public function logedAction() {
+
+    public function logedAction() {
         $this->model->id = $this->getRequest()->getParam('id');
         $this->model->is_loged = $this->getRequest()->getParam('loged');
         return $this->_helper->json($this->model->IsLoged());
-     }
+    }
 
     public function showProfileAction() {
         $auth = Zend_Auth::getInstance();
@@ -206,9 +197,6 @@ class UserController extends Zend_Controller_Action {
         $auth = Zend_Auth::getInstance();
         $auth->clearIdentity();
         $this->redirect('index/');
-
     }
-    
-
 
 }
