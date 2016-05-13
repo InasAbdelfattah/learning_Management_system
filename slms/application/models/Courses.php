@@ -27,10 +27,17 @@ class Application_Model_Courses extends Application_Model_MyModel {
     }
 
     //get category of this course .
-    function getCategory() 
+    function getActiveCategory() 
     {
        $cat_id = $this->category_id;
        return $this->fetchAll($this->select('*')->where("category_id=?","$cat_id")->where("is_active",1))->toArray();
+    }
+    
+     //get category of this course .
+    function getCategory() 
+    {
+       $cat_id = $this->category_id;
+       return $this->fetchAll($this->select('*')->where("category_id=?","$cat_id"))->toArray();
     }
 
     //get category by id.
@@ -93,6 +100,7 @@ class Application_Model_Courses extends Application_Model_MyModel {
     function categoryCourses($cat_id) {
         $courses = $this->fetchAll($this->select('*')->where('category_id=?', $cat_id))->toArray();
         return $courses;
+        
     }
     
     function makeActive()

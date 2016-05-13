@@ -1,24 +1,22 @@
-<br /><br />
-<div class="container" style="background-color: white ; height: 300px;">
-
-    <form enctype="multipart/form-data" method="post" action="">
-        <label for="category" class="required">* Choose Category :</label>
-        <select name="category" id="category" class="form-control">
-            <option value="0">Please select category....</option>
+<br /><br /><br /><br />
+<div class="container" style="background-color: white ; height: 300px; padding-top: 15px">
+  <div class='notifications top-left'></div>
+    <form enctype="multipart/form-data" method="post" action="" >
+        <label for="category"  > * Choose Category :</label>
+        <select name="category" id="category" class="form-control" required >
+            <option value="">Please select category....</option>
             <?php
             foreach ($this->catgries as $catName)
-                echo "<option value='http://localhost".$this->baseURL("category/ajaxrequest/id/".$catName['id'])."'> " . $catName['course_name'] . "</option>";
+                echo "<option name='cat' value='".$this->baseURL("category/ajaxrequest/id/".$catName['id'])."'> " . $catName['course_name'] . "</option>";
             ?>
         </select>
      
-        <label for="course" class="required">* Choose Course :</label>
+        <label for="course" class="required"> Choose Course :</label>
         <div id="courses">
-<!--        <select name="category" id="category" class="form-control">
-            <option value="0">Please select Course....</option>
-        </select>-->
+            
         </div>
-        <label for="courseStatus" class="blue-color">* Status :</label>
-        <input type="text" name="courseStatus" id="courseStatus" value="" class="form-control" />
+        <label for="description" class="blue-color"> * Description :</label>
+        <input type="text" name="description" id="description" value="" required class="form-control" />
         <input type="submit" style="margin-top: 15px;" name="submit" id="submit" value="Send Request" class="btn btn-primary" /></dd></dl></form>
 
 </div>

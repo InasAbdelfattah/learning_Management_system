@@ -1,0 +1,96 @@
+<div class="col-lg-12">
+<!--    <a href="<?php echo $this->baseUrl() . '/admin/addcourse' ?>" type="submit" class="btn btn-md btn-success pull-right" />Add New Category</a>-->
+    <h2>Users Table</h2>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>username</th>
+                    <th>email</th>
+                    <th>image</th>
+                    <th>signature</th>
+                    <th>is_active</th>
+                    <th>is_admin</th>
+                    <th>is_loged</th>
+                    <th>Edite</th>
+                    <th>Delete</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                
+
+                <?php
+                foreach ($this->users as $user) {
+                    ?>
+
+                    <tr>
+                        <td><?php echo $user['username'] ?></td>
+                        <td><?php echo $user['email'] ?></td>
+                        <td><img  class="thumbnail" src='<?= $this->baseUrl($user['image']); ?>' ></td>
+
+                        <td><?php echo $user['signature'] ?></td>
+                        <!-- is active -->
+                        <?php if ($user['is_active']) {
+                            ?>
+                            <td><input type='button' name="active"  value='active' class='active btn btn-primary ' data-rowid='<?php echo $this->baseUrl() . '/user/active/id/' . $user['id'] ?>'/></td>
+                            <?php
+                        } else {
+                            ?>
+                            <td><input type = 'button' name = "active" value = 'nonactive' class = 'active btn btn-primary ' data-rowid = '<?php echo $this->baseUrl() . '/user/active/id/' . $user['id'] ?>'/></td>
+
+                        <?php }
+                        ?>
+                        <!-- is admin -->
+                        <?php if ($user['is_admin']) {
+                            ?>
+                            <td><input type='button' name="admin"  value='is_admin' class='admin btn btn-primary ' data-rowid='<?php echo $this->baseUrl() . '/user/admin/id/' . $user['id'] ?>'/></td>
+                            <?php
+                        } else {
+                            ?>
+                            <td><input type = 'button' name = "admin" value = 'isnot_admin' class = 'admin btn btn-primary ' data-rowid = '<?php echo $this->baseUrl() . '/user/admin/id/' . $user['id'] ?>'/></td>
+
+                        <?php }
+                        ?>
+                        <!-- is loged -->
+                        <?php if ($user['is_loged']) {
+                            ?>
+                            <td><input type='button' name="loged"  value='is_loged' class='loged btn btn-primary ' data-rowid='<?php echo $this->baseUrl() . '/user/loged/id/' . $user['id'] ?>'/></td>
+                            <?php
+                        } else {
+                            ?>
+                            <td><input type = 'button' name = "loged" value = 'isnot_loged' class = 'loged btn btn-primary ' data-rowid = '<?php echo $this->baseUrl() . '/user/loged/id/' . $user['id'] ?>'/></td>
+
+                        <?php }
+                        ?>
+
+
+
+
+                        <td>
+
+                            <!--edite action-->
+                            <input type="button"   data-placement="left" title="Edit This Material" data-rowid="<?php echo $this->baseUrl() . '/user/edite/id/' . $user['id'] ?>" class="btn btn-md btn-primary" value="Edit"/>
+                        </td>
+                        <?php
+                        if ($user['is_admin']) {
+                            
+                        } else {
+                            ?>
+                            <td>
+                                <!--Delete action-->
+                                <input type="button"  data-placement="left" title="Delete This Material" data-rowid="<?php echo $this->baseUrl() . '/user/delete/id/' . $user['id'] ?>" class="delete  btn btn-md btn-primary" value="Delete"/>
+                            </td>
+
+                        </tr>
+                        <?php
+                    }
+                }
+                ?>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+<script src="<?php echo $this->baseUrl() . '/../public/js/jquery-1.12.3.js' ?>"></script>
+<script src="<?php echo $this->baseUrl() . '/../public/js/mangeuser.js' ?>"></script>

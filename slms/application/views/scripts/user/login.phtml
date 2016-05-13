@@ -1,8 +1,10 @@
-
+<br/><br/><br/><br/>
 <div id="view-content" class="container" style="background-color: white; margin-top: 70px;" >
 	
        <?php 
-        
+        if(isset($this->massage))
+        {
+            echo '<br><div class="alert alert-danger" role="alert">'.$this->massage.'</div>';
+        }
        echo $this->form;
        ?>    
-</di

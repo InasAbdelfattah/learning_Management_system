@@ -1,0 +1,131 @@
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">
+            Materials Control
+        </h1>
+        <ol class="breadcrumb">
+            <li>
+                <i class="fa fa-dashboard"></i>  <a href="<?php echo $this->baseUrl() . '/admin' ?>">Dashboard</a>
+            </li>
+            <li class="active">
+                <i class="fa fa-edit"></i> Material Control
+            </li>
+        </ol>
+    </div>
+</div>
+<!-- /.row -->
+<div class="col-lg-12">
+    <a href="<?php echo $this->baseUrl() . '/admin/addmaterial' ?>" type="submit" class="btn btn-md btn-success pull-right" />Add New Material</a>
+<h2>Materials Table</h2>
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Material</th>
+                <th>Course</th>
+                <th>Image</th>
+                <th>Description</th>
+                <th>Add Time</th>
+                <th>Active state</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <?php
+            foreach ($this->materials as $material) {
+
+                $matrialcatDB = new Application_Model_Courses();
+                $matrialcatDB->category_id = $material['course_id'];
+                $matrialcat = $matrialcatDB->getoneCategory();
+                foreach ($matrialcat as $category) {
+                    $cat = $category['course_name'];
+                    echo $cat;
+                }
+                ?>
+                <tr>
+                    <td><a href="<?php echo $this->baseUrl() . '/materials_upload_folder/' . $material['material_name'] ?>"><?php echo $material['material_name'] ?></a></td>
+                    <td> <?php echo $category['course_name']; ?> </td>
+                    <td><img  class="thumbnail" src='<?php echo $this->baseUrl() . '/img/materials_images_folder/' . $material['image'] ?>' ></td>
+                    <td><?php echo $material['descib'] ?></td>
+                    <td><?php echo $material['created_at'] ?></td>
+                    <td>
+
+                        <?php if ($material['is_active'] == 1) { ?>
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-md btn-default active">
+                                    <input type="radio" name="options"  id="option" autocomplete="off" value="<?php echo $this->baseUrl() . '/admin/changestate/id/' . $material['id'] . '/state/' . $material['is_active'] ?>" />
+                                    Yes
+                                </label>
+                                <label class="btn btn-md btn-default ">
+                                    <input type="radio" name="options" id="option2" autocomplete="off" value="<?php echo $this->baseUrl() . '/admin/changestate/id/' . $material['id'] . '/state/' . $material['is_active'] ?>"/>
+                                    No
+                                </label>
+                            </div>
+                        <?php } else { ?>
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-md btn-default ">
+                                    <input type="radio" name="options"  id="option" autocomplete="off" value="<?php echo $this->baseUrl() . '/admin/changestate/id/' . $material['id'] . '/state/' . $material['is_active'] ?>" />
+                                    Yes
+                                </label>
+                                <label class="btn btn-md btn-default active">
+                                    <input type="radio" name="options" id="option2" autocomplete="off" value="<?php echo $this->baseUrl() . '/admin/changestate/id/' . $material['id'] . '/state/' . $material['is_active'] ?>"/>
+                                    No
+                                </label>
+                            </div>
+                        <?php } ?>
+                    </td>
+                    <td>
+                        <!--delete action-->
+                        <input type="submit"  data-placement="left" title="Delete This MAterial permently" class="btn btn-md btn-danger" name="delete" value="Delete" data-toggle="modal" data-target="#deleteModal<?php echo $material['id'] ?>"/>
+                        <div class="modal fade" id="deleteModal<?php echo $material['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel">Warning</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <?php echo $cat ?></br>
+                                        Are you sure you wand to delete material "<span style="color:green;"><?php echo $material['material_name'] ?></span>"
+                                        of course "<span style="color:royalblue;"><?php echo $material['Course'] ?></span>" !!?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="<?php echo $this->baseUrl() . '/admin/deletematerial/id/' . $material['id'] ?>" class="btn btn-md btn-danger"> Yes Delete</a>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--edit action-->
+                        <a href="<?php echo $this->baseUrl() . '/admin/editmaterial/id/' . $material['id'] ?>"data-placement="left" title="Edit This Material" class="btn btn-md btn-primary" >Edit</a>
+                    </td>
+                </tr>
+            <?php } ?>
+
+        </tbody>
+    </table>
+</div>
+</div>
+
+
+<script src="<?php echo $this->baseUrl() . '/../public/js/jquery-1.12.3.js' ?>"></script>
+<script>
+    $(function () {
+        console.log('js started');
+        $('.btn-group').on('click', function () {
+//            console.log($(this).children().children().val());
+        var url = $(this).children().children().val();
+            window.location.replace(url);
+
+
+        });
+
+
+
+
+    });
+
+</script>
+
