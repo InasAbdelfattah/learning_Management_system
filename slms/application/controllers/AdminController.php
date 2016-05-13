@@ -53,11 +53,17 @@ class AdminController extends Zend_Controller_Action {
         $this->view->comments = count($commentsDB->fetchAll($select)->toArray());
 
         // lest recent orders of 48 hours
-//        $requestsDB = new Application_Model_Requests();
-//        $select = $requestsDB->select()
-//                      ->order('created_at DESC')
-//                      ->where("created_at >= '".$previousDay."'");
-//        $this->view->requests = count($requestsDB->fetchAll($select)->toArray());
+        $requestsDB = new Application_Model_Requests();
+        $select = $requestsDB->select()
+                      ->order('created_at DESC')
+                      ->where("created_at >= '".$previousDay."'");
+        $this->view->requests = count($requestsDB->fetchAll($select)->toArray());
+        
+        // lest recent online of 48 hours
+        $select = $this->user_model->select()
+                      ->where("`is_active` = '1' and `is_loged` = '1'");
+        $this->view->users = count($this->user_model->fetchAll($select)->toArray());
+        
     }
 
 #Category
@@ -169,10 +175,10 @@ class AdminController extends Zend_Controller_Action {
         //list All matrials with it's full data
         $materials = $this->model->listMaterials();
         $this->view->materials = $materials;
-        // list marial types
-        $matrialTypesDB = new Application_Model_MaterialTypes();
-        $materialsTypes = $matrialTypesDB->listMaterialTypes();
-        $this->view->materialsTypes = $materialsTypes;
+//        // list marial types
+//        $matrialTypesDB = new Application_Model_MaterialTypes();
+//        $materialsTypes = $matrialTypesDB->listMaterialTypes();
+//        $this->view->materialsTypes = $materialsTypes;
     }
 
 #delete material
@@ -203,8 +209,8 @@ class AdminController extends Zend_Controller_Action {
 
 #add new material
 
-    public function addmaterialAction() {
-        $form = new Application_Form_Material();
+    public function addmaterialdocAction() {
+        $form = new Application_Form_MaterialDoc();
         if ($this->getRequest()->isPost()) {
             if ($form->isValid($this->getRequest()->getParams())) {
                 $data = $form->getValues();
@@ -218,7 +224,7 @@ class AdminController extends Zend_Controller_Action {
                 $this->model->path = $data['path'];
                 $this->model->material_type_id = $data['material_type_id'];
                 $this->model->course_id = $data['course_id'];
-                $this->model->is_active = $data['is_downloadable'];
+                $this->model->is_downloadable = $data['is_downloadable'];
                 $this->model->is_active = $data['is_active'];
                 if ($this->model->addMaterial($data))
                     $this->redirect('admin/materials');
@@ -230,19 +236,24 @@ class AdminController extends Zend_Controller_Action {
 #edit new material
 
     public function editmaterialAction() {
-        $form = new Application_Form_Material();
+        $form = new Application_Form_MaterialDoc();
         $this->model->id = $this->getRequest()->getParam('id');
         $material = $this->model->getMaterial();
+//         $form->removeElement('image');
+         $form->removeElement('path');
+         $form->removeElement('material_type_id');
+         $form->removeElement('course_id');
         $form->populate($material[0]);
         if ($this->getRequest()->isPost()) {
             if ($form->isValid($this->getRequest()->getParams())) {
                 $data = $form->getValues();
                 $this->model->material_name = $data['material_name'];
-                $this->model->image = $data['image'];
+//                $this->model->image = $data['image'];
                 $this->model->descib = $data['descib'];
-                $this->model->path = $data['path'];
-                $this->model->material_type_id = $data['material_type_id'];
-                $this->model->course_id = $data['course_id'];
+//                $this->model->path = $data['path'];
+//                $this->model->material_type_id = $data['material_type_id'];
+//                $this->model->course_id = $data['course_id'];
+                $this->model->is_downloadable = $data['is_downloadable'];
                 $this->model->is_active = $data['is_active'];
                 if ($this->model->updateMaterial())
                     $this->redirect('admin/materials');
@@ -259,8 +270,9 @@ class AdminController extends Zend_Controller_Action {
             if ($form->isValid($this->getRequest()->getParams())) {
                 $data = $form->getValues();
                 $this->type_model->material_name = $data['material_name'];
+                $this->type_model->type = $data['type'];
                 if ($this->type_model->addMaterialType())
-                    $this->redirect('admin/materials');
+                    $this->redirect('admin/materialtypes');
             }
         }
         $this->view->form = $form;
@@ -277,8 +289,9 @@ class AdminController extends Zend_Controller_Action {
             if ($form->isValid($this->getRequest()->getParams())) {
                 $data = $form->getValues();
                 $this->type_model->material_name = $data['material_name'];
+                $this->type_model->type = $data['type'];
                 if ($this->type_model->updateMaterialType())
-                    $this->redirect('admin/materials');
+                    $this->redirect('admin/materialtypes');
             }
         }
         $this->view->form = $form;
@@ -358,6 +371,44 @@ class AdminController extends Zend_Controller_Action {
     $this->view->comments=$comments;
    } 
 
+#materials types ....    
 
+    public function materialtypesAction() {
+        //list All matrials with it's full data
+//        $materials = $this->model->listMaterials();
+//        $this->view->materials = $materials;
+//        // list marial types
+        $matrialTypesDB = new Application_Model_MaterialTypes();
+        $materialsTypes = $matrialTypesDB->listMaterialTypes();
+        $this->view->materialsTypes = $materialsTypes;
+    }
+
+#add new material
+    public function addmaterialvidAction() {
+        $form = new Application_Form_MaterialVid();
+        if ($this->getRequest()->isPost()) {
+            if ($form->isValid($this->getRequest()->getParams())) {
+                $data = $form->getValues();
+                $this->model->material_name = $data['material_name'];
+                if ($data['image'])
+                    $this->model->image = $data['image'];
+                else
+                    $this->model->image = 'defaultmaterial.png';
+
+                $this->model->descib = $data['descib'];
+                if($data['path'])
+                    $this->model->path = $data['path'];
+                else
+                    $this->model->path = $data['link'];
+                $this->model->material_type_id = $data['material_type_id'];
+                $this->model->course_id = $data['course_id'];
+                $this->model->is_active = $data['is_downloadable'];
+                $this->model->is_active = $data['is_active'];
+                if ($this->model->addMaterial($data))
+                    $this->redirect('admin/materials');
+            }
+        }
+        $this->view->form = $form;
+    }
 
 }
