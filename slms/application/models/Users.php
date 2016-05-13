@@ -4,7 +4,7 @@ class Application_Model_Users extends Application_Model_MyModel {
 
     protected $_name = 'users';
     protected $primary_key = "id";
-    protected $fields = array("username", "email", "password", "image", "signature", "is_active", "is_admin", "is_loged", "joined_at", "updated_at");
+    protected $fields = array("username", "email", "password", "image", "signature", "is_active", "is_admin", "is_loged", "last_login", "joined_at", "updated_at");
     public $id;
     public $username;
     public $email;
@@ -14,13 +14,13 @@ class Application_Model_Users extends Application_Model_MyModel {
     public $is_active;
     public $is_admin;
     public $is_loged;
+    public $last_login;
     public $joined_at;
     public $updated_at;
 
     function listUsers() {
         return $this->list_data();
     }
-
 
     function getUser() {
         return $this->get_id();
@@ -31,7 +31,7 @@ class Application_Model_Users extends Application_Model_MyModel {
     }
 
     function register() {
-        $this->fields = array("username", "email", "password", "signature");
+        $this->fields = array("username", "email", "password", "signature", "image");
 
 //        $this->add_data();
         if ($this->add_data()) {
@@ -95,8 +95,6 @@ class Application_Model_Users extends Application_Model_MyModel {
             $this->id = $this->auth->id;
 
             return $this->get_id();
-
-
         } else {
             return FALSE;
         }
@@ -111,9 +109,14 @@ class Application_Model_Users extends Application_Model_MyModel {
         $this->fields = array("is_admin");
         return $this->edit();
     }
-    
+
     function IsLoged() {
         $this->fields = array("is_loged");
+        return $this->edit();
+    }
+
+    function LastLogin() {
+        $this->fields = array("last_login");
         return $this->edit();
     }
 
