@@ -4,11 +4,14 @@
     <br/>
     <br/>
 
-    <?php 
-   /* $mtype = mime_content_type('path/1.mkv');*/
-   echo $this->type;
-    echo "<br/>";
-    #echo $this->infotype;
-    ?>
 
     </div>
+
+  <video width="320" height="240" controls>
+
+
+
+<?php
+   echo "<source src='".$this->vapth."' type='video/mp4'>";
+?>
+</video>

@@ -61,7 +61,17 @@ class MaterialsController extends Zend_Controller_Action {
     public function viewAction() {
         $material_id = $this->getRequest()->getParam('material_id');
         $file = $this->model->fetchAll($this->model->select('*')->where('id =?', $material_id))->toArray();
-        $path = $file[0]['path'];
+        $fpath = $file[0]['path'];
+        $path='materials_upload_folder/'.$fpath ;
+        #handle video view
+        /*$vid_ext=strtolower(end(explode(".",$fpath)));
+        $video=array('mkv');
+        if (in_array($vid_ext, $video )) {
+                #$this->redirect('materials/download/material_id/'.$material_id);
+            $this->view->vpath=$path;
+            $this->render('try');
+        }else{*/
+
         // disable view and layout 
         Zend_Layout::getMvcInstance()->disableLayout();
         $this->_helper->viewRenderer->setNoRender();
@@ -100,5 +110,5 @@ class MaterialsController extends Zend_Controller_Action {
         }    
     }
 }
-
+#}
 ?>
