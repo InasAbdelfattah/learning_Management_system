@@ -402,5 +402,25 @@ class AdminController extends Zend_Controller_Action {
         }
         $this->view->form = $form;
     }
+    
+    public function requestsAction(){
+        
+        $this->request_model = new Application_Model_Requests();
+        $ureadrqst=  $this->request_model->unreadRequests();
+        $this->view->unreadrqsts=$ureadrqst;
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 }

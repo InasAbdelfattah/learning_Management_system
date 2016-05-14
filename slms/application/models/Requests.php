@@ -12,7 +12,15 @@ class Application_Model_Requests  extends Application_Model_MyModel
         return $this->add_data();
     }
 
-
+    function unreadRequests()
+    {
+        $query=  $this->select('*')
+                ->setIntegrityCheck(FALSE)
+//                ->from('requests')
+                ->join('users','requests.user_id=users.id');
+        return  $this->fetchAll($query);
+    
+    }
 
 }
 
