@@ -1,0 +1,23 @@
+---------- Forwarded message ----------
+From: "Islam Askar" <islam.askar@gmail.com>
+
+
+Dear Mohammed,
+
+I hope you are doing well
+
+The two projects will be:
+
+Bekam App
+The application will be used to monitor the products prices and quality, The idea is the customer will use the app whenever making a purchase. he will scan the product barcode and add the price and rate of the product. Other users can search and evaluate the product.
+The technologies that will be used
+Rails, Titanium
+
+Sadaqa Platform
+The main idea of the platform that it matches the benefactors with the persons who are in need. The cases that need help will be displayed and the benefactor will follow the state of the case.
+The technologies that will be used
+PHP (Zend or Laravel) and Titanium
+
+
+-- 
+Best Regards,

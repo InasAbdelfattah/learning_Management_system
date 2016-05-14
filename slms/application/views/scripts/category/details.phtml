@@ -1,44 +1,49 @@
 <!--=========== BEGIN COURSE BANNER SECTION ================-->
-    <section id="imgBanner">
-      <h2>Course Details</h2>
-    </section>
-    <!--=========== END COURSE BANNER SECTION ================-->
+<section id="imgBanner">
+    <h2>Category Details</h2>
+</section>
+<!--=========== END COURSE BANNER SECTION ================-->
 
-    
-    <!--=========== BEGIN COURSE BANNER SECTION ================-->
-    <section id="courseArchive">
-      <div class="container">
+
+<!--=========== BEGIN COURSE BANNER SECTION ================-->
+<section id="courseArchive">
+    <div class="container">
         <div class="row">
-          <!-- start course content -->
-          
-          <div class="col-lg-8 col-md-8 col-sm-8">
-             <?php  if($this->category){
-            foreach ($this->category as $cat){ ?>
-            <div class="courseArchive_content">              
-                <div class="singlecourse_ferimg_area">
-                    <div class="singlecourse_ferimg">
-                       <img src='<?php echo "http://localhost".$this->baseUrl() . '/img/courses_images_folder/' . $cat['image'] ?>' />
-                    </div>  
-                    <div class="singlecourse_bottom">
-                         <h2><a href="<?php echo $this->baseUrl().'/material-type/index/course_id/'.$cat['id'] ?>"><?php echo $cat['course_name']; ?></a></h2> 
-                    </div>
-                </div>
-             
-                        <!-- start related course -->
-          
+            <!-- start course content -->
+
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <?php if ($this->category) {
+                    foreach ($this->category as $cat) {
+                        ?>
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <div class="courseArchive_content">              
+                                <div class="singlecourse_ferimg_area">
+                                    <div class="singlecourse_ferimg">
+                                        <img src='<?php echo $this->baseUrl() . '/img/courses_images_folder/' . $cat['image'] ?>' />
+                                    </div>  
+                                    <div class="singlecourse_bottom">
+                                        <h2><a href="<?php echo $this->baseUrl() . '/material-type/index/course_id/' . $cat['id'] ?>"><?php echo $cat['course_name']; ?></a></h2> 
+                                    </div>
+                                </div>
+
+                                <!-- start related course -->
+
+                            </div>
+                        </div>
+
+                        <!-- End related course -->
+
+
+                        <!-- End course content -->
+    <?php }
+} else {
+    echo '<div class="alert alert-success" role="alert">No Course .. can request admin</div>';
+} ?>
+
+                <!-- start course archive sidebar -->
+
+                <!-- start course archive sidebar -->
             </div>
-              
-              <!-- End related course -->
-            
-          
-          <!-- End course content -->
-             <?php } } else { echo '<div class="alert alert-success" role="alert">No Course .. can request admin</div>'; }  ?>
-  
-          <!-- start course archive sidebar -->
-          
-          <!-- start course archive sidebar -->
         </div>
-          </div>
-      
-    </section>
-   
+
+</section>

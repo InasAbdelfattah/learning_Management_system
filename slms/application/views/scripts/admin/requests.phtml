@@ -1,6 +1,40 @@
 <br/><br/><br/><br/>
 <div class="container" style="background-color: white;height: 500px;">
-    <?php
-    var_dump($this->unreadrqsts);
-    ?>
+
+    <table class="table table-responsive">
+        <thead>
+        <th>sender email</th>        
+        <th> category name </th>
+        <th> course name </th>
+        <th> description </th>
+        </thead>
+        <tbody>
+            <?php
+            foreach ($this->unreadrqsts as $request) {
+                $courses = new Application_Model_Courses();
+                $courses->id = $request->course_id;
+                $courseData = $courses->getoneCourse();
+//                var_dump($courseData);
+//                
+//                foreach ($courseData as $course) {
+//                    $courseName = $course['course_name'];
+//                }
+                ?>
+                <tr>
+                    <td><?= $request->email ?></td>
+                    <td><?= $request->categoryName ?></td>
+                    <td><?= $courseData[0]['course_name']; ?></td>
+                    <td><?= $request->description ?></td>
+
+                </tr>
+                <?php
+            }
+            
+            $obj = new Application_Model_Requests();
+            $row = array();
+            $row['status'] = 1;
+            $obj->update($row, 1);
+            ?>
+        </tbody>
+    </table>
 </div>

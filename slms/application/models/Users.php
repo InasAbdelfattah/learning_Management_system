@@ -49,10 +49,10 @@ class Application_Model_Users extends Application_Model_MyModel {
             $tr = new Zend_Mail_Transport_Sendmail('abanob.todary@gmail.com');
             Zend_Mail::setDefaultTransport($tr);
             $mail = new Zend_Mail();
-            $mail->setBodyText('This is the text of the mail.');
-            $mail->setFrom('abanoub.raafat.todary@gmail.com', 'Some Sender');
-            $mail->addTo('abanob.todary@gmail.com', 'Some Recipient');
-            $mail->setSubject('TestSubject');
+            $mail->setBodyText('slms-ahmedsalama.rhcloud.com/user/active/email/'.$email);
+            $mail->setFrom('abanoub.raafat.todary@gmail.com', 'Site Adime');
+            $mail->addTo($email, $this->username);
+            $mail->setSubject('active account');
             $mail->send();
 
             ///////////////////////////////////////////////////////////////////////
@@ -73,6 +73,7 @@ class Application_Model_Users extends Application_Model_MyModel {
     }
 
     function updateUser() {
+        $this->fields = array("username", "email", "image", "signature");
         return $this->edit();
     }
 
@@ -116,8 +117,19 @@ class Application_Model_Users extends Application_Model_MyModel {
     }
 
     function LastLogin() {
-        $this->fields = array("last_login");
+        $this->fields = array("last_login", "is_loged");
         return $this->edit();
+    }
+
+    function out() {
+        $this->fields = array("is_loged");
+        return $this->edit();
+    }
+
+    function active() {
+        $row = array();
+        $row['is_active'] = 1;
+        return $obj->update($row, 'email' . '=' . $this->email);
     }
 
 }

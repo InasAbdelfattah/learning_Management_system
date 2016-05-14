@@ -53,7 +53,7 @@ class Application_Form_MaterialDoc extends Zend_Form {
         $is_active = new Zend_Form_Element_Radio('is_active',array('multiOptions' => array('1'=>'Active', '0'=>'Deactive')));
         $is_active->setLabel('Active :')->addValidator('NotEmpty', true)->setAttrib('class', 'form-group btn btn-default');
         
-        $options = [];
+        $options = array();
         foreach ($materialTypes as $type)
         {
             $option[$type['id']] = $type['material_name']; 

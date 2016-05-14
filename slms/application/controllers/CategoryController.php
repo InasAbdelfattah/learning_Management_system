@@ -29,13 +29,13 @@ class CategoryController extends Zend_Controller_Action {
 
     public function indexAction() {
 
-        $this->view->category = $this->model->listActiveCategories();
+        $this->view->category = $this->model->listCategories();
 //    
     }
 
     public function courseAction() {
 
-        $this->view->category = $this->model->listActiveCourses();
+        $this->view->category = $this->model->listCourses();
     }
 
     public function detailsAction() {

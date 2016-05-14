@@ -14,7 +14,7 @@
                     <th>is_active</th>
                     <th>is_admin</th>
                     <th>is_loged</th>
-                    <th>Edite</th>
+<!--                    <th>Edite</th>-->
                     <th>Delete</th>
 
                 </tr>
@@ -46,7 +46,7 @@
                         <!-- is admin -->
                         <?php if ($user['is_admin']) {
                             ?>
-                        <td><input type='button' name="admin"  value='is_admin' class='admin correctCss btn btn-primary ' data-deletid="<?php echo $user['id'] ?>" data-rowid='<?php echo $this->baseUrl() . '/user/admin/id/' . $user['id'] ?>'/></td>
+                            <td><input type='button' name="admin"  value='is_admin' class='admin correctCss btn btn-primary ' data-deletid="<?php echo $user['id'] ?>" data-rowid='<?php echo $this->baseUrl() . '/user/admin/id/' . $user['id'] ?>'/></td>
                             <?php
                         } else {
                             ?>
@@ -66,34 +66,32 @@
                         <?php }
                         ?>
 
+                        <!--
+                            <td>
 
-
-
-                        <td>
-
-                            <!--edite action-->
-                            <input type="button"   data-placement="left" title="Edit This Material" data-rowid="<?php echo $this->baseUrl() . '/user/edite/id/' . $user['id'] ?>" class="btn btn-md btn-primary" value="Edit"/>
-                        </td>
+                                edite action
+                                <input type="button"   data-placement="left" title="Edit This Material" data-rowid="<?php echo $this->baseUrl() . '/user/edite/id/' . $user['id'] ?>" class="btn btn-md btn-primary" value="Edit"/>
+                            </td>-->
                         <?php
                         if ($user['is_admin']) {
                             ?>
-                        <td>
-                        <!--Delete action-->
-                        <input type="button" disabled data-placement="left" title="Delete This Material" data-rowid="<?php echo $this->baseUrl() . '/user/delete/id/' . $user['id'] ?>" id="delete<?php echo $user['id'] ?>"  class="delete  btn btn-md btn-primary" value="Delete"/>
-                    </td>
-                    <?php
-                } else {
-                    ?>
-                    <td>
-                        <!--Delete action-->
-                        <input type="button"  data-placement="left" title="Delete This Material" data-rowid="<?php echo $this->baseUrl() . '/user/delete/id/' . $user['id'] ?>"  id="delete<?php echo $user['id'] ?>" class="delete  btn btn-md btn-primary" value="Delete"/>
-                    </td>
+                            <td>
+                                <!--Delete action-->
+                                <input type="button" disabled data-placement="left" title="Delete This Material" data-rowid="<?php echo $this->baseUrl() . '/user/delete/id/' . $user['id'] ?>" id="delete<?php echo $user['id'] ?>"  class="delete  btn btn-md btn-primary" value="Delete"/>
+                            </td>
+                            <?php
+                        } else {
+                            ?>
+                            <td>
+                                <!--Delete action-->
+                                <input type="button"  data-placement="left" title="Delete This Material" data-rowid="<?php echo $this->baseUrl() . '/user/delete/id/' . $user['id'] ?>"  id="delete<?php echo $user['id'] ?>" class="delete  btn btn-md btn-primary" value="Delete"/>
+                            </td>
 
-                    </tr>
-                    <?php
+                        </tr>
+                        <?php
+                    }
                 }
-            }
-            ?>
+                ?>
 
             </tbody>
         </table>

@@ -22,8 +22,8 @@ class Application_Form_Category extends Zend_Form {
                 
         
                 
-        $is_active = new Zend_Form_Element_Radio('is_active',array('multiOptions' => array('true'=>'Active', 'false'=>'Deactive')));
-        $is_active->setLabel('Active :')->addValidator('NotEmpty', true)->setAttrib('class', 'form-group btn btn-default');
+//        $is_active = new Zend_Form_Element_Radio('is_active',array('multiOptions' => array('true'=>'Active', 'false'=>'Deactive')));
+//        $is_active->setLabel('Active :')->addValidator('NotEmpty', true)->setAttrib('class', 'form-group btn btn-default');
         
         $submit = new Zend_Form_Element_Submit('submit');
         $submit->setLabel('Add Category');
@@ -31,8 +31,8 @@ class Application_Form_Category extends Zend_Form {
         $this->addElements(
                 array
                     (
-                    $id, $course_name,$image, 
-                    $is_active, $submit
+                    $id, $course_name,$image, $submit 
+//                    $is_active
         ));
     
 	

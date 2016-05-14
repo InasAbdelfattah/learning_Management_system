@@ -64,6 +64,12 @@ class AdminController extends Zend_Controller_Action {
                       ->where("`is_active` = '1' and `is_loged` = '1'");
         $this->view->users = count($this->user_model->fetchAll($select)->toArray());
         
+        // lest recent orders of 48 hours
+        $downloadsDB = new Application_Model_Downloads();
+        $select = $downloadsDB->select()
+                      ->where("downloaded_at >= '".$previousDay."'");
+        $this->view->downloads = count($downloadsDB->fetchAll($select)->toArray());
+        
     }
 
 #Category
@@ -80,7 +86,7 @@ class AdminController extends Zend_Controller_Action {
                 $this->cat_model->course_name = $data['course_name'];
                 $this->cat_model->image = $data['image'];
                 $this->cat_model->category_id = 0;
-                $this->cat_model->is_active = $data['is_active'];
+//                $this->cat_model->is_active = $data['is_active'];
                 if ($this->cat_model->addCategory($data))
                     $this->redirect('admin/category');
             }
@@ -110,6 +116,9 @@ class AdminController extends Zend_Controller_Action {
 
     //delete category or course...   
     public function deletecategoryAction() {
+        $cat_id= $this->getRequest()->getParam('id');
+        $this->cat_model->deletecat($cat_id);
+        
         $this->cat_model->id = $this->getRequest()->getParam('id');
         $this->cat_model->deleteCategory();
         $this->redirect('admin/category');
@@ -129,8 +138,8 @@ class AdminController extends Zend_Controller_Action {
                 $this->cat_model->course_name = $data['course_name'];
                 $this->cat_model->image = $data['image'];
                 $this->cat_model->category_id = $data['course_id'];
-                echo $data['is_active'];
-                $this->cat_model->is_active = $data['is_active'];
+//                echo $data['is_active'];
+//                $this->cat_model->is_active = $data['is_active'];
                 if ($this->cat_model->addCategory($data))
                     $this->redirect('admin/course');
             }
@@ -175,10 +184,6 @@ class AdminController extends Zend_Controller_Action {
         //list All matrials with it's full data
         $materials = $this->model->listMaterials();
         $this->view->materials = $materials;
-//        // list marial types
-//        $matrialTypesDB = new Application_Model_MaterialTypes();
-//        $materialsTypes = $matrialTypesDB->listMaterialTypes();
-//        $this->view->materialsTypes = $materialsTypes;
     }
 
 #delete material
@@ -403,24 +408,13 @@ class AdminController extends Zend_Controller_Action {
         $this->view->form = $form;
     }
     
-    public function requestsAction(){
+   public function requestsAction(){
         
         $this->request_model = new Application_Model_Requests();
         $ureadrqst=  $this->request_model->unreadRequests();
         $this->view->unreadrqsts=$ureadrqst;
         
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
 
 }

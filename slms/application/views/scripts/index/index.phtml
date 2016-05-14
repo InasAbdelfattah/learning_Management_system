@@ -74,7 +74,7 @@
                                         <div class="singCourse_imgarea">
                                             <img src="<?php echo $this->baseUrl('/img/courses_images_folder/'.$category['image']); ?>" />
                                             <div class="mask">                         
-                                                <a href="<?php echo $category['id']; ?>" class="course_more">View Category Of <?php echo $category['course_name']; ?></a>
+                                                <a href="<?php echo $this->baseUrl()."/category/details/id/".$category['id']; ?>" class="course_more">View Category Of <?php echo $category['course_name']; ?></a>
                                             </div>
                                         </div>
                                         <div class="singCourse_content">

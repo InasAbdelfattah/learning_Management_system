@@ -7,19 +7,21 @@ print_r($this->comments);
 print_r($this->data);*/
 echo "<h2>". $this->material[0]['material_name']."</h2></br>";
 echo "<h2>".$this->material[0]['descib']."</h2></br>";
-echo "<a href='".$this->baseUrl()."/materials/download/material_id/".$this->material[0]['id']."'>Download</a><a href='".$this->baseUrl()."/materials/view/material_id/".$this->material[0]['id']."'>View</a> <br />";
-#echo "<div class='wrap' style='background-color:white;'>";
+echo "<a href='".$this->baseUrl()."/materials/download/material_id/".$this->material[0]['id']."'>Download</a><a href='".$this->baseUrl()."/materials/view/material_id/".$this->material[0]['id']."'><i class='fa fa-fw fa-university'></i>View</a> <br />";
+echo "<div class='wrap' style='background-color:white;'>";
 #var_dump($this->user) ;
 foreach ($this->comments as $comment) {
 
 	echo $comment['comment']."  ";
 	if($this->user[0]['id']==$comment['user_id']){
 	echo "<a href='".$this->baseUrl()."/comments/edit/id/".$comment['id']."/material_id/".$this->material[0]['id']."'> Edit </a> "."<a href='".$this->baseUrl()."/comments/delete/id/".$comment['id']."/material_id/".$this->material[0]['id']."'>Delete</a><br />";
-	}else{
+	
+        
+        }else{
 		echo "<br/>";
 	}
 }
-#echo "</div>";
+echo "</div>";
 echo $this->form;
 ?>
 </div>

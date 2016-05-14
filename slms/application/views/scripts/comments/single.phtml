@@ -1,84 +1,88 @@
-    <section id="imgBanner">
-      <!-- <h2>Blog Single</h2> -->
-    </section>
-    <!--=========== END COURSE BANNER SECTION ================-->
-    
-    <!--=========== BEGIN COURSE BANNER SECTION ================-->
-    <section id="courseArchive">
-      <div class="container">
+<section id="imgBanner">
+    <!-- <h2>Blog Single</h2> -->
+</section>
+<!--=========== END COURSE BANNER SECTION ================-->
+
+<!--=========== BEGIN COURSE BANNER SECTION ================-->
+<section id="courseArchive">
+    <div class="container">
         <div class="row">
-          <!-- start course content -->
-          <div class="col-lg-8 col-md-8 col-sm-8">
-            <div class="courseArchive_content">
-              <!-- start blog archive  -->
-              <div class="row">
-                <!-- start single blog -->
-                <div class="col-lg-12 col-12 col-sm-12">
-                  <div class="single_blog">
-                    <!-- <div class="blogimg_container">
-                      <a href="#" class="blog_img">
-                        <img alt="img" src="img/blog.jpg">
-                      </a>
-                    </div> -->
-                    <h2 class="blog_title"><?php echo $this->material[0]['material_name']?></h2>
-                    <div class="blog_commentbox">
-                      <p><i class="fa fa-user"></i><?php echo $this->user[0]['username'] ?></p>
-                      <p><i class="fa fa-calendar"></i><?php echo $this->material[0]['created_at']?></p>
-                      </div>
-                      <?php
-                        $fpath = $this->material[0]['path'];
-                        $vpath='materials_upload_folder/'.$fpath ;
-                        $ext=strtolower(end(explode(".",$fpath)));
-                      ?>
-                      
-                    
-                    <p>
-               
-                      <?php 
+            <!-- start course content -->
+            <div class="col-lg-8 col-md-8 col-sm-8">
+                <div class="courseArchive_content">
+                    <!-- start blog archive  -->
+                    <div class="row">
+                        <!-- start single blog -->
+                        <div class="col-lg-12 col-12 col-sm-12">
+                            <div class="single_blog">
+                                <!-- <div class="blogimg_container">
+                                  <a href="#" class="blog_img">
+                                    <img alt="img" src="img/blog.jpg">
+                                  </a>
+                                </div> -->
+                                <h2 class="blog_title"><?php echo $this->material[0]['material_name'] ?></h2>
+                                <div class="blog_commentbox">
+                                    <p><i class="fa fa-user"></i><?php echo $this->user[0]['username'] ?></p>
+                                    <p><i class="fa fa-calendar"></i><?php echo $this->material[0]['created_at'] ?></p>
+                                </div>
+                                <?php
+                                $fpath = $this->material[0]['path'];
+                                $vpath = 'materials_upload_folder/' . $fpath;
+                                $ext = strtolower(end(explode(".", $fpath)));
+                                ?>
 
-                        echo "<img class='img-responsive' src='".$this->baseUrl()."/img/materials_images_folder/".$this->material[0]['image']."' >";
-                        #echo "</div>";
-                        echo "<h3>";
-                        echo $this->material[0]['descib'];
-                        echo "</h3>";
-                         echo "<a href='".$this->baseUrl()."/materials/view/material_id/".$this->material[0]['id']."' class='btn btn-md btn-primary'></i>View</a>";
-                        
-                        $pattern = '/com/*';
-                        if($ext != 'mp4'){
-                        echo "<a href='".$this->baseUrl()."/materials/download/material_id/".$this->material[0]['id']."' class='btn btn-md btn-primary'></i>Download</a>";
-                      }
-                      echo "<br/><br/>";
-                        if($ext == 'mp4' ){
-                       echo" <video width='320' height='240' controls loop='true'>";
-                       echo "<source type='video/webm' src='".$this->baseUrl()."/".$vpath."' >";
-                       echo "<source type='video/mp4' src='".$this->baseUrl()."/".$vpath."' >";
-                        echo "<source type='video/ogg' src='".$this->baseUrl()."/".$vpath."' >";
-                        echo "</video>";
-                    }
-                      ?>
-                    </p>
-                    <table class="table table-bordered table-hover" style="border:0px;">
-                    <?php
-                    foreach ($this->comments as $comment) {
-echo "<tr><td><img class='thumbnail' src='".$this->baseUrl()."/img/user/".$this->user[0]['image']."' >".$this->user[0]['username']."</td>";
-  echo "<td>".$comment['comment']."</td>";
-  if($this->user[0]['id']==$comment['user_id']){
-  echo "<td><a href='".$this->baseUrl()."/comments/edit/id/".$comment['id']."/material_id/".$this->material[0]['id']."' class='btn btn-primary'> Edit </a></td> "."<td><a href='".$this->baseUrl()."/comments/delete/id/".$comment['id']."/material_id/".$this->material[0]['id']."' class='btn btn-warning'>Delete</a></td></tr>";
-  }else{
-    echo "</tr>";
-  }
-}
-echo "</table>";
-echo"<div class='form-group'>";
-echo $this->form;
-?>
 
-</div>
-                   
-                </div>               
-              </div>           
-            </div>
-          </div> 
-          </div>
-          </div>
-       
+                                <p>
+
+                                    <?php
+                                    echo "<img class='img-responsive' src='" . $this->baseUrl() . "/img/materials_images_folder/" . $this->material[0]['image'] . "' >";
+                                    #echo "</div>";
+                                    echo "<h3>";
+                                    echo $this->material[0]['descib'];
+                                    echo "</h3>";
+                                    echo "<a href='" . $this->baseUrl() . "/materials/view/material_id/" . $this->material[0]['id'] . "' class='btn btn-md btn-default'></i><i class='fa fa-fw fa-cogs'></i> View</a>";
+
+                                    $pattern = '/com/*';
+                                    if ($ext != 'mp4' && $this->material[0]['is_downloadable'] == 1) {
+                                        echo "<a href='" . $this->baseUrl() . "/materials/download/material_id/" . $this->material[0]['id'] . "' class='btn btn-md btn-default' id='down' value='" . $this->baseUrl("/materials/insertdown/user_id/" . $this->user[0]['id'] . "/mat_id/" . $this->material[0]['id']) . "'></i><i class='fa fa-fw fa-cogs'></i> Download</a>";
+                                    }
+                                    echo "<br/><br/>";
+                                    if ($ext == 'mp4') {
+                                        echo" <video width='320' height='240' controls loop='true'>";
+                                        echo "<source type='video/webm' src='" . $this->baseUrl() . "/" . $vpath . "' >";
+                                        echo "<source type='video/mp4' src='" . $this->baseUrl() . "/" . $vpath . "' >";
+                                        echo "<source type='video/ogg' src='" . $this->baseUrl() . "/" . $vpath . "' >";
+                                        echo "</video>";
+                                    }
+                                    ?>
+                                </p>
+                                <table class="table table-bordered table-hover" style="border:0px;">
+                                    <?php
+                                    $user_obj = new Application_Model_Users();
+                                    foreach ($this->comments as $comment) {
+                                        $user_obj->id = $comment['user_id'];
+                                        $user = $user_obj->getUser();
+                                        echo "<tr><td><img class='thumbnail' src='" . $this->baseUrl() . "/img/user/" . $user[0]['image'] . "' >" . $user[0]['username'] . "</td>";
+                                        echo "<td>" . $comment['comment'] . "</td>";
+                                        if ($this->user[0]['id'] == $comment['user_id']) {
+                                            echo "<td><a href='" . $this->baseUrl() . "/comments/edit/id/" . $comment['id'] . "/material_id/" . $this->material[0]['id'] . "' class='btn btn-primary'> Edit </a></td> " . "<td><a href='" . $this->baseUrl() . "/comments/delete/id/" . $comment['id'] . "/material_id/" . $this->material[0]['id'] . "' class='btn btn-warning'>Delete</a></td></tr>";
+                                        } else {
+                                            echo "</tr>";
+                                        }
+                                    }
+                                    echo "</table>";
+                                    echo"<div class='form-group'>";
+                                    echo $this->form;
+                                    ?>
+
+                            </div>
+
+                        </div>               
+                    </div>           
+                </div>
+            </div> 
+        </div>
+    </div>
+
+    <script src="<?php echo $this->baseUrl() . '/../public/js/jquery-1.12.3.js' ?>"></script>
+    <script src="<?php echo $this->baseUrl() . '/../public/js/request.js' ?>"></script>s

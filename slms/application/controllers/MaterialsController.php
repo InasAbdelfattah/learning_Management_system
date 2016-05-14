@@ -59,6 +59,10 @@ class MaterialsController extends Zend_Controller_Action {
         #readfile($path);
     }
 
+    public function insertdown(){
+        
+    }
+
     public function viewAction() {
         $material_id = $this->getRequest()->getParam('material_id');
         $file = $this->model->fetchAll($this->model->select('*')->where('id =?', $material_id))->toArray();

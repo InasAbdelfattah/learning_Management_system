@@ -34,7 +34,7 @@
                     <th><i class="fa fa-fw fa-file"></i> Material</th>
                     <th><i class="fa fa-fw fa-leaf"></i> Course</th>
                     <th><i class="fa fa-fw fa-image"></i> Image</th>
-                    <!--<th><i class="fa fa-fw fa-bars"></i> Description</th>-->
+                    <th><i class="fa fa-fw fa-bars"></i>Download Times</th>
                     <th><i class="fa fa-fw fa-clock-o"></i> Add Time</th>
                     <th><i class="fa fa-fw fa-file-pdf-o"></i> Type</th>
                     <th><i class="fa fa-fw fa-sticky-cog"></i>Download</th>
@@ -52,10 +52,12 @@
                     $matrialcat = $matrialcatDB->getoneCategory();
                     foreach ($matrialcat as $category) {
                         $cat = $category['course_name'];
+                        $matrialTypesDB = new Application_Model_Downloads();
+                        $Dtimes = $matrialTypesDB->getDowenload($material['id']);
                     }
                     ?>
                     <tr>
-                        <td><a href="<?php echo $this->baseUrl() . '/materials_upload_folder/' . $material['material_name'] ?>"data-placement="left" title="<?php echo $material['descib'] ?>"><?php echo $material['material_name'] ?></a></td>
+                        <td><p data-placement="left" title="<?php echo $material['descib'] ?>"><?php echo $material['material_name'] ?></p></td>
                         <td>
                             <a href="<?php echo $this->baseUrl() . '/category/details/id/' . $material['CategoryId'] ?>"  data-placement="left" title="<?php echo $cat ?>">
                                 <?php echo $material['Course']; ?>
@@ -64,6 +66,7 @@
                         </td>
                         <td><img  class="thumbnail" src='<?php echo $this->baseUrl() . '/img/materials_images_folder/' . $material['image'] ?>' ></td>
                         <!--<td><?php // echo $material['descib'] ?></td>-->
+                        <td><?php echo  $Dtimes ?></td>
                         <td><?php echo $material['created_at'] ?></td>
                         <td><?php echo $material['type'] ?></td>
                        <td>
